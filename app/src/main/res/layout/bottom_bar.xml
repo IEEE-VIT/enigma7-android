@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        style="@style/BottomButtonBack"
+        android:background="@drawable/bottom_button_back"
+        android:id="@+id/game_back">
+
+        <ImageButton
+            style="@style/BottomButton"
+            android:src="@drawable/play_icon"
+            android:background="@drawable/bottom_button"
+            android:id="@+id/game"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/BottomButtonBack"
+        android:background="@drawable/bottom_button_back"
+        android:id="@+id/leaderboard_back"
+        android:layout_toEndOf="@id/game_back">
+
+        <ImageButton
+            style="@style/BottomButton"
+            android:src="@drawable/leaderboard_icon"
+            android:background="@drawable/bottom_button"
+            android:id="@+id/leaderboard"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/BottomButtonBack"
+        android:background="@drawable/bottom_button_back"
+        android:id="@+id/story_back"
+        android:layout_toEndOf="@+id/leaderboard_back">
+
+        <ImageButton
+            style="@style/BottomButton"
+            android:src="@drawable/story_icon"
+            android:background="@drawable/bottom_button"
+            android:id="@+id/story"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/BottomButtonBack"
+        android:background="@drawable/bottom_button_back"
+        android:id="@+id/profile_back"
+        android:layout_toEndOf="@+id/story_back">
+
+        <ImageButton
+            style="@style/BottomButton"
+            android:src="@drawable/profile_icon"
+            android:background="@drawable/bottom_button"
+            android:id="@+id/profile"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
