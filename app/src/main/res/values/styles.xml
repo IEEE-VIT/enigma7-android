@@ -10,6 +10,7 @@
     <style name="BottomButton" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_height">60dp</item>
         <item name="android:layout_width">80dp</item>
+        <item name="android:background">@color/bottomButton</item>
     </style>
 
     <style name="BottomButtonBack">
