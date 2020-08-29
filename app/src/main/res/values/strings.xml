@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Enigma7</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Sign_up_google">Sign up with Google</string>
+    <string name="Sign_up_insta">Sign up with Instagram</string>
+    <string name="Enigma">E N I G M A</string>
+    <string name="onlineCrypticHunt">Online cryptic hunt</string>
 </resources>
