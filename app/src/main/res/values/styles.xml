@@ -41,4 +41,20 @@
         <item name="lineHeight">34sp</item>
     </style>
 
+    <style name="hintButtonStyle" parent="Widget.AppCompat.ImageButton">
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_columnSpan">1</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/hint_button_back</item>
+        <item name="android:layout_marginEnd">15dp</item>
+    </style>
+
+    <style name="questionTextStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#26DF21</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">26sp</item>
+    </style>
+
 </resources>
