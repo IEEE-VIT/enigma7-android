@@ -13,11 +13,11 @@
         <TextView
             style="@style/headerTextStyle"
             android:layout_marginTop="20dp"
-            android:text="Instructions\n"/>
+            android:text="@string/instructions_n"/>
 
         <TextView
             style="@style/simpleTextStyle"
-            android:text="Etiam fermentum ut bibendum egestas id maecenas aliquam lacinia nulla. \n\nTempor enim viverra eu laoreet.\n\nOrnare iaculis sed adipiscing fringilla tincidunt arcu eget morbi at odio nisi ipsum sit congue vivamus ut euismod euismod nec augue"/>
+            android:text="@string/sample"/>
 
     </LinearLayout>
 

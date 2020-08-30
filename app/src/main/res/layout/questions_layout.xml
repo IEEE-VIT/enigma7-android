@@ -13,12 +13,12 @@
         <TextView
             style="@style/questionTextStyle"
             android:textStyle="bold"
-            android:text="Q1."/>
+            android:text="@string/q1"/>
 
         <TextView
             style="@style/questionTextStyle"
             android:fontFamily="@font/anaheim"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."/>
+            android:text="@string/sample2"/>
 
         <ImageView
             android:layout_width="280dp"
@@ -50,7 +50,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/submit_button_back"
             android:textColor="#1DB818"
-            android:text="Submit"
+            android:text="@string/submit"
             android:textAllCaps="false"
             android:fontFamily="@font/anaheim"
             android:textSize="20sp"
