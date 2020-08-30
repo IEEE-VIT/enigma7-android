@@ -52,4 +52,12 @@
         <item name="android:textColor">@color/buttonTextColor</item>
         <item name="android:radius">0dp</item>
     </style>
+    <style name="editTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textCursorDrawable">@drawable/edit_text_cursor</item>
+        <item name="fontFamily">@font/ibm_plex_mono_regular</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@color/enigmaColor</item>
+        <item name="android:inputType">textVisiblePassword</item>
+
+    </style>
 </resources>

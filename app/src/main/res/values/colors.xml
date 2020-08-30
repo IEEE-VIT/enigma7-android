@@ -10,5 +10,6 @@
     <color name="primaryRippleColor">#99182F24</color>
     <color name="rippleStrokeColor">#B826DF21</color>
     <color name="zeroOneTint">#145E14</color>
-    <color name="enigmaColor">#1DB818</color>
+    <color name="enigmaColor">#1DB818</color>"#4D182F24"
+    <color name="editTextBackground">#4D182F24</color>
 </resources>
