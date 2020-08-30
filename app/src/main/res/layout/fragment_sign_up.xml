@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraint_layout"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fragment_back"
@@ -10,7 +10,7 @@
 
 
     <ImageView
-        android:id="@+id/zero_one"
+        android:id="@+id/zeroOne"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_alignParentStart="true"
@@ -22,12 +22,13 @@
         android:background="@drawable/zero_one"
         android:backgroundTint="@color/zeroOneTint"
         android:paddingTop="10dp"
-        app:layout_constraintBottom_toTopOf="@id/google_signup"
+        app:layout_constraintBottom_toTopOf="@id/googleSignup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:contentDescription="@string/_01" />
 
     <TextView
         android:id="@+id/enigma"
@@ -46,13 +47,13 @@
         android:text="@string/Enigma"
         android:textColor="@color/enigmaColor"
         android:textSize="68sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/crypticText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/zero_one" />
+        app:layout_constraintTop_toTopOf="@+id/zeroOne" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/insta_signup"
+        android:id="@+id/instaSignup"
         style="@style/primaryButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
         app:strokeWidth="@dimen/strokeWidth" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/google_signup"
+        android:id="@+id/googleSignup"
         style="@style/primaryButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,14 +91,14 @@
         android:text="@string/Sign_up_google"
         android:textAllCaps="false"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/insta_signup"
+        app:layout_constraintBottom_toTopOf="@+id/instaSignup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/strokeColor"
         app:strokeWidth="@dimen/strokeWidth" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/crypticText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/ibm_plex_mono_regular"
