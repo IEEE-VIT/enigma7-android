@@ -1,6 +1,5 @@
 package com.ieeevit.enigma7
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
