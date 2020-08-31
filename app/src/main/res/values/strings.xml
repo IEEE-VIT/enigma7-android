@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Enigma7</string>
+<<<<<<<<< Temporary merge branch 1
     <string name="Sign_up_google">Sign up with Google</string>
     <string name="Sign_up_insta">Sign up with Instagram</string>
     <string name="Enigma">E N I G M A</string>
     <string name="onlineCrypticHunt">Online cryptic hunt</string>
     <string name="profileSetup">Profile setup</string>
-    <string name="enterUsername"> How you want to be known as \n[this can’t be edited later]</string>
+    <string name="enterUsername">How you want to be known as\n[this can’t be edited later]</string>
     <string name="invalidText">________________\nInvalidUsername.\n-> Numerals Missing!</string>
     <string name="next">Next</string>
     <string name="countdownString">The ultimate cryptic hunt starts in</string>
@@ -28,4 +29,5 @@
     <string name="confirm_deduction">[ this will deduct points ]</string>
     <string name="story_title">Story</string>
     <string name="story_sample">Imperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.</string>
+>>>>>>>>> Temporary merge branch 2
 </resources>
