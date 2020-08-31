@@ -10,7 +10,14 @@
 
     <include
         android:id="@+id/title"
-        layout="@layout/enigma_title"></include>
+        layout="@layout/enigma_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp">
+
+    </include>
 
     <TextView
         android:id="@+id/textView"
@@ -21,8 +28,8 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/ibm_plex_mono_regular"
         android:padding="2dp"
-        android:text="Profile"
-        android:textSize="25dp" />
+        android:text="@string/profile"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -33,7 +40,7 @@
         android:layout_marginTop="34dp"
         android:fontFamily="@font/ibm_plex_mono_semi_bold"
         android:padding="2dp"
-        android:text="User Name"
+        android:text="@string/user_name"
         android:textSize="21sp"
         app:lineHeight="21sp" />
 
@@ -45,7 +52,7 @@
         android:layout_marginStart="41dp"
         android:layout_marginTop="1dp"
         android:padding="2dp"
-        android:text="ValidUserName" />
+        android:text="@string/validusername" />
 
     <TextView
         android:id="@+id/textView4"
@@ -56,7 +63,7 @@
         android:layout_marginTop="22dp"
         android:fontFamily="@font/ibm_plex_mono_semi_bold"
         android:padding="2dp"
-        android:text="Email Id"
+        android:text="@string/email_id"
         android:textSize="21sp" />
 
     <TextView
@@ -85,7 +92,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_mono_semi_bold"
             android:padding="2dp"
-            android:text="Questions solved"
+            android:text="@string/questions_solved"
             android:textSize="21sp" />
 
         <TextView
@@ -113,7 +120,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_mono_semi_bold"
             android:padding="2dp"
-            android:text="Rank"
+            android:text="@string/rank"
             android:textSize="21sp" />
 
         <TextView
@@ -141,7 +148,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_mono_semi_bold"
             android:padding="2dp"
-            android:text="Score"
+            android:text="@string/score"
             android:textSize="21sp" />
 
         <TextView
@@ -160,12 +167,11 @@
         style="@style/primaryButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="110dp"
         android:layout_marginBottom="51dp"
         android:fontFamily="@font/ibm_plex_mono_regular"
-        android:text="Sign Out"
+        android:text="@string/sign_out"
         android:textAllCaps="false"
         android:textSize="21sp"
         app:strokeColor="@color/enigmaColor"
