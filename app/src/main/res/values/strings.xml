@@ -11,9 +11,7 @@
     <string name="countdownString">The ultimate cryptic hunt starts in</string>
     <string name="semicolon">:</string>
     <string name="_01">01</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="profile">Profile:</string>
+    <string name="profile">Profile</string>
     <string name="user_name">User Name:</string>
     <string name="validusername">ValidUserName:</string>
     <string name="email_id">Email Id:</string>

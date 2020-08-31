@@ -18,6 +18,7 @@ class CountdownFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+         // TODO: 31-08-2020 navigate to instruction
         return inflater.inflate(R.layout.fragment_countdown, container, false)
     }
 
