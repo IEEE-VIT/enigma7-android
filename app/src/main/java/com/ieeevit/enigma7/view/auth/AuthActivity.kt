@@ -12,7 +12,7 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
         if (savedInstanceState == null) {
-            val fragment =ProfileFragment()
+            val fragment =SignUpFragment()
             supportFragmentManager.beginTransaction()
                 .add(R.id.container, fragment)
                 .commit()
