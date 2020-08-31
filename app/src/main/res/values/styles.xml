@@ -5,6 +5,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+
     </style>
 
     <style name="BottomButton" parent="Widget.AppCompat.ImageButton">
@@ -24,7 +28,7 @@
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_marginBottom">100dp</item>
     </style>
-    
+
     <style name="simpleTextStyle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -68,6 +72,7 @@
         <item name="lineHeight">26sp</item>
         <item name="fontFamily">@font/ibm</item>
     </style>
+
     <style name="zeroOneText" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
         <item name="android:textColor">#145E14</item>
         <item name="android:textSize">12sp</item>
@@ -75,11 +80,13 @@
         <item name="fontFamily">@font/ibm_plex_mono_regular</item>
         <item name="android:alpha">0.25</item>
     </style>
+
     <style name="primaryButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="rippleColor">@color/primaryRippleColor</item>
         <item name="android:textColor">@color/buttonTextColor</item>
         <item name="android:radius">0dp</item>
     </style>
+
     <style name="editTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:textCursorDrawable">@drawable/edit_text_cursor</item>
         <item name="fontFamily">@font/ibm_plex_mono_regular</item>
@@ -88,16 +95,19 @@
         <item name="android:inputType">textVisiblePassword</item>
 
     </style>
+
     <style name="countdown" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">62dp</item>
         <item name="android:layout_height">54dp</item>
         <item name="android:textSize">38sp</item>
         <item name="android:textColor">@color/buttonTextColor</item>
     </style>
+
     <style name="semicolon" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">21dp</item>
         <item name="android:layout_height">46dp</item>
         <item name="android:textSize">35sp</item>
         <item name="android:textColor">@color/buttonTextColor</item>
     </style>
+
 </resources>

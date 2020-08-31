@@ -1,13 +1,15 @@
-package com.ieeevit.enigma7.view.timer
+package com.ieeevit.enigma7.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.ieeevit.enigma7.R
+import com.ieeevit.enigma7.databinding.FragmentProfileBinding
 
-class CountdownFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,8 +20,8 @@ class CountdownFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         // TODO: 31-08-2020 navigate to instruction
-        return inflater.inflate(R.layout.fragment_countdown, container, false)
+        val binding:FragmentProfileBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile,container,false)
+        return binding.root
     }
 
 
