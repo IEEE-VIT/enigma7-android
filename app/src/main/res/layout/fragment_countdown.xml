@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fragment_back"
+    tools:context=".view.timer.CountdownFragment">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="123dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/ibm_plex_mono_regular"
+        android:text="@string/countdownString"
+        android:textColor="@color/enigmaColor"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lineHeight="33sp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginEnd="52dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text">
+
+        <TextView
+            android:id="@+id/days"
+            style="@style/countdown"
+            android:layout_weight="1"
+            android:background="@color/countdownBackground"
+            android:fontFamily="@font/ibm_plex_mono_regular"
+            android:gravity="center_horizontal"
+            android:text="01"
+            app:lineHeight="49sp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            style="@style/semicolon"
+            android:layout_weight="1"
+            android:fontFamily="@font/ibm_plex_mono_regular"
+            android:gravity="center_horizontal"
+            android:text="@string/semicolon"
+            app:lineHeight="45sp" />
+
+        <TextView
+            android:id="@+id/hours"
+            style="@style/countdown"
+            android:layout_weight="1"
+            android:background="@color/countdownBackground"
+            android:fontFamily="@font/ibm_plex_mono_regular"
+            android:gravity="center_horizontal"
+            android:text="01"
+            app:lineHeight="49sp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            style="@style/semicolon"
+            android:layout_weight="1"
+            android:fontFamily="@font/ibm_plex_mono_regular"
+            android:gravity="center_horizontal"
+            android:text="@string/semicolon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lineHeight="45sp" />
+
+        <TextView
+            android:id="@+id/minutes"
+            style="@style/countdown"
+            android:layout_weight="1"
+            android:background="@color/countdownBackground"
+            android:fontFamily="@font/ibm_plex_mono_regular"
+            android:gravity="center_horizontal"
+            android:text="01"
+            app:lineHeight="49sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

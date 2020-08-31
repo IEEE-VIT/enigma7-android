@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1DB818</color>
-    <color name="colorPrimaryDark">#1DB818</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="bottomButton">#3A3D38</color>
     <color name="baseBackground">#2B2D29</color>
+    <color name="strokeColor">#5026DF21</color>
+    <color name="buttonTextColor">#26DF21</color>
+    <color name="primaryRippleColor">#99182F24</color>
+    <color name="rippleStrokeColor">#B826DF21</color>
+    <color name="zeroOneTint">#145E14</color>
+    <color name="enigmaColor">#1DB818</color>"#4D182F24"
+    <color name="editTextBackground">#4D182F24</color>
+    <color name="countdownBackground">#4D182F24</color>
     <color name="colorButtonText">#1DB818</color>
     <color name="colorEnigmaBack">#4D182F24</color>
     <color name="colorQuestionText">#26DF21</color>

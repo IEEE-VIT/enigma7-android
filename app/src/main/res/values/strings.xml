@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">Enigma7</string>
+    <string name="Sign_up_google">Sign up with Google</string>
+    <string name="Sign_up_insta">Sign up with Instagram</string>
+    <string name="Enigma">E N I G M A</string>
+    <string name="onlineCrypticHunt">Online cryptic hunt</string>
+    <string name="profileSetup">Profile setup</string>
+    <string name="enterUsername">How you want to be known as\n[this can’t be edited later]</string>
+    <string name="invalidText">________________\nInvalidUsername.\n-> Numerals Missing!</string>
+    <string name="next">Next</string>
+   <string name="countdownString">The ultimate cryptic hunt starts in</string>
+    <string name="semicolon">:</string>
+    <string name="_01">01</string>
     <string name="instructions_n">Instructions\n</string>
     <string name="sample">Etiam fermentum ut bibendum egestas id maecenas aliquam lacinia nulla. \n\nTempor enim viverra eu laoreet.\n\nOrnare iaculis sed adipiscing fringilla tincidunt arcu eget morbi at odio nisi ipsum sit congue vivamus ut euismod euismod nec augue</string>
     <string name="q1">Q1.</string>
