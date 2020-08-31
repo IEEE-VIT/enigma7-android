@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fragment_back"
+    android:padding="4dp">
+
+    <include
+        layout="@layout/enigma_title"/>
+
+    <include
+        layout="@layout/progress_layout"/>
+
+    <include
+        layout="@layout/hints_layout"/>
+
+    <include
+        layout="@layout/questions_layout"/>
+
+</LinearLayout>
