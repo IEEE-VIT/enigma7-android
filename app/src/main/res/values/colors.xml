@@ -13,4 +13,9 @@
     <color name="enigmaColor">#1DB818</color>"#4D182F24"
     <color name="editTextBackground">#4D182F24</color>
     <color name="countdownBackground">#4D182F24</color>
+    <color name="colorButtonText">#1DB818</color>
+    <color name="colorEnigmaBack">#4D182F24</color>
+    <color name="colorQuestionText">#26DF21</color>
+    <color name="dialogBorderColor">#182f24</color>
+    <color name="colorDialogText">#EEF4E8</color>
 </resources>
