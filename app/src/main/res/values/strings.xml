@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">Enigma7</string>
-<<<<<<<<< Temporary merge branch 1
+    <string name="instructions_n">Instructions\n</string>
+    <string name="sample">Etiam fermentum ut bibendum egestas id maecenas aliquam lacinia nulla. \n\nTempor enim viverra eu laoreet.\n\nOrnare iaculis sed adipiscing fringilla tincidunt arcu eget morbi at odio nisi ipsum sit congue vivamus ut euismod euismod nec augue</string>
+    <string name="q1">Q1.</string>
+    <string name="sample2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="submit">Submit</string>
+    <string name="hint_confirm">Are you sure you want to use hint?</string>
+    <string name="confirm_deduction">[ this will deduct points ]</string>
+    <string name="story_title">Story</string>
+    <string name="story_sample">Imperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.</string>
+    <string name="leaderboard">Leaderboard</string>
     <string name="Sign_up_google">Sign up with Google</string>
     <string name="Sign_up_insta">Sign up with Instagram</string>
     <string name="Enigma">E N I G M A</string>
@@ -20,14 +29,5 @@
     <string name="rank">Rank:</string>
     <string name="score">Score:</string>
     <string name="sign_out">Sign Out</string>
-    <string name="instructions_n">Instructions\n</string>
-    <string name="sample">Etiam fermentum ut bibendum egestas id maecenas aliquam lacinia nulla. \n\nTempor enim viverra eu laoreet.\n\nOrnare iaculis sed adipiscing fringilla tincidunt arcu eget morbi at odio nisi ipsum sit congue vivamus ut euismod euismod nec augue</string>
-    <string name="q1">Q1.</string>
-    <string name="sample2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
-    <string name="submit">Submit</string>
-    <string name="hint_confirm">Are you sure you want to use hint?</string>
-    <string name="confirm_deduction">[ this will deduct points ]</string>
-    <string name="story_title">Story</string>
-    <string name="story_sample">Imperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.</string>
->>>>>>>>> Temporary merge branch 2
+
 </resources>

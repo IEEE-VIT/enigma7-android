@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/enigma_title"
+            layout="@layout/enigma_title"/>
 
         <TextView
             style="@style/headerTextStyle"
