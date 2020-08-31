@@ -162,7 +162,7 @@
 
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/button2"
         style="@style/primaryButtonStyle"
         android:layout_width="wrap_content"
@@ -171,9 +171,14 @@
         android:layout_marginTop="40dp"
         android:layout_marginBottom="51dp"
         android:fontFamily="@font/ibm_plex_mono_regular"
+        android:paddingStart="9dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="9dp"
+        android:paddingBottom="7dp"
         android:text="@string/sign_out"
         android:textAllCaps="false"
         android:textSize="21sp"
+        app:cornerRadius="0dp"
         app:strokeColor="@color/enigmaColor"
         app:strokeWidth="2dp" />
 </LinearLayout>
