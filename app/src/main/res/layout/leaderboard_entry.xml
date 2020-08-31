@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:weightSum="5"
+    android:layout_marginTop="5dp"
+    android:layout_marginHorizontal="13dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/rank"
+        android:layout_weight="1"
+        style="@style/leaderboardTextStyleEntry"
+        android:text="Rank" />
+
+    <TextView
+        android:id="@+id/username"
+        style="@style/leaderboardTextStyleEntry"
+        android:layout_weight="2"
+        android:text="Username" />
+
+    <TextView
+        android:id="@+id/solved"
+        style="@style/leaderboardTextStyleEntry"
+        android:layout_weight="1"
+        android:text="Solved"
+        android:textAlignment="textEnd"/>
+
+    <TextView
+        android:id="@+id/score"
+        style="@style/leaderboardTextStyleEntry"
+        android:layout_weight="1"
+        android:textAlignment="textEnd"
+        android:text="Score" />
+
+</LinearLayout>
