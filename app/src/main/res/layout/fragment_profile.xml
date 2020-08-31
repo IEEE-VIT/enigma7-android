@@ -1,6 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.home.ProfileFragment"/>
+    android:background="@drawable/fragment_back"
+    android:orientation="vertical"
+    tools:context=".view.home.ProfileFragment">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/enigma_title"></include>
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/headerTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/ibm_plex_mono_regular"
+        android:padding="2dp"
+        android:text="Profile"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/simpleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="34dp"
+        android:fontFamily="@font/ibm_plex_mono_semi_bold"
+        android:padding="2dp"
+        android:text="User Name"
+        android:textSize="21sp"
+        app:lineHeight="21sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/simpleTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="1dp"
+        android:padding="2dp"
+        android:text="ValidUserName" />
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/simpleTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/ibm_plex_mono_semi_bold"
+        android:padding="2dp"
+        android:text="Email Id"
+        android:textSize="21sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/simpleTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="1dp"
+        android:padding="2dp"
+        android:text="user.123@mail.com" />
+
+    <LinearLayout
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="26dp"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+        <TextView
+            android:id="@+id/textView13"
+            style="@style/simpleTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_mono_semi_bold"
+            android:padding="2dp"
+            android:text="Questions solved"
+            android:textSize="21sp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            style="@style/simpleTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:padding="2dp"
+            android:text="5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="26dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView15"
+            style="@style/simpleTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_mono_semi_bold"
+            android:padding="2dp"
+            android:text="Rank"
+            android:textSize="21sp" />
+
+        <TextView
+            android:id="@+id/textView16"
+            style="@style/simpleTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:padding="2dp"
+            android:text="11" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView17"
+            style="@style/simpleTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_mono_semi_bold"
+            android:padding="2dp"
+            android:text="Score"
+            android:textSize="21sp" />
+
+        <TextView
+            android:id="@+id/textView18"
+            style="@style/simpleTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:padding="2dp"
+            android:text="500" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button2"
+        style="@style/primaryButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="51dp"
+        android:fontFamily="@font/ibm_plex_mono_regular"
+        android:text="Sign Out"
+        android:textAllCaps="false"
+        android:textSize="21sp"
+        app:strokeColor="@color/enigmaColor"
+        app:strokeWidth="2dp" />
+</LinearLayout>
+
