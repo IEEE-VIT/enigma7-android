@@ -5,4 +5,9 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="bottomButton">#3A3D38</color>
     <color name="baseBackground">#2B2D29</color>
+    <color name="colorButtonText">#1DB818</color>
+    <color name="colorEnigmaBack">#4D182F24</color>
+    <color name="colorQuestionText">#26DF21</color>
+    <color name="dialogBorderColor">#182f24</color>
+    <color name="colorDialogText">#EEF4E8</color>
 </resources>
