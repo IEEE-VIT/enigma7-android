@@ -86,7 +86,6 @@
         android:fontFamily="@font/ibm_plex_mono_regular"
         android:paddingLeft="89dp"
         android:paddingTop="6dp"
-        android:background="@drawable/submit_button_back"
         android:paddingRight="89dp"
         android:paddingBottom="6dp"
         android:text="@string/next"
