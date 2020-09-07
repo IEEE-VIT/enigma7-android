@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/textView2"
-        style="@style/simpleTextStyle"
+        style="@style/headerTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -53,13 +53,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
-        android:layout_marginTop="1dp"
-        android:padding="2dp"
         android:text="@string/validusername" />
 
     <TextView
         android:id="@+id/textView4"
-        style="@style/simpleTextStyle"
+        style="@style/headerTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -75,8 +73,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
-        android:layout_marginTop="1dp"
-        android:padding="2dp"
         android:text="user.123@mail.com" />
 
     <LinearLayout
@@ -90,7 +86,7 @@
 
         <TextView
             android:id="@+id/textView13"
-            style="@style/simpleTextStyle"
+            style="@style/headerTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_mono_semi_bold"
@@ -118,7 +114,7 @@
 
         <TextView
             android:id="@+id/textView15"
-            style="@style/simpleTextStyle"
+            style="@style/headerTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_mono_semi_bold"
@@ -146,7 +142,7 @@
 
         <TextView
             android:id="@+id/textView17"
-            style="@style/simpleTextStyle"
+            style="@style/headerTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_mono_semi_bold"
@@ -168,6 +164,7 @@
     <Button
         android:id="@+id/signOutButton"
         style="@style/primaryButtonStyle"
+        android:background="@drawable/submit_button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

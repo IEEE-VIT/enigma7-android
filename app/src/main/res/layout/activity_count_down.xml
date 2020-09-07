@@ -10,7 +10,6 @@
     app:layout_goneMarginEnd="18dp"
     tools:context=".view.timer.CountdownActivity">
 
-
     <include
         android:id="@+id/include2"
         layout="@layout/bottom_bar"
