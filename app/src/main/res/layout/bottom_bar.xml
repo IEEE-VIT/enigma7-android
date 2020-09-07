@@ -13,7 +13,7 @@
             android:id="@+id/game"
             style="@style/BottomButton"
             android:background="@drawable/bottom_button"
-            android:src="@drawable/play_icon" />
+            android:src="@drawable/play_icon1" />
 
     </RelativeLayout>
 

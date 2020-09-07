@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fragment_back"
+        android:background="#080E08"
         tools:context=".view.auth.SignUpFragment">
 
 
@@ -25,12 +26,12 @@
             android:backgroundTint="@color/zeroOneTint"
             android:contentDescription="@string/_01"
             android:paddingTop="10dp"
-            app:layout_constraintBottom_toTopOf="@id/googleSignup"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/googleSignup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/enigma"
@@ -39,9 +40,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="248dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginBottom="1dp"
             android:fontFamily="@font/vt323_regular"
             android:gravity="center_horizontal"
             android:paddingStart="10dp"
@@ -49,10 +49,10 @@
             android:text="@string/Enigma"
             android:textColor="@color/enigmaColor"
             android:textSize="68sp"
-            app:layout_constraintBottom_toTopOf="@+id/crypticText"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/zeroOne" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/instaSignup"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="49dp"
             android:layout_marginEnd="49dp"
-            android:layout_marginBottom="48dp"
+            android:layout_marginBottom="51dp"
             android:fontFamily="@font/inconsolata_regular"
             android:paddingStart="8dp"
             android:paddingTop="12dp"
@@ -70,10 +70,11 @@
             android:text="@string/Sign_up_insta"
             android:textAllCaps="false"
             android:textSize="20sp"
+            android:visibility="invisible"
             app:cornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.535"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:strokeColor="@color/strokeColor"
             app:strokeWidth="@dimen/strokeWidth" />
@@ -94,6 +95,7 @@
             android:text="@string/Sign_up_google"
             android:textAllCaps="false"
             android:textSize="20sp"
+            android:visibility="invisible"
             app:cornerRadius="0dp"
             app:layout_constraintBottom_toTopOf="@+id/instaSignup"
             app:layout_constraintEnd_toEndOf="parent"
@@ -107,9 +109,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ibm_plex_mono_regular"
             android:gravity="center_horizontal"
-            android:text="@string/onlineCrypticHunt"
+            android:text="@string/angular"
             android:textColor="@color/enigmaColor"
             android:textSize="18sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/enigma" />
