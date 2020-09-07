@@ -20,27 +20,17 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
-        binding.container.crypticText.visibility = View.GONE
-        binding.container.zeroOne.translationY = ((-1500).toFloat())
-        binding.container.googleSignup.translationY = (1500.toFloat())
-        binding.container.instaSignup.translationY = (1500.toFloat())
-        binding.container.crypticText.setText(R.string.angular)
+        initialize()
         shortAnimationDuration = resources.getInteger(android.R.integer.config_longAnimTime)
         Handler().postDelayed(
             { binding.container.crypticText.setText(R.string.anglur_cryptic) },
-            700
+            800
         )
         binding.container.crypticText.apply {
-            // Set the content view to 0% opacity but visible, so that it is visible
-            // (but fully transparent) during the animation.
+            //fade in animation for the crypticText
             alpha = 0f
             visibility = View.VISIBLE
-
-            // Animate the content view to 100% opacity, and clear any animation
-            // listener set on the view.
-            animate()
-                .alpha(1f)
-                .setDuration(1500.toLong())
+            animate().alpha(1f).setDuration(1500.toLong())
                 .setListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator) {
                         binding.container.crypticText.setText(R.string.onlineCrypticHunt)
@@ -89,5 +79,13 @@ class SplashActivity : AppCompatActivity() {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             finish()
         }, 500)
+    }
+
+    fun initialize() {
+        binding.container.crypticText.visibility = View.GONE
+        binding.container.zeroOne.translationY = ((-1500).toFloat())
+        binding.container.googleSignup.translationY = (1500.toFloat())
+        binding.container.instaSignup.translationY = (1500.toFloat())
+        binding.container.crypticText.setText(R.string.angular)
     }
 }
