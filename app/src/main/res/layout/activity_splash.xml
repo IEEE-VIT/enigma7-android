@@ -30,7 +30,7 @@
 
         <include
             android:id="@+id/container"
-            layout="@layout/splash_screen_test"
+            layout="@layout/splash_screen"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="18dp"
