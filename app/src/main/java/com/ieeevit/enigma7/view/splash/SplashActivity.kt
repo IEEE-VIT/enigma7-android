@@ -12,11 +12,9 @@ import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.ActivitySplashBinding
 import com.ieeevit.enigma7.view.auth.AuthActivity
 
-
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
     private var shortAnimationDuration: Int = 0
-    private val SPLASH_TIME_OUT: Long = 1000
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
@@ -43,34 +41,24 @@ class SplashActivity : AppCompatActivity() {
                                 .setDuration(400).setListener(
                                     object : AnimatorListenerAdapter() {
                                         override fun onAnimationEnd(animation: Animator) {
-                                            binding.container.googleSignup.visibility = View.VISIBLE
-                                            binding.container.instaSignup.visibility = View.VISIBLE
-                                            binding.container.googleSignup.animate()
-                                                .translationYBy((-1500).toFloat()).duration =
-                                                400
-                                            binding.container.instaSignup.animate()
-                                                .translationYBy((-1500).toFloat()).duration =
-                                                400
-                                            binding.container.enigma.animate()
-                                                .translationYBy((-422).toFloat()).duration =
-                                                400
-                                            binding.container.crypticText.animate()
-                                                .translationYBy((-422).toFloat()).duration =
-                                                400
+                                            translateXY()
                                             startIntent()
                                             animate().setListener(null)
-
-
                                         }
                                     })
                         }, 500)
-
-
                     }
                 })
-
         }
+    }
 
+    fun translateXY() {
+        binding.container.googleSignup.visibility = View.VISIBLE
+        binding.container.instaSignup.visibility = View.VISIBLE
+        binding.container.googleSignup.animate().translationYBy((-1500).toFloat()).duration = 400
+        binding.container.instaSignup.animate().translationYBy((-1500).toFloat()).duration = 400
+        binding.container.enigma.animate().translationYBy((-422).toFloat()).duration = 400
+        binding.container.crypticText.animate().translationYBy((-422).toFloat()).duration = 400
     }
 
     fun startIntent() {
