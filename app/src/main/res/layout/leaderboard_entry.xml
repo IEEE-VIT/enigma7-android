@@ -23,7 +23,7 @@
         style="@style/leaderboardTextStyleEntry"
         android:layout_weight="1"
         android:text="Solved"
-        android:textAlignment="textEnd"/>
+        android:textAlignment="textStart"/>
 
     <TextView
         android:id="@+id/score"

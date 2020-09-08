@@ -1,22 +1,18 @@
-package com.ieeevit.enigma7.view.home
+package com.ieeevit.enigma7.view.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.ieeevit.enigma7.R
 
-
-class ProfileFragment : Fragment() {
-
+class InstructionsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_instructions, container, false)
     }
-
-
 }

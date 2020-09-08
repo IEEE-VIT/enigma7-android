@@ -24,7 +24,7 @@ class ProfileSetupFragment : Fragment() {
     ): View? {
         val binding: FragmentProfileSetupBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile_setup, container, false)
-        binding.nextButton.setOnClickListener { v:View->
+        binding.nextButton.setOnClickListener {
             startActivity(Intent(activity,CountdownActivity::class.java))
         }
         return binding.root

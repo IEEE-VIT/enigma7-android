@@ -21,7 +21,7 @@ class AuthActivity : AppCompatActivity() {
                 .commit()
 
         }
-        binding.include2.game.setOnClickListener { v: View ->
+        binding.include2.game.setOnClickListener {
             Toast.makeText(applicationContext, "Please Login", Toast.LENGTH_SHORT).show()
         }
     }

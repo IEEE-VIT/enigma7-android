@@ -7,7 +7,8 @@
     android:padding="4dp">
 
     <include
-        layout="@layout/enigma_title"/>
+        layout="@layout/enigma_title"
+        android:id="@+id/questions_view"/>
 
     <include
         layout="@layout/progress_layout"/>
@@ -17,5 +18,18 @@
 
     <include
         layout="@layout/questions_layout"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="32dp"
+        android:background="@drawable/submit_button_back"
+        android:textColor="@color/enigmaColor"
+        android:text="@string/submit"
+        android:textSize="18sp"
+        android:id="@+id/submit_btn"
+        android:textAlignment="center"
+        android:padding="2dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"/>
 
 </LinearLayout>

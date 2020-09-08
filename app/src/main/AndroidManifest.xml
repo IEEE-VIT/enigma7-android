@@ -10,15 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.splash.SplashActivity">
+
+        </activity>
+        <activity android:name=".view.timer.CountdownActivity" />
+        <activity android:name=".view.auth.AuthActivity"> </activity>
+        <activity android:name=".view.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.timer.CountdownActivity" />
-        <activity android:name=".view.auth.AuthActivity"> </activity>
-        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
