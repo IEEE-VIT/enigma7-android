@@ -9,20 +9,17 @@ import androidx.databinding.DataBindingUtil
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentProfileBinding
 
+
 class ProfileFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding:FragmentProfileBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile,container,false)
+        val binding: FragmentProfileBinding =
+            DataBindingUtil.inflate(inflater,R.layout.fragment_profile,container,false)
         return binding.root
     }
-
 
 }

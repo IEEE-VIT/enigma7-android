@@ -22,7 +22,7 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding :FragmentSignUpBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up, container, false)
-        binding.googleSignup.setOnClickListener { v:View->
+        binding.googleSignup.setOnClickListener {
             val fragment = ProfileSetupFragment()
             parentFragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)

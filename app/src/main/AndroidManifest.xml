@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".view.timer.CountdownActivity" />
         <activity android:name=".view.auth.AuthActivity"> </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".view.main.MainActivity">
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
