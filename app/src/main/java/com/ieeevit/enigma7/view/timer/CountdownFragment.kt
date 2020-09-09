@@ -1,11 +1,13 @@
 package com.ieeevit.enigma7.view.timer
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ieeevit.enigma7.R
+import com.ieeevit.enigma7.view.main.MainActivity
 
 class CountdownFragment : Fragment() {
 
@@ -18,7 +20,7 @@ class CountdownFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         // TODO: 31-08-2020 navigate to instruction
+        startActivity(Intent(activity, MainActivity::class.java))
         return inflater.inflate(R.layout.fragment_countdown, container, false)
     }
 
