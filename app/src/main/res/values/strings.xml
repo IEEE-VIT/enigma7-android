@@ -31,5 +31,9 @@
     <string name="sign_out">Sign Out</string>
     <string name="angular">&lt; &gt;</string>
     <string name="anglur_cryptic">&lt; Online cryptic hunt &gt;</string>
+    <string name="days">Days</string>
+    <string name="sec">Sec</string>
+    <string name="min">Min</string>
+    <string name="hrs">Hrs</string>
 
 </resources>
