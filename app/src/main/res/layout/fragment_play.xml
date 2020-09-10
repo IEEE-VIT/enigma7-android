@@ -16,20 +16,11 @@
     <include
         layout="@layout/hints_layout"/>
 
-    <include
-        layout="@layout/questions_layout"/>
-
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="32dp"
-        android:background="@drawable/submit_button_back"
-        android:textColor="@color/enigmaColor"
-        android:text="@string/submit"
-        android:textSize="18sp"
-        android:id="@+id/submit_btn"
-        android:textAlignment="center"
-        android:padding="2dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"/>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include
+            layout="@layout/questions_layout"/>
+    </ScrollView>
 
 </LinearLayout>
