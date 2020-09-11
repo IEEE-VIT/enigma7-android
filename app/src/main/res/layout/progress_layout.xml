@@ -19,6 +19,6 @@
         style="@style/simpleTextStyle"
         android:layout_alignParentEnd="true"
         android:id="@+id/progress_percent"
-        android:text="40%"/>
+        android:text="40px"/>
 
 </RelativeLayout>

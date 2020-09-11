@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:padding="5dp"
-            android:paddingHorizontal="10dp"
+            android:textCursorDrawable="@drawable/edit_text_cursor"
             android:singleLine="true"
             android:layout_marginTop="20dp"
             android:background="@color/colorEnigmaBack"
@@ -52,11 +52,12 @@
         
         <TextView
             android:layout_width="100dp"
-            android:layout_height="32dp"
+            android:layout_height="35dp"
             android:background="@drawable/submit_button_back"
             android:textColor="@color/enigmaColor"
             android:text="@string/submit"
             android:textSize="18sp"
+            android:fontFamily="@font/ibm"
             android:id="@+id/submit_btn"
             android:textAlignment="center"
             android:padding="2dp"
