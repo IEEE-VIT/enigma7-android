@@ -81,11 +81,17 @@
     </style>
 
     <style name="primaryButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="rippleColor">@color/primaryRippleColor</item>
         <item name="android:textColor">@color/buttonTextColor</item>
         <item name="android:radius">0dp</item>
+        <item name="android:background">@drawable/submit_button_back</item>
+        <item name="rippleColor">@color/primaryRippleColor</item>
     </style>
 
+    <style name="primaryButtonStyle2" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/buttonTextColor</item>
+        <item name="android:radius">0dp</item>
+        <item name="android:background">@drawable/sign_in_button_background</item>
+    </style>
     <style name="editTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:textCursorDrawable">@drawable/edit_text_cursor</item>
         <item name="fontFamily">@font/ibm_plex_mono_regular</item>

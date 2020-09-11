@@ -161,15 +161,16 @@
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/signOutButton"
-        style="@style/primaryButtonStyle"
-        android:background="@drawable/submit_button_back"
+        style="@style/primaryButtonStyle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="51dp"
+        android:background="@drawable/sign_out_button_backgrounf"
+        android:clickable="true"
         android:fontFamily="@font/ibm_plex_mono_regular"
         android:paddingStart="9dp"
         android:paddingTop="7dp"

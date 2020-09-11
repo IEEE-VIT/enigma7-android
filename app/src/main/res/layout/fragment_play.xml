@@ -13,8 +13,7 @@
     <include
         layout="@layout/progress_layout"/>
 
-    <include
-        layout="@layout/hints_layout"/>
+    <include layout="@layout/hints_layout" />
 
     <ScrollView
         android:layout_width="wrap_content"
