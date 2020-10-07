@@ -57,8 +57,8 @@ class SplashActivity : AppCompatActivity() {
         binding.container.instaSignup.visibility = View.VISIBLE
         binding.container.googleSignup.animate().translationYBy((-1500).toFloat()).duration = 400
         binding.container.instaSignup.animate().translationYBy((-1500).toFloat()).duration = 400
-        binding.container.enigma.animate().translationYBy((-422).toFloat()).duration = 400
-        binding.container.crypticText.animate().translationYBy((-422).toFloat()).duration = 400
+        binding.container.enigma.animate().translationYBy((-373).toFloat()).duration = 400
+        binding.container.crypticText.animate().translationYBy((-373).toFloat()).duration = 400
     }
 
     fun startIntent() {
