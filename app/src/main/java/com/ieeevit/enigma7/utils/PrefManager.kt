@@ -9,26 +9,39 @@ class PrefManager(val context: Context) {
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     val authorizationCode: String = "AuthorizationCode"
     val userNameExist: String = "userStatus"
+    private val IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch"
+    val editor: SharedPreferences.Editor = sharedPref.edit()
 
     fun save(KEY_NAME: String, text: String) {
 
-        val editor: SharedPreferences.Editor = sharedPref.edit()
+
         editor.putString(KEY_NAME, text)
         editor.apply()
     }
 
     fun setAuthCode(text: String) {
-        val editor: SharedPreferences.Editor = sharedPref.edit()
         editor.putString(authorizationCode, text)
         editor.apply()
     }
 
     fun setUserStatus(text: Boolean) {
-        val editor: SharedPreferences.Editor = sharedPref.edit()
         editor.putBoolean(userNameExist, text)
         editor.apply()
     }
-
+    fun setFirstTimeLaunch(text: Boolean) {
+        editor.putBoolean(IS_FIRST_TIME_LAUNCH, text)
+        editor.apply()
+    }
+    fun isFirstTimeLaunch(): Boolean {
+        return sharedPref.getBoolean(IS_FIRST_TIME_LAUNCH, true)
+    }
+    fun setIsLoggedIn(text: Boolean) {
+        editor.putBoolean(IS_FIRST_TIME_LAUNCH, text)
+        editor.apply()
+    }
+    fun isLoggedIn(): Boolean {
+        return sharedPref.getBoolean(IS_FIRST_TIME_LAUNCH, false)
+    }
     fun getValueString(KEY_NAME: String): String? {
         return sharedPref.getString(KEY_NAME, null)
     }
@@ -42,14 +55,12 @@ class PrefManager(val context: Context) {
     }
 
     fun clearSharedPreference() {
-        val editor: SharedPreferences.Editor = sharedPref.edit()
         //sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         editor.clear()
         editor.apply()
     }
 
     fun removeValue(KEY_NAME: String) {
-        val editor: SharedPreferences.Editor = sharedPref.edit()
         editor.remove(KEY_NAME)
         editor.apply()
     }

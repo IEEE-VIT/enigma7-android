@@ -15,11 +15,14 @@ import com.ieeevit.enigma7.viewModel.SignUpViewModel
 
 
 class SignUpFragment : Fragment() {
-    private val redirectUri: String = "http://enigma7.ieeevit.com" // TODO: 02-10-2020 add redirectUri here http://enigma7.ieeevit.com or com.ieeevit.enigma7://callback or enigma7.ieeevit.com:/callback
-    private val clientId: String = "55484635453-c46tes445anbidhb2qnmb2qs618mvpni.apps.googleusercontent.com"
+    private val redirectUri: String =
+        "http://enigma7.ieeevit.com" // TODO: 02-10-2020 add redirectUri here http://enigma7.ieeevit.com or com.ieeevit.enigma7://callback or enigma7.ieeevit.com:/callback
+    private val clientId: String =
+        "55484635453-c46tes445anbidhb2qnmb2qs618mvpni.apps.googleusercontent.com"
     private val viewModel: SignUpViewModel by lazy {
         ViewModelProviders.of(this).get(SignUpViewModel::class.java)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -42,9 +45,4 @@ class SignUpFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-
-
-    }
 }
