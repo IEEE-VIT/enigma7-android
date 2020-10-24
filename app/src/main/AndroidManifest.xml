@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".view.timer.CountdownActivity" />
         <activity android:name=".view.auth.AuthActivity">
-            <intent-filter android:autoVerify="true">
+            <intent-filter >
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
