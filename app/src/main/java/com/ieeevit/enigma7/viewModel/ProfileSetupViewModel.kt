@@ -34,6 +34,7 @@ class ProfileSetupViewModel : ViewModel() {
 
                 override fun onFailure(call: Call<EditUsernameResponse>, t: Throwable) {
                   _usernameChanged.value=0
+
                 }
 
             })

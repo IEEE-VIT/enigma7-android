@@ -1,8 +1,6 @@
 package com.ieeevit.enigma7.api.service
 
-import com.ieeevit.enigma7.model.AccessToken
-import com.ieeevit.enigma7.model.EditUsernameRequest
-import com.ieeevit.enigma7.model.EditUsernameResponse
+import com.ieeevit.enigma7.model.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,6 +21,11 @@ interface ApiClient {
     @Headers("Content-Type: application/json")
     fun editUsername(@Header("Authorization") authToken: String, @Body username: EditUsernameRequest): Call<EditUsernameResponse>
 
+    @GET("api/v1/users/me/")
+    fun getUserDetails(@Header("Authorization") authToken: String):Call<User>
+
+    @POST("api/v1/users/logout/")
+    fun logOut(@Header("Authorization") authToken: String):Call<LogoutResponse>
 }
 
 
