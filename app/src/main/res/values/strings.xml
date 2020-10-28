@@ -35,5 +35,6 @@
     <string name="sec">Sec</string>
     <string name="min">Min</string>
     <string name="hrs">Hrs</string>
+    <string name="use_hint">Use Hint</string>
 
 </resources>
