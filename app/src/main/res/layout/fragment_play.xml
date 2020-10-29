@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <include
+            android:id="@+id/main_screen"
             layout="@layout/questions_layout"/>
     </ScrollView>
 
