@@ -27,6 +27,7 @@
             android:background="@drawable/image_story_back" />
 
         <EditText
+            android:id="@+id/answerBox"
             style="@style/simpleTextStyle"
             android:layout_width="match_parent"
             android:layout_height="40dp"

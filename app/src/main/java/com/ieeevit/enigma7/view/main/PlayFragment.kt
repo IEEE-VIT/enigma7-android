@@ -20,12 +20,12 @@ import kotlinx.android.synthetic.main.view_hint_dialog.view.*
 class PlayFragment : Fragment() {
     private lateinit var sharedPreference: PrefManager
     private lateinit var authCode: String
-    private val viewModel: PlayViewModel by lazy {
-        ViewModelProviders.of(this).get(PlayViewModel::class.java)
-    }
     private lateinit var builder: AlertDialog.Builder
     private lateinit var customInflater: LayoutInflater
     private lateinit var hint: String
+    private val viewModel: PlayViewModel by lazy {
+        ViewModelProviders.of(this).get(PlayViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,21 +39,41 @@ class PlayFragment : Fragment() {
             root.view_hint_btn.visibility = VISIBLE
         }
         init()
-
         viewModel.hint.observe(viewLifecycleOwner, {
-            if (it != null) {
+            if (it == "") {
+                Toast.makeText(activity, "Hint retrieval failed", Toast.LENGTH_SHORT).show()
+            } else if (it!=null) {
                 hint = "Hint: $it"
                 sharedPreference.setHint(hint)
                 showAlertDialog(R.layout.view_hint_dialog)
                 root.get_hint_btn.visibility = GONE
                 root.view_hint_btn.visibility = VISIBLE
             }
-            else if(it==""){
-                Toast.makeText(activity,"Hint retrieval failed",Toast.LENGTH_SHORT).show()
+        })
+        viewModel.answerResponse.observe(viewLifecycleOwner, {
+            if (it != null) {
+                when {
+                    it.closeAnswer == true -> {
+                        showAlertDialog(R.layout.close_response_dialog)
+                    }
+                    it.answer == false -> {
+                        showAlertDialog(R.layout.wrong_response_dialog)
+                    }
+                    it.answer == true -> {
+                        showAlertDialog(R.layout.correct_response_dialog)
+                        root.get_hint_btn.visibility = VISIBLE
+                        root.view_hint_btn.visibility = GONE
+                        sharedPreference.setHint(null)
+                        root.answerBox.setText("")
+                        // TODO: 30-10-2020 call next question
+                        // TODO: 30-10-2020 try to update profile(db)
+                    }
+                }
             }
         })
         root.submit_btn.setOnClickListener {
-            // sharedPreference.setHint(null)
+            val answer = root.answerBox.text.toString()
+            viewModel.checkAnswer("Token $authCode", answer)
         }
         root.get_hint_btn.setOnClickListener {
             showAlertDialog(R.layout.hint_dialog_layout)

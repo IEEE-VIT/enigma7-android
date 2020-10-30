@@ -29,6 +29,9 @@ interface ApiClient {
 
     @GET("api/v1/game/hint/")
     fun getHint(@Header("Authorization") authToken: String):Call<HintResponse>
+
+    @POST("api/v1/game/answer/")
+    fun checkAnswer(@Header("Authorization") authToken: String,@Body answerRequest: CheckAnswerRequest):Call<CheckAnswerResponse>
 }
 
 

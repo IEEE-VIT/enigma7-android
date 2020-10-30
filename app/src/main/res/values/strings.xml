@@ -36,5 +36,10 @@
     <string name="min">Min</string>
     <string name="hrs">Hrs</string>
     <string name="use_hint">Use Hint</string>
+    <string name="response_is_close_to_the_answer">Response is close to the answer</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="correct_response">Correct response</string>
+    <string name="try_again">Try Again!</string>
 
 </resources>
