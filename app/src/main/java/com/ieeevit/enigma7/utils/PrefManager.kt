@@ -9,12 +9,11 @@ class PrefManager(val context: Context) {
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     val authorizationCode: String = "AuthorizationCode"
     val userNameExist: String = "userStatus"
+    val hint:String="hintString"
     private val IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch"
     val editor: SharedPreferences.Editor = sharedPref.edit()
 
     fun save(KEY_NAME: String, text: String) {
-
-
         editor.putString(KEY_NAME, text)
         editor.apply()
     }
@@ -53,7 +52,13 @@ class PrefManager(val context: Context) {
     fun getUserStaus(): Boolean? {
         return sharedPref.getBoolean(userNameExist, false)
     }
-
+    fun setHint(text:String?) {
+        editor.putString(hint, text)
+        editor.apply()
+    }
+    fun getHintString(): String? {
+        return sharedPref.getString(hint, null)
+    }
     fun clearSharedPreference() {
         //sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         editor.clear()

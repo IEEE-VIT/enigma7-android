@@ -26,6 +26,12 @@ interface ApiClient {
 
     @POST("api/v1/users/logout/")
     fun logOut(@Header("Authorization") authToken: String):Call<LogoutResponse>
+
+    @GET("api/v1/game/hint/")
+    fun getHint(@Header("Authorization") authToken: String):Call<HintResponse>
+
+    @POST("api/v1/game/answer/")
+    fun checkAnswer(@Header("Authorization") authToken: String,@Body answerRequest: CheckAnswerRequest):Call<CheckAnswerResponse>
 }
 
 
