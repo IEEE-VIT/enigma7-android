@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.ActivityAuthBinding
 import com.ieeevit.enigma7.utils.PrefManager
+import com.ieeevit.enigma7.view.main.MainActivity
 import com.ieeevit.enigma7.view.timer.CountdownActivity
 import com.ieeevit.enigma7.viewModel.SignUpViewModel
 import kotlinx.android.synthetic.main.bottom_bar.view.*
@@ -22,7 +23,10 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (sharedPreference.isLoggedIn() && sharedPreference.getUserStaus() == true) {
+        if (sharedPreference.isLoggedIn() && sharedPreference.getUserStaus() == true && sharedPreference.isHuntStarted()){
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+        }
+        else if (sharedPreference.isLoggedIn() && sharedPreference.getUserStaus() == true) {
             startActivity(Intent(applicationContext, CountdownActivity::class.java))
         } else if (sharedPreference.isLoggedIn()) {
             navigateToProfileSetup()

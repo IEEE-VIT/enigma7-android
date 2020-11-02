@@ -10,26 +10,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.splash.SplashActivity">
+        <activity
+            android:name=".view.splash.SplashActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.timer.CountdownActivity" />
-        <activity android:name=".view.auth.AuthActivity">
-            <intent-filter >
+        <activity
+            android:name=".view.timer.CountdownActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.auth.AuthActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="enigma7.ieeevit.com"
                     android:scheme="http" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.main.MainActivity">
+        <activity android:name=".view.main.MainActivity"
+            android:screenOrientation="portrait">
 
         </activity>
 
