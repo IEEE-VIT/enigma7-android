@@ -42,7 +42,7 @@
             android:background="@color/countdownBackground"
             android:fontFamily="@font/ibm_plex_mono_regular"
             android:gravity="center_horizontal"
-            android:text="01"
+            android:text="@string/_00"
             app:lineHeight="49sp" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:background="@color/countdownBackground"
             android:fontFamily="@font/ibm_plex_mono_regular"
             android:gravity="center_horizontal"
-            android:text="01"
+            android:text="@string/_00"
             app:lineHeight="49sp" />
 
         <TextView
@@ -84,7 +84,7 @@
             android:background="@color/countdownBackground"
             android:fontFamily="@font/ibm_plex_mono_regular"
             android:gravity="center_horizontal"
-            android:text="01"
+            android:text="@string/_00"
             app:lineHeight="49sp" />
 
         <TextView
@@ -107,7 +107,7 @@
             android:background="@color/countdownBackground"
             android:fontFamily="@font/ibm_plex_mono_regular"
             android:gravity="center_horizontal"
-            android:text="01"
+            android:text="@string/_00"
             app:lineHeight="49sp" />
 
     </LinearLayout>
@@ -130,14 +130,13 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/ibm_plex_mono_regular"
         android:text="@string/days"
         android:textColor="@color/timerTextColor"
         android:textSize="21sp"
         app:layout_constraintEnd_toStartOf="@+id/textView5"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -170,4 +169,31 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <TextView
+        android:id="@+id/startButton"
+        style="@style/primaryButtonStyle2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="71dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="92dp"
+        android:background="@drawable/next_button_background"
+        android:clickable="true"
+        android:fontFamily="@font/ibm_plex_mono_regular"
+        android:gravity="center_horizontal"
+        android:paddingStart="63dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="63dp"
+        android:paddingBottom="6dp"
+        android:text="@string/start"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/enigmaColor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

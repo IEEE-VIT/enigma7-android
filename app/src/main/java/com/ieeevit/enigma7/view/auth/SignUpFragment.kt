@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentSignUpBinding
 import com.ieeevit.enigma7.utils.PrefManager
+import com.ieeevit.enigma7.view.timer.CountdownActivity
 import com.ieeevit.enigma7.viewModel.SignUpViewModel
 
 
@@ -41,7 +42,7 @@ class SignUpFragment : Fragment() {
             if (it == 1) {
                 sharedPreference.setFirstTimeLaunch(false)
                 sharedPreference.setIsLoggedIn(true)
-                navigateToProfileSetup()
+                navigate()
             } else if (it == 0) {
                 Toast.makeText(activity, "FAIL", Toast.LENGTH_SHORT).show()
             }
@@ -95,10 +96,15 @@ class SignUpFragment : Fragment() {
         }
     }
 
-    private fun navigateToProfileSetup() {
+    private fun navigate() {
         val fragment = ProfileSetupFragment()
-        parentFragmentManager.beginTransaction()
-            .add(R.id.container, fragment)
-            .commit()
+        if (sharedPreference.getUserStaus() == false) {
+            parentFragmentManager.beginTransaction()
+                .add(R.id.container, fragment)
+                .commit()
+        }else if(sharedPreference.getUserStaus()==true){
+            startActivity(Intent(activity, CountdownActivity::class.java))
+        }
+
     }
 }

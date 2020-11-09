@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,6 +16,8 @@ import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentProfileBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.auth.AuthActivity
+import com.ieeevit.enigma7.view.auth.ProfileSetupFragment
+import com.ieeevit.enigma7.view.main.PlayFragment
 import com.ieeevit.enigma7.viewModel.ProfileViewModel
 
 
@@ -32,7 +35,7 @@ class ProfileFragment : Fragment() {
     ): View? {
         val binding: FragmentProfileBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
-        viewModel.userDetails.observe(viewLifecycleOwner, Observer {
+        viewModel.userDetails.observe(viewLifecycleOwner, {
             if (it != null) {
                 binding.username.text = it.username
                 binding.emailId.text = it.email
@@ -45,9 +48,9 @@ class ProfileFragment : Fragment() {
         binding.signOutButton.setOnClickListener {
             val authCode: String? = sharedPreference.getAuthCode()
             mGoogleSignInClient.signOut()
-            viewModel.logOut("Token " + authCode)
+            viewModel.logOut("Token $authCode")
         }
-        viewModel.logoutStatus.observe(viewLifecycleOwner, Observer {
+        viewModel.logoutStatus.observe(viewLifecycleOwner, {
             if (it == successString) {
                 sharedPreference.clearSharedPreference()
                 navToLogin()
@@ -58,6 +61,14 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val fragment = PlayFragment()
+                parentFragmentManager.beginTransaction()
+                    .add(R.id.container, fragment)
+                    .commit()
+            }
+        })
         sharedPreference = PrefManager(this.requireActivity())
         val authCode: String? = sharedPreference.getAuthCode()
         viewModel.getUserDetails("Token " + authCode)
@@ -68,4 +79,5 @@ class ProfileFragment : Fragment() {
     private fun navToLogin() {
         startActivity(Intent(activity, AuthActivity::class.java))
     }
+
 }

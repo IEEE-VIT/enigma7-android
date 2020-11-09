@@ -10,7 +10,8 @@ class PrefManager(val context: Context) {
     val authorizationCode: String = "AuthorizationCode"
     val userNameExist: String = "userStatus"
     val hint:String="hintString"
-    private val IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch"
+    private val IS_FIRST_TIME_LAUNCH= "IsFirstTimeLaunch"
+    val gameStarted:String="IsGameStarted"
     val editor: SharedPreferences.Editor = sharedPref.edit()
 
     fun save(KEY_NAME: String, text: String) {
@@ -33,6 +34,14 @@ class PrefManager(val context: Context) {
     }
     fun isFirstTimeLaunch(): Boolean {
         return sharedPref.getBoolean(IS_FIRST_TIME_LAUNCH, true)
+    }
+
+    fun setHuntStarted(text: Boolean) {
+        editor.putBoolean(gameStarted, text)
+        editor.apply()
+    }
+    fun isHuntStarted(): Boolean {
+        return sharedPref.getBoolean(gameStarted, false)
     }
     fun setIsLoggedIn(text: Boolean) {
         editor.putBoolean(IS_FIRST_TIME_LAUNCH, text)
