@@ -18,14 +18,6 @@ class SplashActivity : AppCompatActivity() {
     private var shortAnimationDuration: Int = 0
     private lateinit var sharedPreference: PrefManager
 
-    override fun onStart() {
-        super.onStart()
-        sharedPreference = PrefManager(applicationContext)
-        if (!sharedPreference.isFirstTimeLaunch()) {
-            navigateToProfileSetup()
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreference = PrefManager(applicationContext)
@@ -52,16 +44,22 @@ class SplashActivity : AppCompatActivity() {
                                 binding.include2.visibility = View.VISIBLE
                                 binding.container.constraintLayout.setBackgroundResource(R.drawable.fragment_back)
                                 binding.container.zeroOne.visibility = View.VISIBLE
-                                binding.container.zeroOne.animate().translationYBy((1500).toFloat())
-                                    .setDuration(400).setListener(
-                                        object : AnimatorListenerAdapter() {
-                                            override fun onAnimationEnd(animation: Animator) {
-                                                translateXY()
-                                                startIntent()
-                                                animate().setListener(null)
-                                            }
-                                        })
-                            }, 500)
+                                if(sharedPreference.isLoggedIn()){
+                                    startIntent()
+                                }else
+                                {
+                                    binding.container.zeroOne.animate().translationYBy((1500).toFloat())
+                                        .setDuration(400).setListener(
+                                            object : AnimatorListenerAdapter() {
+                                                override fun onAnimationEnd(animation: Animator) {
+                                                    translateXY()
+                                                    startIntent()
+                                                    animate().setListener(null)
+                                                }
+                                            })
+                                }
+
+                            }, 250)
                         }
                     })
             }
