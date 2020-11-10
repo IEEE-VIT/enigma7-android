@@ -21,6 +21,7 @@ class LeaderboardFragment : Fragment() {
     private lateinit var authCode: String
     private lateinit var adapter:LeaderBoardAdapter
     private val viewModel: LeaderboardViewModel by lazy {
+
         ViewModelProviders.of(this).get(LeaderboardViewModel::class.java)
     }
 
@@ -34,7 +35,7 @@ class LeaderboardFragment : Fragment() {
         sharedPreference = PrefManager(this.requireActivity())
         authCode=sharedPreference.getAuthCode()!!
 
-        viewModel.getLeaderBoard(authCode)
+        viewModel.getLeaderBoard("Token $authCode")
         root.leaderboard_progress_bar.visibility=View.VISIBLE
 
         viewModel.mLeaderBoardData.observe(viewLifecycleOwner, {
