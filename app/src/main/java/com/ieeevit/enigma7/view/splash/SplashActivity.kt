@@ -84,7 +84,7 @@ class SplashActivity : AppCompatActivity() {
         }, 500)
     }
 
-    fun initialize() {
+    private fun initialize() {
         binding.container.crypticText.visibility = View.GONE
         binding.container.zeroOne.translationY = ((-1500).toFloat())
         binding.container.googleSignup.translationY = (1500.toFloat())

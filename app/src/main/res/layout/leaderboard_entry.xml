@@ -10,11 +10,13 @@
         android:id="@+id/rank"
         android:layout_weight="1"
         style="@style/leaderboardTextStyleEntry"
+        android:textAlignment="center"
         android:text="Rank" />
 
     <TextView
         android:id="@+id/username"
         style="@style/leaderboardTextStyleEntry"
+        android:textAlignment="textStart"
         android:layout_weight="2"
         android:text="Username" />
 
@@ -23,13 +25,13 @@
         style="@style/leaderboardTextStyleEntry"
         android:layout_weight="1"
         android:text="Solved"
-        android:textAlignment="textStart"/>
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/score"
         style="@style/leaderboardTextStyleEntry"
         android:layout_weight="1"
-        android:textAlignment="textEnd"
+        android:textAlignment="center"
         android:text="Score" />
 
 </LinearLayout>
