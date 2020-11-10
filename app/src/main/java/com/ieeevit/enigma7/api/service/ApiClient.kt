@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
-val retrofit = Retrofit.Builder()
+val retrofit: Retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
     .baseUrl("https://enigma7-backend.herokuapp.com/")
     .build()
@@ -30,10 +30,12 @@ interface ApiClient {
     @GET("api/v1/game/hint/")
     fun getHint(@Header("Authorization") authToken: String):Call<HintResponse>
 
-    @POST("api/v1/game/answer/")
-    fun checkAnswer(@Header("Authorization") authToken: String,@Body answerRequest: CheckAnswerRequest):Call<CheckAnswerResponse>
-}
+    @GET("api/v1/game/leaderboard/")
+    fun getLeaderboard(@Header("Authorization") authToken: String):Call<ArrayList<LeaderboardEntry>>
 
+    @POST("api/v1/game/answer/")
+    fun checkAnswer(@Header("Authorization") authToken: String, @Body answerRequest: CheckAnswerRequest):Call<CheckAnswerResponse>
+}
 
 object Api {
     val retrofitService: ApiClient by lazy {

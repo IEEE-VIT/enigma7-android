@@ -1,75 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="4dp"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/enigma_title" />
-
-    <TextView
-        style="@style/headerTextStyle"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="27dp"
-        android:text="@string/leaderboard" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:src="@drawable/line_partition"
-        android:layout_marginHorizontal="13dp"
-        android:layout_marginTop="10dp"/>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/leaderboard_progress_bar"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:weightSum="5"
-        android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="13dp"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/enigma_title" />
 
         <TextView
-            android:id="@+id/rank"
-            android:layout_weight="1"
-            style="@style/leaderboardTextStyle"
-            android:text="Rank" />
+            style="@style/headerTextStyle"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="27dp"
+            android:text="@string/leaderboard" />
 
-        <TextView
-            android:id="@+id/username"
-            style="@style/leaderboardTextStyle"
-            android:layout_weight="2"
-            android:text="Username" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:src="@drawable/line_partition"
+            android:layout_marginHorizontal="13dp"
+            android:layout_marginTop="10dp"/>
 
-        <TextView
-            android:id="@+id/solved"
-            style="@style/leaderboardTextStyle"
-            android:layout_weight="1"
-            android:text="Solved"
-            android:textAlignment="textStart"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="5"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="13dp"
+            android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/score"
-            style="@style/leaderboardTextStyle"
-            android:layout_weight="1"
-            android:textAlignment="textEnd"
-            android:text="Score" />
+            <TextView
+                android:id="@+id/rank"
+                android:layout_weight="1"
+                style="@style/leaderboardTextStyle"
+                android:text="Rank" />
+
+            <TextView
+                android:id="@+id/username"
+                style="@style/leaderboardTextStyle"
+                android:layout_weight="2"
+                android:text="Username" />
+
+            <TextView
+                android:id="@+id/solved"
+                style="@style/leaderboardTextStyle"
+                android:layout_weight="1"
+                android:text="Solved"
+                android:textAlignment="textStart"/>
+
+            <TextView
+                android:id="@+id/score"
+                style="@style/leaderboardTextStyle"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:text="Score" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:src="@drawable/line_partition"
+            android:layout_marginHorizontal="13dp"
+            android:layout_marginTop="5dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/leaderboard"
+            android:layout_marginHorizontal="13dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:src="@drawable/line_partition"
-        android:layout_marginHorizontal="13dp"
-        android:layout_marginTop="5dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="13dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="10dp"/>
-
-</LinearLayout>
+</RelativeLayout>
