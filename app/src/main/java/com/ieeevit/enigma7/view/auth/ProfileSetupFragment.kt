@@ -55,15 +55,12 @@ class ProfileSetupFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile_setup, container, false)
         binding.usernameEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                Log.i("THIS", "THIs")
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.i("THIS", "THIs")
             }
 
             override fun afterTextChanged(s: Editable?) {
-                Log.i("THIS", "THIs")
                 binding.usernameEditText.afterTextChangedDelayed {
                     val matcher = pattern.matcher(it)
                     if (it == "") {
