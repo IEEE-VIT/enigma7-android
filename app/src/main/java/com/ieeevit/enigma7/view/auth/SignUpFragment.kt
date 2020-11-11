@@ -78,7 +78,7 @@ class SignUpFragment : Fragment() {
             val authToken = account?.serverAuthCode
             viewModel.getAuthCode(authToken.toString(), redirectUri)
         } catch (e: ApiException) {
-            Log.w(TAG, "handleSignInResult:error", e)
+            Log.w(TAG, "handleSignInResult:error"+e.statusCode, e)
             Toast.makeText(activity, "handleSignInResult:error", Toast.LENGTH_SHORT).show()
         }
     }

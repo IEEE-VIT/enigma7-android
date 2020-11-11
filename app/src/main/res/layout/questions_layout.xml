@@ -13,17 +13,21 @@
         <TextView
             style="@style/questionTextStyle"
             android:text="@string/q1"
+            android:id="@+id/question_id"
             android:textStyle="bold" />
 
         <TextView
             style="@style/questionTextStyle"
+            android:id="@+id/question"
             android:text="@string/sample2" />
 
         <ImageView
-            android:layout_width="280dp"
+            android:layout_width="260dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="15dp"
+            android:paddingVertical="5dp"
+            android:id="@+id/question_image"
             android:background="@drawable/image_story_back" />
 
         <EditText

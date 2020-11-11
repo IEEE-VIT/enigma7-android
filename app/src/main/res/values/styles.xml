@@ -47,9 +47,8 @@
     </style>
 
     <style name="hintButtonStyle" parent="Widget.AppCompat.ImageButton">
-        <item name="android:layout_columnWeight">1</item>
-        <item name="android:layout_columnSpan">1</item>
         <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">75dp</item>
         <item name="android:background">@drawable/hint_button_back</item>
         <item name="android:layout_marginEnd">15dp</item>
     </style>

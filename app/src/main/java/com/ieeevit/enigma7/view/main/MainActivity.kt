@@ -19,8 +19,6 @@ class MainActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
         transaction(InstructionsFragment())
 
-        val bottomBar:RelativeLayout=findViewById(R.id.bottom_nav)
-
         game.setOnClickListener { transaction(PlayFragment()) }
         leaderboard.setOnClickListener { transaction(LeaderboardFragment()) }
         story.setOnClickListener { transaction(StoryFragment()) }
