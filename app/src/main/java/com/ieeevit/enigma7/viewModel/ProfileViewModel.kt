@@ -1,5 +1,6 @@
 package com.ieeevit.enigma7.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -41,11 +42,9 @@ class ProfileViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.i("get user details FAIL",t.toString())
             }
-
         })
-
     }
 
     fun logOut(authToken: String) {
@@ -61,9 +60,8 @@ class ProfileViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<LogoutResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.i("log out FAIL",t.toString())
             }
-
         }))
     }
 }

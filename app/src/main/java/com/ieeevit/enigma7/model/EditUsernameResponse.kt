@@ -8,5 +8,8 @@ data class EditUsernameResponse(
 	val id: Int? = null,
 
 	@SerializedName("username")
-	val username: String? = null
+	val username: String? = null,
+
+	@SerializedName("error")
+	val error: String? = null
 )

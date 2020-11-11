@@ -1,5 +1,6 @@
 package com.ieeevit.enigma7.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,26 +18,24 @@ class ProfileSetupViewModel : ViewModel() {
     init {
         _usernameChanged.value=3
     }
-
+    private val _usernameBody = MutableLiveData<EditUsernameResponse>()
+    val usernameBody: LiveData<EditUsernameResponse>
+        get() = _usernameBody
     fun editUsername(authToken: String, userName: String) {
         Api.retrofitService.editUsername(authToken, EditUsernameRequest(userName))
             .enqueue(object : Callback<EditUsernameResponse> {
                 override fun onResponse(call: Call<EditUsernameResponse>, response: Response<EditUsernameResponse>
                 ) {
                     if (response.body() != null) {
-                        val result: EditUsernameResponse? = response.body()
-                      //  val somethin: String? = result?.username
+                        _usernameBody.value=response.body()
                         _usernameChanged.value=1
-                        // TODO: 09-10-2020 username validation here
                     }
-
                 }
 
                 override fun onFailure(call: Call<EditUsernameResponse>, t: Throwable) {
                   _usernameChanged.value=0
-
+                    Log.i("ERROR","on username edit failure ",t)
                 }
-
             })
     }
 }

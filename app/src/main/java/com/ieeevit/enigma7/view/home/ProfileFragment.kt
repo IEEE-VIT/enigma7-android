@@ -42,7 +42,6 @@ class ProfileFragment : Fragment() {
                 binding.solved.text = it.questionAnswered.toString()
                 binding.rank.text = it.rank.toString()
                 binding.score.text = it.points.toString()
-
             }
         })
         binding.signOutButton.setOnClickListener {
@@ -71,9 +70,8 @@ class ProfileFragment : Fragment() {
         })
         sharedPreference = PrefManager(this.requireActivity())
         val authCode: String? = sharedPreference.getAuthCode()
-        viewModel.getUserDetails("Token " + authCode)
+        viewModel.getUserDetails("Token $authCode")
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), viewModel.gso)
-
     }
 
     private fun navToLogin() {
