@@ -14,14 +14,29 @@
         layout="@layout/progress_layout"/>
 
     <include
-        layout="@layout/hints_layout"/>
+        layout="@layout/powerups_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <include
-            android:id="@+id/main_screen"
-            layout="@layout/questions_layout"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:id="@+id/question_loading_progress"/>
+            <include
+                android:id="@+id/main_screen"
+                layout="@layout/questions_layout" />
+
+        </RelativeLayout>
+
     </ScrollView>
 
 </LinearLayout>

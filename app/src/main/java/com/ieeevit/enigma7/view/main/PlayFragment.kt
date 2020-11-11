@@ -4,8 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -13,7 +12,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.viewModel.PlayViewModel
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_play.view.*
 import kotlinx.android.synthetic.main.hint_dialog_layout.view.*
+import kotlinx.android.synthetic.main.questions_layout.*
 import kotlinx.android.synthetic.main.questions_layout.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.*
 
@@ -33,6 +35,7 @@ class PlayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root: View = inflater.inflate(R.layout.fragment_play, container, false)
+
         sharedPreference = PrefManager(this.requireActivity())
         if (sharedPreference.getHintString() != null) {
             root.get_hint_btn.visibility = GONE
@@ -81,6 +84,19 @@ class PlayFragment : Fragment() {
         root.view_hint_btn.setOnClickListener {
             showAlertDialog(R.layout.view_hint_dialog)
         }
+
+        root.main_screen.visibility= INVISIBLE
+        root.question_loading_progress.visibility= VISIBLE
+
+        viewModel.getQuestion("Token $authCode")
+        viewModel.questionResponse.observe(viewLifecycleOwner,{
+            root.question.text=it.text
+            root.question_id.text="Q${it.id}."
+            Picasso.get().load(it.img_url).into(root.question_image)
+            root.main_screen.visibility= VISIBLE
+            root.question_loading_progress.visibility= GONE
+        })
+
         return root
     }
 

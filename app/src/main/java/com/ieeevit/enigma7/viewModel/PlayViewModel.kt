@@ -8,6 +8,7 @@ import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.model.CheckAnswerRequest
 import com.ieeevit.enigma7.model.CheckAnswerResponse
 import com.ieeevit.enigma7.model.HintResponse
+import com.ieeevit.enigma7.model.QuestionResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +20,9 @@ class PlayViewModel : ViewModel() {
     private val _answerResponse = MutableLiveData<CheckAnswerResponse>()
     val answerResponse: LiveData<CheckAnswerResponse>
         get() = _answerResponse
+    private val _questionResponse = MutableLiveData<QuestionResponse>()
+    val questionResponse: LiveData<QuestionResponse>
+        get() = _questionResponse
 
     init {
         _hint.value=null
@@ -54,5 +58,21 @@ class PlayViewModel : ViewModel() {
                 }
 
             })
+    }
+
+    fun getQuestion(authToken: String){
+        Api.retrofitService.getQuestion(authToken).enqueue(object : Callback<QuestionResponse> {
+            override fun onResponse(
+                call: Call<QuestionResponse>,
+                response: Response<QuestionResponse>
+            ) {
+                _questionResponse.value=response.body()
+            }
+
+            override fun onFailure(call: Call<QuestionResponse>, t: Throwable) {
+
+            }
+
+        })
     }
 }

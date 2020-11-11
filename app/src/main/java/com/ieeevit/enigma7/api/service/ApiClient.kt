@@ -33,6 +33,9 @@ interface ApiClient {
     @GET("api/v1/game/leaderboard/")
     fun getLeaderboard(@Header("Authorization") authToken: String):Call<ArrayList<LeaderboardEntry>>
 
+    @GET("api/v1/game/question/")
+    fun getQuestion(@Header("Authorization") authToken: String):Call<QuestionResponse>
+
     @POST("api/v1/game/answer/")
     fun checkAnswer(@Header("Authorization") authToken: String, @Body answerRequest: CheckAnswerRequest):Call<CheckAnswerResponse>
 }
