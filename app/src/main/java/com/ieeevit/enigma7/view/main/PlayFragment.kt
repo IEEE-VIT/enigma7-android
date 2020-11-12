@@ -68,7 +68,8 @@ class PlayFragment : Fragment() {
                         root.view_hint_btn.visibility = GONE
                         sharedPreference.setHint(null)
                         root.answerBox.setText("")
-                        // TODO: 30-10-2020 call next question
+                        viewModel.getQuestion("Token $authCode")
+                        // TODO: 11-11-2020 get the keyboard down
                         // TODO: 30-10-2020 try to update profile(db)
                     }
                 }
