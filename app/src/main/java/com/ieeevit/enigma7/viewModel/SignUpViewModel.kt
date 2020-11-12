@@ -32,7 +32,7 @@ class SignUpViewModel : ViewModel() {
     }
 
     val gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestScopes(Scope(Scopes.DRIVE_APPFOLDER))
+        .requestScopes(Scope(Scopes.EMAIL))
         .requestServerAuthCode(clientId)
         .requestEmail()
         .build()
