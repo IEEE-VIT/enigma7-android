@@ -15,9 +15,16 @@ import com.ieeevit.enigma7.viewModel.PlayViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_play.view.*
 import kotlinx.android.synthetic.main.hint_dialog_layout.view.*
+import kotlinx.android.synthetic.main.powerup_confirm_dialog_close.view.*
+import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.*
+import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_cancel
+import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_confirm
+import kotlinx.android.synthetic.main.powerups_layout.*
+import kotlinx.android.synthetic.main.powerups_layout.view.*
 import kotlinx.android.synthetic.main.questions_layout.*
 import kotlinx.android.synthetic.main.questions_layout.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.*
+import kotlinx.android.synthetic.main.view_hint_dialog.view.hintView
 
 class PlayFragment : Fragment() {
     private lateinit var sharedPreference: PrefManager
@@ -97,6 +104,9 @@ class PlayFragment : Fragment() {
             root.question_loading_progress.visibility= GONE
         })
 
+        root.skipPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_skip) }
+        root.closeAnswerPowerup.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_close) }
+
         return root
     }
 
@@ -123,7 +133,19 @@ class PlayFragment : Fragment() {
             R.id.viewHintDialog -> {
                 customLayout.hintView.text = sharedPreference.getHintString()
             }
+            R.id.confirmPowerupDialogSkip ->{
+                customLayout.powerup_confirm.setOnClickListener {
+                    viewModel.doSkipPowerUp(authCode)
+                }
+                customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
+            }
 
+            R.id.confirmPowerupDialogClose ->{
+                customLayout.powerup_confirm.setOnClickListener {
+                    viewModel.doCloseAnswerPowerUp(authCode)
+                }
+                customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
+            }
         }
         alert.show()
     }

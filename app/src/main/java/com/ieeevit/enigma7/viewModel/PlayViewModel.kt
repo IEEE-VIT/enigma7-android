@@ -5,10 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ieeevit.enigma7.api.service.Api
-import com.ieeevit.enigma7.model.CheckAnswerRequest
-import com.ieeevit.enigma7.model.CheckAnswerResponse
-import com.ieeevit.enigma7.model.HintResponse
-import com.ieeevit.enigma7.model.QuestionResponse
+import com.ieeevit.enigma7.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -73,6 +70,35 @@ class PlayViewModel : ViewModel() {
 
             }
 
+        })
+    }
+
+    fun doSkipPowerUp(authToken: String){
+        Api.retrofitService.usePowerupSkip(authToken).enqueue(object :Callback<PowerupResponse>{
+            override fun onResponse(
+                call: Call<PowerupResponse>,
+                response: Response<PowerupResponse>
+            ) {
+
+            }
+            override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
+
+            }
+        })
+    }
+
+    fun doCloseAnswerPowerUp(authToken: String){
+        Api.retrofitService.usePowerupCloseAnswer(authToken).enqueue(object :Callback<PowerupResponse>{
+            override fun onResponse(
+                call: Call<PowerupResponse>,
+                response: Response<PowerupResponse>
+            ) {
+
+            }
+
+            override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
+
+            }
         })
     }
 }

@@ -38,6 +38,13 @@ interface ApiClient {
 
     @POST("api/v1/game/answer/")
     fun checkAnswer(@Header("Authorization") authToken: String, @Body answerRequest: CheckAnswerRequest):Call<CheckAnswerResponse>
+
+    @POST("api/v1/game/powerup/skip")
+    fun usePowerupSkip(@Header("Authorization") authToken: String):Call<PowerupResponse>
+
+    @POST("api/v1/game/powerup/close-answer")
+    fun usePowerupCloseAnswer(@Header("Authorization") authToken: String):Call<PowerupResponse>
+
 }
 
 object Api {
