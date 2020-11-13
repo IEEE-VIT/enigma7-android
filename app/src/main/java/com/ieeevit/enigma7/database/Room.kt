@@ -23,6 +23,14 @@ interface HintDao{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertHint(hint:Hint)
 }
+@Dao
+interface QuestionsDao{
+    @Query("select * from questions")
+    fun getQuestion():LiveData<Question>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertQuestion(question:Question)
+}
 
 
 

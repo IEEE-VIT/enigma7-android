@@ -8,10 +8,11 @@ import android.view.View.*
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.viewModel.PlayViewModel
+import com.ieeevit.enigma7.viewModel.ProfileViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_play.view.*
 import kotlinx.android.synthetic.main.hint_dialog_layout.view.*
@@ -26,7 +27,10 @@ class PlayFragment : Fragment() {
     private lateinit var customInflater: LayoutInflater
     private lateinit var hint: String
     private val viewModel: PlayViewModel by lazy {
-        ViewModelProviders.of(this).get(PlayViewModel::class.java)
+        val activity = requireNotNull(this.activity) {
+        }
+        ViewModelProvider(this, PlayViewModel.Factory(activity.application))
+            .get(PlayViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -45,7 +49,7 @@ class PlayFragment : Fragment() {
         viewModel.hint.observe(viewLifecycleOwner, {
             if (it == "") {
                 Toast.makeText(activity, "Hint retrieval failed", Toast.LENGTH_SHORT).show()
-            } else if (it!=null) {
+            } else if (it != null) {
                 hint = "Hint: $it"
                 sharedPreference.setHint(hint)
                 showAlertDialog(R.layout.view_hint_dialog)
@@ -68,7 +72,7 @@ class PlayFragment : Fragment() {
                         root.view_hint_btn.visibility = GONE
                         sharedPreference.setHint(null)
                         root.answerBox.setText("")
-                        viewModel.getQuestion("Token $authCode")
+                        viewModel.refreshQuestionsFromRepository("Token $authCode")
                         // TODO: 11-11-2020 get the keyboard down
                         // TODO: 30-10-2020 try to update profile(db)
                     }
@@ -86,16 +90,19 @@ class PlayFragment : Fragment() {
             showAlertDialog(R.layout.view_hint_dialog)
         }
 
-        root.main_screen.visibility= INVISIBLE
-        root.question_loading_progress.visibility= VISIBLE
+        root.main_screen.visibility = INVISIBLE
+        root.question_loading_progress.visibility = VISIBLE
 
-        viewModel.getQuestion("Token $authCode")
-        viewModel.questionResponse.observe(viewLifecycleOwner,{
-            root.question.text=it.text
-            root.question_id.text="Q${it.id}."
-            Picasso.get().load(it.img_url).into(root.question_image)
-            root.main_screen.visibility= VISIBLE
-            root.question_loading_progress.visibility= GONE
+        viewModel.refreshQuestionsFromRepository("Token $authCode")
+        viewModel.questionResponse.observe(viewLifecycleOwner, {
+            if(it!=null){
+                root.question.text = it.text
+                root.question_id.text = "Q${it.id}."
+                Picasso.get().load(it.img_url).into(root.question_image)
+                root.main_screen.visibility = VISIBLE
+                root.question_loading_progress.visibility = GONE
+            }
+
         })
 
         return root
