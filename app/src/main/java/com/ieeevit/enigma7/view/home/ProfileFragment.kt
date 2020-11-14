@@ -9,10 +9,13 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.room.RoomDatabase
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.ieeevit.enigma7.R
+import com.ieeevit.enigma7.database.getDatabase
 import com.ieeevit.enigma7.databinding.FragmentProfileBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.auth.AuthActivity
@@ -24,7 +27,10 @@ import com.ieeevit.enigma7.viewModel.ProfileViewModel
 class ProfileFragment : Fragment() {
     private lateinit var sharedPreference: PrefManager
     private val viewModel: ProfileViewModel by lazy {
-        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        val activity = requireNotNull(this.activity) {
+        }
+        ViewModelProvider(this, ProfileViewModel.Factory(activity.application))
+            .get(ProfileViewModel::class.java)
     }
     private val successString: String = "Successfully logged out."
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -47,6 +53,7 @@ class ProfileFragment : Fragment() {
         binding.signOutButton.setOnClickListener {
             val authCode: String? = sharedPreference.getAuthCode()
             mGoogleSignInClient.signOut()
+            viewModel.clearCacheOnLogOut()
             viewModel.logOut("Token $authCode")
         }
         viewModel.logoutStatus.observe(viewLifecycleOwner, {
@@ -70,7 +77,7 @@ class ProfileFragment : Fragment() {
         })
         sharedPreference = PrefManager(this.requireActivity())
         val authCode: String? = sharedPreference.getAuthCode()
-        viewModel.getUserDetails("Token $authCode")
+        viewModel.refreshUserDetailsFromRepository("Token $authCode")
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), viewModel.gso)
     }
 
