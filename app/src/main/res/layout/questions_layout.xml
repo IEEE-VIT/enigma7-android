@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,31 +11,34 @@
         android:paddingHorizontal="30dp">
 
         <TextView
-            style="@style/questionTextStyle"
-            android:text="@string/q1"
             android:id="@+id/question_id"
+            style="@style/questionTextStyle"
+            android:layout_marginTop="17dp"
+            android:text="@string/q1"
             android:textStyle="bold" />
 
         <TextView
-            style="@style/questionTextStyle"
             android:id="@+id/question"
+            style="@style/questionTextStyle"
+            android:layout_marginTop="1dp"
+            android:minLines="2"
             android:text="@string/sample2" />
 
         <ImageView
+            android:id="@+id/question_image"
             android:layout_width="260dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="15dp"
-            android:paddingVertical="5dp"
-            android:id="@+id/question_image"
-            android:background="@drawable/image_story_back" />
+            android:background="@drawable/image_story_back"
+            android:paddingVertical="5dp" />
 
         <EditText
             android:id="@+id/answerBox"
             style="@style/simpleTextStyle"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:background="@color/colorEnigmaBack"
             android:padding="5dp"
             android:singleLine="true"
@@ -44,7 +47,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:orientation="horizontal">
 
             <TextView
@@ -59,7 +62,7 @@
                 android:clickable="true"
                 android:fontFamily="@font/ibm"
                 android:padding="2dp"
-                android:text="See Hint"
+                android:text="@string/see_hint"
                 android:textAlignment="center"
                 android:textColor="@color/enigmaColor"
                 android:textSize="18sp"

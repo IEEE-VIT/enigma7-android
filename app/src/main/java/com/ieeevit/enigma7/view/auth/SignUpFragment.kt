@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -32,6 +33,7 @@ class SignUpFragment : Fragment() {
     private lateinit var sharedPreference: PrefManager
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 0
+    private lateinit var overlayFrame: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +42,13 @@ class SignUpFragment : Fragment() {
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), viewModel.gso)
         viewModel.authStatus.observe(this, {
             if (it == 1) {
+                overlayFrame.visibility = View.GONE
                 sharedPreference.setFirstTimeLaunch(false)
                 sharedPreference.setIsLoggedIn(true)
                 navigate()
             } else if (it == 0) {
-                Toast.makeText(activity, "FAIL", Toast.LENGTH_SHORT).show()
+                overlayFrame.visibility = View.GONE
+                Toast.makeText(activity, "Server Sign in FAIL", Toast.LENGTH_SHORT).show()
             }
         })
         viewModel.authCode.observe(this, {
@@ -59,6 +63,11 @@ class SignUpFragment : Fragment() {
         })
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        overlayFrame = (activity as AuthActivity).findViewById(R.id.overlayFrame)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,9 +85,10 @@ class SignUpFragment : Fragment() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             val authToken = account?.serverAuthCode
+            overlayFrame.visibility = View.VISIBLE
             viewModel.getAuthCode(authToken.toString(), redirectUri)
         } catch (e: ApiException) {
-            Log.w(TAG, "handleSignInResult:error"+e.statusCode, e)
+            Log.w(TAG, "handleSignInResult:error" + e.statusCode, e)
             Toast.makeText(activity, "handleSignInResult:error", Toast.LENGTH_SHORT).show()
         }
     }
@@ -86,6 +96,7 @@ class SignUpFragment : Fragment() {
     private fun signIn() {
         val signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
         startActivityForResult(signInIntent, RC_SIGN_IN)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -102,7 +113,7 @@ class SignUpFragment : Fragment() {
             parentFragmentManager.beginTransaction()
                 .add(R.id.container, fragment)
                 .commit()
-        }else if(sharedPreference.getUserStaus()==true){
+        } else if (sharedPreference.getUserStaus() == true) {
             startActivity(Intent(activity, CountdownActivity::class.java))
         }
 
