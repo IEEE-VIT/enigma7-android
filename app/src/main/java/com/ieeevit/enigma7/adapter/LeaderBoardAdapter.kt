@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ieeevit.enigma7.R
+import com.ieeevit.enigma7.database.Leaderboard
 import com.ieeevit.enigma7.model.LeaderboardEntry
 
 class LeaderBoardAdapter internal constructor(
     private val context: Context,
-    private val entries: ArrayList<LeaderboardEntry>
+    private val entries: List<Leaderboard>
 ):
     RecyclerView.Adapter<LeaderBoardAdapter.ViewHolder>(){
 
@@ -32,7 +33,7 @@ class LeaderBoardAdapter internal constructor(
         holder.rank.text=(position+1).toString()+"."
         holder.username.text= entries[position].username
         holder.score.text=entries[position].points.toString()
-        holder.solved.text= entries[position].question_answered.toString()
+        holder.solved.text= entries[position].questionAnswered.toString()
     }
 
     override fun getItemCount(): Int {

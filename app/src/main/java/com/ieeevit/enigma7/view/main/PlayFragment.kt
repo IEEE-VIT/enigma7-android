@@ -14,11 +14,9 @@ import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.auth.AuthActivity
 import com.ieeevit.enigma7.viewModel.PlayViewModel
-import com.ieeevit.enigma7.viewModel.ProfileViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_play.view.*
 import kotlinx.android.synthetic.main.hint_dialog_layout.view.*
-import kotlinx.android.synthetic.main.questions_layout.*
 import kotlinx.android.synthetic.main.questions_layout.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.*
 

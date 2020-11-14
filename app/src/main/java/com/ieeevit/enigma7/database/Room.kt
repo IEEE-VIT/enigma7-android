@@ -32,5 +32,14 @@ interface QuestionsDao{
     fun insertQuestion(question:Question)
 }
 
+@Dao
+interface LeaderBoardDao{
+    @Query("select * from leader_board")
+    fun getLeaderBoard():LiveData<List<Leaderboard>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertLeaderBoard(leaderboard: List<Leaderboard>)
+}
+
 
 
