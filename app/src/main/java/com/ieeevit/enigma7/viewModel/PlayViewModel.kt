@@ -1,29 +1,36 @@
 package com.ieeevit.enigma7.viewModel
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.ieeevit.enigma7.api.service.Api
-import com.ieeevit.enigma7.model.*
+import com.ieeevit.enigma7.database.getDatabase
+import com.ieeevit.enigma7.model.CheckAnswerRequest
+import com.ieeevit.enigma7.model.CheckAnswerResponse
+import com.ieeevit.enigma7.model.HintResponse
+import com.ieeevit.enigma7.model.QuestionResponse
+import com.ieeevit.enigma7.repository.Repository
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
-class PlayViewModel : ViewModel() {
+class PlayViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository = Repository(getDatabase(application))
     private val _hint = MutableLiveData<String>()
     val hint: LiveData<String>
         get() = _hint
     private val _answerResponse = MutableLiveData<CheckAnswerResponse>()
     val answerResponse: LiveData<CheckAnswerResponse>
         get() = _answerResponse
-    private val _questionResponse = MutableLiveData<QuestionResponse>()
-    val questionResponse: LiveData<QuestionResponse>
-        get() = _questionResponse
 
     init {
         _hint.value=null
     }
+
+
+    val questionResponse = repository.questions
     fun getHint(authToken: String) {
 
         Api.retrofitService.getHint(authToken).enqueue(object : Callback<HintResponse> {
@@ -57,48 +64,23 @@ class PlayViewModel : ViewModel() {
             })
     }
 
-    fun getQuestion(authToken: String){
-        Api.retrofitService.getQuestion(authToken).enqueue(object : Callback<QuestionResponse> {
-            override fun onResponse(
-                call: Call<QuestionResponse>,
-                response: Response<QuestionResponse>
-            ) {
-                _questionResponse.value=response.body()
+    fun refreshQuestionsFromRepository(authToken: String){
+        viewModelScope.launch {
+            try {
+                repository.refreshQuestion(authToken)
+            }catch (e:Exception){
+                Log.i("ERROR","Question retrieval failed $e")
             }
-
-            override fun onFailure(call: Call<QuestionResponse>, t: Throwable) {
-
-            }
-
-        })
+        }
     }
 
-    fun doSkipPowerUp(authToken: String){
-        Api.retrofitService.usePowerupSkip(authToken).enqueue(object :Callback<PowerupResponse>{
-            override fun onResponse(
-                call: Call<PowerupResponse>,
-                response: Response<PowerupResponse>
-            ) {
-
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(PlayViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return PlayViewModel(app) as T
             }
-            override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-
-            }
-        })
-    }
-
-    fun doCloseAnswerPowerUp(authToken: String){
-        Api.retrofitService.usePowerupCloseAnswer(authToken).enqueue(object :Callback<PowerupResponse>{
-            override fun onResponse(
-                call: Call<PowerupResponse>,
-                response: Response<PowerupResponse>
-            ) {
-
-            }
-
-            override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-
-            }
-        })
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
     }
 }

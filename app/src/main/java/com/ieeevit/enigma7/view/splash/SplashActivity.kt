@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -27,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
         } else {
             initialize()
             shortAnimationDuration = resources.getInteger(android.R.integer.config_longAnimTime)
-            Handler().postDelayed(
+            Handler(Looper.getMainLooper()).postDelayed(
                 { binding.container.crypticText.setText(R.string.anglur_cryptic) },
                 800
             )
@@ -39,16 +40,16 @@ class SplashActivity : AppCompatActivity() {
                     .setListener(object : AnimatorListenerAdapter() {
                         override fun onAnimationEnd(animation: Animator) {
                             binding.container.crypticText.setText(R.string.onlineCrypticHunt)
-                            Handler().postDelayed({
-                                binding.constraintLayout.setBackgroundResource(R.color.baseBackground)
-                                binding.include2.visibility = View.VISIBLE
-                                binding.container.constraintLayout.setBackgroundResource(R.drawable.fragment_back)
-                                binding.container.zeroOne.visibility = View.VISIBLE
-                                if(sharedPreference.isLoggedIn()){
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                if (sharedPreference.isLoggedIn()) {
                                     startIntent()
-                                }else
-                                {
-                                    binding.container.zeroOne.animate().translationYBy((1500).toFloat())
+                                } else {
+                                    binding.constraintLayout.setBackgroundResource(R.color.baseBackground)
+                                    binding.include2.visibility = View.VISIBLE
+                                    binding.container.constraintLayout.setBackgroundResource(R.drawable.fragment_back)
+                                    binding.container.zeroOne.visibility = View.VISIBLE
+                                    binding.container.zeroOne.animate()
+                                        .translationYBy((1500).toFloat())
                                         .setDuration(400).setListener(
                                             object : AnimatorListenerAdapter() {
                                                 override fun onAnimationEnd(animation: Animator) {
@@ -69,26 +70,23 @@ class SplashActivity : AppCompatActivity() {
 
     fun translateXY() {
         binding.container.googleSignup.visibility = View.VISIBLE
-        binding.container.instaSignup.visibility = View.VISIBLE
         binding.container.googleSignup.animate().translationYBy((-1500).toFloat()).duration = 400
-        binding.container.instaSignup.animate().translationYBy((-1500).toFloat()).duration = 400
         binding.container.enigma.animate().translationYBy((-373).toFloat()).duration = 400
         binding.container.crypticText.animate().translationYBy((-373).toFloat()).duration = 400
     }
 
     fun startIntent() {
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, AuthActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             finish()
-        }, 500)
+        }, 400)
     }
 
     private fun initialize() {
         binding.container.crypticText.visibility = View.GONE
         binding.container.zeroOne.translationY = ((-1500).toFloat())
         binding.container.googleSignup.translationY = (1500.toFloat())
-        binding.container.instaSignup.translationY = (1500.toFloat())
         binding.container.crypticText.setText(R.string.angular)
     }
 

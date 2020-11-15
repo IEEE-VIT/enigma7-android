@@ -24,11 +24,11 @@
     <string name="profile">Profile</string>
     <string name="user_name">User Name:</string>
     <string name="validusername">ValidUserName:</string>
-    <string name="email_id">Email Id:</string>
-    <string name="questions_solved">Questions solved:</string>
+    <string name="email_id">Email ID:</string>
+    <string name="questions_solved">Questions Solved:</string>
     <string name="rank">Rank:</string>
     <string name="score">Score:</string>
-    <string name="sign_out">Sign Out</string>
+    <string name="sign_out">Sign out</string>
     <string name="angular">&lt; &gt;</string>
     <string name="anglur_cryptic">&lt; Online cryptic hunt &gt;</string>
     <string name="days">Days</string>
@@ -43,5 +43,7 @@
     <string name="try_again">Try Again!</string>
     <string name="start">Start</string>
     <string name="_00">00</string>
+    <string name="hint"><![CDATA[< Hint >]]></string>
+    <string name="see_hint">See Hint</string>
 
 </resources>

@@ -8,11 +8,11 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
@@ -36,7 +36,7 @@ class ProfileSetupFragment : Fragment() {
     private val viewModel: ProfileSetupViewModel by lazy {
         ViewModelProviders.of(this).get(ProfileSetupViewModel::class.java)
     }
-
+    private lateinit var overlayFrame: ConstraintLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreference = PrefManager(this.requireActivity())
@@ -84,10 +84,12 @@ class ProfileSetupFragment : Fragment() {
 
         binding.nextButton.setOnClickListener {
             val authCode: String? = sharedPreference.getAuthCode()
+            overlayFrame.visibility= VISIBLE
             viewModel.editUsername("Token $authCode", userName)
         }
 
         viewModel.usernameBody.observe(viewLifecycleOwner, {
+            overlayFrame.visibility= GONE
             when {
                 it.username == userName -> {
                     sharedPreference.setUserStatus(true)
@@ -112,7 +114,11 @@ class ProfileSetupFragment : Fragment() {
         })
         return binding.root
     }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        overlayFrame = (activity as AuthActivity).findViewById(R.id.overlayFrame)
 
+    }
     private fun TextView.afterTextChangedDelayed(afterTextChanged: (String) -> Unit) {
         this.addTextChangedListener(object : TextWatcher {
             var timer: CountDownTimer? = null

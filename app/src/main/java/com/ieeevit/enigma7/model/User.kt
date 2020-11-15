@@ -2,10 +2,11 @@ package com.ieeevit.enigma7.model
 
 import com.google.gson.annotations.SerializedName
 
+
 data class User(
 
 	@SerializedName("user_status")
-	val userStatus: UserStatus? = null,
+	val userStatus: UserStatus?=null,
 
 	@SerializedName("no_of_hints_used")
 	val noOfHintsUsed: Int? = null,

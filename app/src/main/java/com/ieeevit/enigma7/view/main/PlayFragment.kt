@@ -7,24 +7,18 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
+import com.ieeevit.enigma7.view.auth.AuthActivity
 import com.ieeevit.enigma7.viewModel.PlayViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_play.view.*
 import kotlinx.android.synthetic.main.hint_dialog_layout.view.*
-import kotlinx.android.synthetic.main.powerup_confirm_dialog_close.view.*
-import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.*
-import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_cancel
-import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_confirm
-import kotlinx.android.synthetic.main.powerups_layout.*
-import kotlinx.android.synthetic.main.powerups_layout.view.*
-import kotlinx.android.synthetic.main.questions_layout.*
 import kotlinx.android.synthetic.main.questions_layout.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.*
-import kotlinx.android.synthetic.main.view_hint_dialog.view.hintView
 
 class PlayFragment : Fragment() {
     private lateinit var sharedPreference: PrefManager
@@ -33,14 +27,20 @@ class PlayFragment : Fragment() {
     private lateinit var customInflater: LayoutInflater
     private lateinit var hint: String
     private val viewModel: PlayViewModel by lazy {
-        ViewModelProviders.of(this).get(PlayViewModel::class.java)
+        val activity = requireNotNull(this.activity) {
+        }
+        ViewModelProvider(this, PlayViewModel.Factory(activity.application))
+            .get(PlayViewModel::class.java)
     }
+    private lateinit var overlayFrame: ConstraintLayout
+    // TODO: 13-11-2020 clear hint after using powerup skip and close answer ig
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val root: View = inflater.inflate(R.layout.fragment_play, container, false)
 
         sharedPreference = PrefManager(this.requireActivity())
@@ -50,10 +50,11 @@ class PlayFragment : Fragment() {
         }
         init()
         viewModel.hint.observe(viewLifecycleOwner, {
+            overlayFrame.visibility= GONE
             if (it == "") {
                 Toast.makeText(activity, "Hint retrieval failed", Toast.LENGTH_SHORT).show()
-            } else if (it!=null) {
-                hint = "Hint: $it"
+            } else if (it != null) {
+                hint = it
                 sharedPreference.setHint(hint)
                 showAlertDialog(R.layout.view_hint_dialog)
                 root.get_hint_btn.visibility = GONE
@@ -61,6 +62,7 @@ class PlayFragment : Fragment() {
             }
         })
         viewModel.answerResponse.observe(viewLifecycleOwner, {
+            overlayFrame.visibility= GONE
             if (it != null) {
                 when {
                     it.closeAnswer == true -> {
@@ -75,13 +77,16 @@ class PlayFragment : Fragment() {
                         root.view_hint_btn.visibility = GONE
                         sharedPreference.setHint(null)
                         root.answerBox.setText("")
-                        // TODO: 30-10-2020 call next question
+                        overlayFrame.visibility= VISIBLE
+                        viewModel.refreshQuestionsFromRepository("Token $authCode")
+                        // TODO: 11-11-2020 get the keyboard down
                         // TODO: 30-10-2020 try to update profile(db)
                     }
                 }
             }
         })
         root.submit_btn.setOnClickListener {
+            overlayFrame.visibility= VISIBLE
             val answer = root.answerBox.text.toString()
             viewModel.checkAnswer("Token $authCode", answer)
         }
@@ -92,24 +97,25 @@ class PlayFragment : Fragment() {
             showAlertDialog(R.layout.view_hint_dialog)
         }
 
-        root.main_screen.visibility= INVISIBLE
-        root.question_loading_progress.visibility= VISIBLE
+        viewModel.refreshQuestionsFromRepository("Token $authCode")
+        viewModel.questionResponse.observe(viewLifecycleOwner, {
+            if(it!=null){
+                overlayFrame.visibility= GONE
+                root.question.text = it.text
+                root.question_id.text = "Q${it.id}."
+                Picasso.get().load(it.img_url).into(root.question_image)
+            }
 
-        viewModel.getQuestion("Token $authCode")
-        viewModel.questionResponse.observe(viewLifecycleOwner,{
-            root.question.text=it.text
-            root.question_id.text="Q${it.id}."
-            Picasso.get().load(it.img_url).into(root.question_image)
-            root.main_screen.visibility= VISIBLE
-            root.question_loading_progress.visibility= GONE
         })
-
-        root.skipPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_skip) }
-        root.closeAnswerPowerup.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_close) }
 
         return root
     }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        overlayFrame = (activity as MainActivity).findViewById(R.id.overlayFrame)
+        overlayFrame.visibility= INVISIBLE
 
+    }
     private fun init() {
         authCode = sharedPreference.getAuthCode()!!
         builder = AlertDialog.Builder(activity)
@@ -126,26 +132,18 @@ class PlayFragment : Fragment() {
                     alert.dismiss()
                 }
                 customLayout.accept.setOnClickListener {
+                    overlayFrame.visibility= VISIBLE
                     viewModel.getHint("Token $authCode")
                     alert.dismiss()
                 }
             }
             R.id.viewHintDialog -> {
                 customLayout.hintView.text = sharedPreference.getHintString()
-            }
-            R.id.confirmPowerupDialogSkip ->{
-                customLayout.powerup_confirm.setOnClickListener {
-                    viewModel.doSkipPowerUp(authCode)
+                customLayout.close.setOnClickListener {
+                    alert.dismiss()
                 }
-                customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
             }
 
-            R.id.confirmPowerupDialogClose ->{
-                customLayout.powerup_confirm.setOnClickListener {
-                    viewModel.doCloseAnswerPowerUp(authCode)
-                }
-                customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
-            }
         }
         alert.show()
     }

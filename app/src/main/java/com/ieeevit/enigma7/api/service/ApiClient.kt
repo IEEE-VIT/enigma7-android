@@ -15,36 +15,32 @@ interface ApiClient {
 
     @POST("api/v1/users/auth/google/")
     @FormUrlEncoded
-    fun getAccessToken(@Field("code") code: String, @Field("callback_url") callBackUrl: String): Call<AccessToken>
+    fun getAccessToken(
+        @Field("code") code: String,
+        @Field("callback_url") callBackUrl: String
+    ): Call<AccessToken>
 
     @PATCH("api/v1/users/me/edit/")
     @Headers("Content-Type: application/json")
     fun editUsername(@Header("Authorization") authToken: String, @Body username: EditUsernameRequest): Call<EditUsernameResponse>
 
     @GET("api/v1/users/me/")
-    fun getUserDetails(@Header("Authorization") authToken: String):Call<User>
+    suspend fun getUserDetails(@Header("Authorization") authToken: String): User
 
     @POST("api/v1/users/logout/")
-    fun logOut(@Header("Authorization") authToken: String):Call<LogoutResponse>
+    fun logOut(@Header("Authorization") authToken: String): Call<LogoutResponse>
 
     @GET("api/v1/game/hint/")
-    fun getHint(@Header("Authorization") authToken: String):Call<HintResponse>
+    fun getHint(@Header("Authorization") authToken: String): Call<HintResponse>
 
     @GET("api/v1/game/leaderboard/")
-    fun getLeaderboard(@Header("Authorization") authToken: String):Call<ArrayList<LeaderboardEntry>>
+    suspend fun getLeaderboard(@Header("Authorization") authToken: String): ArrayList<LeaderboardEntry>
 
     @GET("api/v1/game/question/")
-    fun getQuestion(@Header("Authorization") authToken: String):Call<QuestionResponse>
+    suspend fun getQuestion(@Header("Authorization") authToken: String): QuestionResponse
 
     @POST("api/v1/game/answer/")
-    fun checkAnswer(@Header("Authorization") authToken: String, @Body answerRequest: CheckAnswerRequest):Call<CheckAnswerResponse>
-
-    @POST("api/v1/game/powerup/skip")
-    fun usePowerupSkip(@Header("Authorization") authToken: String):Call<PowerupResponse>
-
-    @POST("api/v1/game/powerup/close-answer")
-    fun usePowerupCloseAnswer(@Header("Authorization") authToken: String):Call<PowerupResponse>
-
+    fun checkAnswer(@Header("Authorization") authToken: String, @Body answerRequest: CheckAnswerRequest): Call<CheckAnswerResponse>
 }
 
 object Api {
