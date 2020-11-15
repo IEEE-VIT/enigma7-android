@@ -57,5 +57,6 @@ dependencies {
     implementation "androidx.room:room-ktx:2.3.0-alpha03"
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     implementation "androidx.room:room-runtime:2.2.5"
+    implementation 'in.codeshuffle:typewriterview:1.1.0'
     kapt  "androidx.room:room-compiler:2.2.5"
 }

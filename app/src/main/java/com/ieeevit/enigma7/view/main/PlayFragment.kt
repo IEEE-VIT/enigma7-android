@@ -12,13 +12,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
-import com.ieeevit.enigma7.view.auth.AuthActivity
 import com.ieeevit.enigma7.viewModel.PlayViewModel
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_play.view.*
 import kotlinx.android.synthetic.main.hint_dialog_layout.view.*
+import kotlinx.android.synthetic.main.powerup_confirm_dialog_close.view.*
+import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.*
+import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_cancel
+import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_confirm
+import kotlinx.android.synthetic.main.powerups_layout.view.*
 import kotlinx.android.synthetic.main.questions_layout.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.*
+import kotlinx.android.synthetic.main.view_hint_dialog.view.hintView
 
 class PlayFragment : Fragment() {
     private lateinit var sharedPreference: PrefManager
@@ -108,6 +112,9 @@ class PlayFragment : Fragment() {
 
         })
 
+        root.closeAnswerPowerup.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_close) }
+        root.skipPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_skip) }
+
         return root
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -143,7 +150,20 @@ class PlayFragment : Fragment() {
                     alert.dismiss()
                 }
             }
-
+            R.id.confirmPowerupDialogSkip ->{
+                customLayout.powerup_confirm.setOnClickListener {
+                    viewModel.usePowerUpSkip(authCode)
+                    alert.dismiss()
+                    viewModel.refreshQuestionsFromRepository("Token $authCode")
+                }
+                customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
+            }
+            R.id.confirmPowerupDialogClose ->{
+                customLayout.powerup_confirm.setOnClickListener {
+                    viewModel.usePowerUpCloseAnswer(authCode)
+                }
+                customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
+            }
         }
         alert.show()
     }
