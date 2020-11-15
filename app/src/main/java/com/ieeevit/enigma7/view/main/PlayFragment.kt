@@ -15,8 +15,6 @@ import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.viewModel.PlayViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.hint_dialog_layout.view.*
-import kotlinx.android.synthetic.main.powerup_confirm_dialog_close.view.*
-import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.*
 import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_cancel
 import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_confirm
 import kotlinx.android.synthetic.main.powerups_layout.view.*
@@ -44,9 +42,7 @@ class PlayFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val root: View = inflater.inflate(R.layout.fragment_play, container, false)
-
         sharedPreference = PrefManager(this.requireActivity())
         if (sharedPreference.getHintString() != null) {
             root.get_hint_btn.visibility = GONE
@@ -152,7 +148,7 @@ class PlayFragment : Fragment() {
             }
             R.id.confirmPowerupDialogSkip ->{
                 customLayout.powerup_confirm.setOnClickListener {
-                    viewModel.usePowerUpSkip(authCode)
+                    viewModel.usePowerUpSkip("Token $authCode")
                     alert.dismiss()
                     viewModel.refreshQuestionsFromRepository("Token $authCode")
                 }
@@ -160,7 +156,8 @@ class PlayFragment : Fragment() {
             }
             R.id.confirmPowerupDialogClose ->{
                 customLayout.powerup_confirm.setOnClickListener {
-                    viewModel.usePowerUpCloseAnswer(authCode)
+                    viewModel.usePowerUpCloseAnswer("Token $authCode")
+                    alert.dismiss()
                 }
                 customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
             }
