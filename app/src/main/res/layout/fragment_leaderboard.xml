@@ -5,11 +5,12 @@
     android:layout_height="match_parent">
 
     <ProgressBar
+        android:id="@+id/leaderboard_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/leaderboard_progress_bar"
         android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:indeterminateDrawable="@drawable/progress_circle"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -77,12 +78,12 @@
             android:layout_marginTop="5dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/leaderboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/leaderboard"
             android:layout_marginHorizontal="13dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp" />
 
     </LinearLayout>
 

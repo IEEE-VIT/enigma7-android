@@ -2,24 +2,20 @@ package com.ieeevit.enigma7.view.home
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.room.RoomDatabase
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.ieeevit.enigma7.R
-import com.ieeevit.enigma7.database.getDatabase
 import com.ieeevit.enigma7.databinding.FragmentProfileBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.auth.AuthActivity
-import com.ieeevit.enigma7.view.auth.ProfileSetupFragment
+import com.ieeevit.enigma7.view.main.MainActivity
 import com.ieeevit.enigma7.view.main.PlayFragment
 import com.ieeevit.enigma7.viewModel.ProfileViewModel
 
@@ -41,7 +37,9 @@ class ProfileFragment : Fragment() {
     ): View? {
         val binding: FragmentProfileBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        binding.overlayFrame.visibility=View.VISIBLE
         viewModel.userDetails.observe(viewLifecycleOwner, {
+            binding.overlayFrame.visibility=View.GONE
             if (it != null) {
                 binding.username.text = it.username
                 binding.emailId.text = it.email
@@ -62,6 +60,7 @@ class ProfileFragment : Fragment() {
                 navToLogin()
             }
         })
+
         return binding.root
     }
 
@@ -83,6 +82,7 @@ class ProfileFragment : Fragment() {
 
     private fun navToLogin() {
         startActivity(Intent(activity, AuthActivity::class.java))
+        (activity as MainActivity).finish()
     }
 
 }
