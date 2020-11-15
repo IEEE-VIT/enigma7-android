@@ -2,9 +2,11 @@ package com.ieeevit.enigma7.view.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -39,13 +41,21 @@ class ProfileFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         binding.overlayFrame.visibility=View.VISIBLE
         viewModel.userDetails.observe(viewLifecycleOwner, {
-            binding.overlayFrame.visibility=View.GONE
+
             if (it != null) {
                 binding.username.text = it.username
                 binding.emailId.text = it.email
                 binding.solved.text = it.questionAnswered.toString()
                 binding.rank.text = it.rank.toString()
                 binding.score.text = it.points.toString()
+                binding.overlayFrame.visibility=View.GONE
+            }
+
+        })
+        viewModel.networkStatus.observe(viewLifecycleOwner,{
+            if (it==0){
+                binding.overlayFrame.visibility=View.GONE
+                Toast.makeText(activity,"User detail Retrieval Failed",Toast.LENGTH_SHORT).show()
             }
         })
         binding.signOutButton.setOnClickListener {

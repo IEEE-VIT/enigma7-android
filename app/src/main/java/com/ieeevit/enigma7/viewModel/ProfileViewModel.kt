@@ -24,6 +24,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
         get() = _logoutStatus
     private val clientId: String =
         "55484635453-c46tes445anbidhb2qnmb2qs618mvpni.apps.googleusercontent.com"
+    val networkStatus = MutableLiveData<Int>()
 
     init {
         _logoutStatus.value = null
@@ -41,6 +42,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
             try {
                 repository.refreshUserDetails(authToken)
             } catch (e: Exception) {
+                networkStatus.value = 0
                 Log.i("get user details FAIL", e.toString())
             }
         }
