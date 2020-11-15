@@ -31,19 +31,23 @@ class LeaderboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root=inflater.inflate(R.layout.fragment_leaderboard, container, false)
-
+        root.leaderboard_progress_bar.visibility=View.VISIBLE
         sharedPreference = PrefManager(this.requireActivity())
         authCode=sharedPreference.getAuthCode()!!
         viewModel.refreshLeaderBoardFromRepository("Token $authCode")
-        root.leaderboard_progress_bar.visibility=View.VISIBLE
+
 
         viewModel.mLeaderBoardData.observe(viewLifecycleOwner, {
             if (it!=null){
                 adapter= LeaderBoardAdapter(requireContext(), it)
                 root.leaderboard.layoutManager=LinearLayoutManager(context)
                 root.leaderboard.adapter=adapter
-                root.leaderboard_progress_bar.visibility=View.GONE
                 adapter.notifyDataSetChanged()
+                adapter.dataLoadStatus.observe(viewLifecycleOwner,{ti->
+                    if (ti==1){
+                        root.leaderboard_progress_bar.visibility=View.GONE
+                    }
+                })
             }
 
         })

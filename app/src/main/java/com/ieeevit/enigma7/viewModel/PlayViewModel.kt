@@ -24,10 +24,8 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         get() = _answerResponse
 
     init {
-        _hint.value=null
+        _hint.value = null
     }
-
-
     val questionResponse = repository.questions
     fun getHint(authToken: String) {
 
@@ -41,7 +39,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
 
             override fun onFailure(call: Call<HintResponse>, t: Throwable) {
                 _hint.value = ""
-                Log.i("ERROR","Hint retrieval Failed",t)
+                Log.i("ERROR", "Hint retrieval Failed", t)
             }
         })
     }
@@ -49,47 +47,51 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     fun checkAnswer(authToken: String, answer: String) {
         Api.retrofitService.checkAnswer(authToken, CheckAnswerRequest(answer))
             .enqueue(object : Callback<CheckAnswerResponse> {
-                override fun onResponse(call: Call<CheckAnswerResponse>, response: Response<CheckAnswerResponse>) {
-                 if(response.body()!=null){
-                     _answerResponse.value=response.body()
-                 }
+                override fun onResponse(
+                    call: Call<CheckAnswerResponse>,
+                    response: Response<CheckAnswerResponse>
+                ) {
+                    if (response.body() != null) {
+                        _answerResponse.value = response.body()
+                    }
                 }
 
                 override fun onFailure(call: Call<CheckAnswerResponse>, t: Throwable) {
-                    Log.i("ERROR","Check Answer Failed",t)
+                    Log.i("ERROR", "Check Answer Failed", t)
                 }
 
             })
     }
 
-    fun refreshQuestionsFromRepository(authToken: String){
+    fun refreshQuestionsFromRepository(authToken: String) {
         viewModelScope.launch {
             try {
                 repository.refreshQuestion(authToken)
 
-            }catch (e:Exception){
-                Log.i("ERROR","Question retrieval failed $e")
+            } catch (e: Exception) {
+                Log.i("ERROR", "Question retrieval failed $e")
             }
         }
     }
 
-    fun usePowerUpCloseAnswer(authToken: String){
-        Api.retrofitService.usePowerUpCloseAnswer(authToken).enqueue(object :Callback<PowerupResponse>{
-            override fun onResponse(
-                call: Call<PowerupResponse>,
-                response: Response<PowerupResponse>
-            ) {
+    fun usePowerUpCloseAnswer(authToken: String) {
+        Api.retrofitService.usePowerUpCloseAnswer(authToken)
+            .enqueue(object : Callback<PowerupResponse> {
+                override fun onResponse(
+                    call: Call<PowerupResponse>,
+                    response: Response<PowerupResponse>
+                ) {
 
-            }
+                }
 
-            override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
+                override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
 
-            }
-        })
+                }
+            })
     }
 
-    fun usePowerUpSkip(authToken: String){
-        Api.retrofitService.usePowerUpSkip(authToken).enqueue(object :Callback<PowerupResponse>{
+    fun usePowerUpSkip(authToken: String) {
+        Api.retrofitService.usePowerUpSkip(authToken).enqueue(object : Callback<PowerupResponse> {
             override fun onResponse(
                 call: Call<PowerupResponse>,
                 response: Response<PowerupResponse>

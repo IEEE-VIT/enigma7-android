@@ -31,7 +31,7 @@
         android:id="@+id/score"
         style="@style/leaderboardTextStyleEntry"
         android:layout_weight="1"
-        android:textAlignment="center"
-        android:text="Score" />
+        android:text="Score"
+        android:textAlignment="textEnd" />
 
 </LinearLayout>
