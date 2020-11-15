@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ieeevit.enigma7.R
+import kotlinx.android.synthetic.main.fragment_story.view.*
+
 
 class StoryFragment : Fragment() {
     override fun onCreateView(
@@ -13,6 +15,12 @@ class StoryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_story, container, false)
+        val root=inflater.inflate(R.layout.fragment_story, container, false)
+
+        root.story.setDelay(1)
+        root.story.setWithMusic(false)
+        root.story.animateText(resources.getString(R.string.story_sample))
+
+        return root
     }
 }

@@ -6,6 +6,7 @@ import com.ieeevit.enigma7.database.*
 import com.ieeevit.enigma7.model.LeaderboardEntry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.Call
 
 class Repository(private val database: EnigmaDatabase) {
 
@@ -37,7 +38,7 @@ class Repository(private val database: EnigmaDatabase) {
 
     suspend fun refreshLeaderBoard(authToken: String) {
         withContext(Dispatchers.IO) {
-            val leaderboardEntry: List<LeaderboardEntry> = Api.retrofitService.getLeaderboard(authToken)
+            val leaderboardEntry: ArrayList<LeaderboardEntry> = Api.retrofitService.getLeaderboard(authToken)
             database.leaderBoardDao.insertLeaderBoard(leaderboardEntry.asDatabaseModel())
         }
     }

@@ -2,13 +2,11 @@ package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.*
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.database.getDatabase
-import com.ieeevit.enigma7.model.CheckAnswerRequest
-import com.ieeevit.enigma7.model.CheckAnswerResponse
-import com.ieeevit.enigma7.model.HintResponse
-import com.ieeevit.enigma7.model.QuestionResponse
+import com.ieeevit.enigma7.model.*
 import com.ieeevit.enigma7.repository.Repository
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -68,10 +66,41 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 repository.refreshQuestion(authToken)
+
             }catch (e:Exception){
                 Log.i("ERROR","Question retrieval failed $e")
             }
         }
+    }
+
+    fun usePowerUpCloseAnswer(authToken: String){
+        Api.retrofitService.usePowerUpCloseAnswer(authToken).enqueue(object :Callback<PowerupResponse>{
+            override fun onResponse(
+                call: Call<PowerupResponse>,
+                response: Response<PowerupResponse>
+            ) {
+
+            }
+
+            override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
+
+            }
+        })
+    }
+
+    fun usePowerUpSkip(authToken: String){
+        Api.retrofitService.usePowerUpSkip(authToken).enqueue(object :Callback<PowerupResponse>{
+            override fun onResponse(
+                call: Call<PowerupResponse>,
+                response: Response<PowerupResponse>
+            ) {
+
+            }
+
+            override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
+
+            }
+        })
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

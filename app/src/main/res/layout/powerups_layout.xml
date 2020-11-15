@@ -11,10 +11,12 @@
 
     <ImageButton
         style="@style/hintButtonStyle"
+        android:id="@+id/closeAnswerPowerup"
         android:src="@drawable/powerup_close"/>
 
     <ImageButton
         style="@style/hintButtonStyle"
+        android:id="@+id/skipPowerUp"
         android:src="@drawable/powerup_skip"/>
 
 </LinearLayout>

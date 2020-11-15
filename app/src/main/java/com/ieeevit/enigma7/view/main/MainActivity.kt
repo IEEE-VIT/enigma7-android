@@ -1,11 +1,13 @@
 package com.ieeevit.enigma7.view.main
 
 import android.os.Bundle
+import android.transition.Fade
 import android.view.View
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.view.home.ProfileFragment
 import kotlinx.android.synthetic.main.bottom_bar.*
@@ -26,6 +28,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun transaction(fragment: Fragment){
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+        supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+            .replace(R.id.container, fragment)
+            .commit()
     }
 }
