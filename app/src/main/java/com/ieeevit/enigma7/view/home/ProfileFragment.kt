@@ -15,6 +15,7 @@ import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentProfileBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.auth.AuthActivity
+import com.ieeevit.enigma7.view.main.MainActivity
 import com.ieeevit.enigma7.view.main.PlayFragment
 import com.ieeevit.enigma7.viewModel.ProfileViewModel
 
@@ -36,6 +37,7 @@ class ProfileFragment : Fragment() {
     ): View? {
         val binding: FragmentProfileBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        binding.overlayFrame.visibility=View.VISIBLE
         viewModel.userDetails.observe(viewLifecycleOwner, {
             binding.overlayFrame.visibility=View.GONE
             if (it != null) {
@@ -58,7 +60,7 @@ class ProfileFragment : Fragment() {
                 navToLogin()
             }
         })
-        binding.overlayFrame.visibility=View.VISIBLE
+
         return binding.root
     }
 
@@ -80,6 +82,7 @@ class ProfileFragment : Fragment() {
 
     private fun navToLogin() {
         startActivity(Intent(activity, AuthActivity::class.java))
+        (activity as MainActivity).finish()
     }
 
 }

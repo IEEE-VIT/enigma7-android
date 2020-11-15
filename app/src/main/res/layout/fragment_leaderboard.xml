@@ -78,12 +78,12 @@
             android:layout_marginTop="5dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/leaderboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/leaderboard"
             android:layout_marginHorizontal="13dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp" />
 
     </LinearLayout>
 
