@@ -104,8 +104,8 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         val data = Data.Builder()
         data.putString("auth_token", authToken)
         val repeatingRequest = PeriodicWorkRequestBuilder<RefreshXpWorker>(
-            15,
-            TimeUnit.MINUTES
+            1,
+            TimeUnit.HOURS
         ).setInputData(data.build())
             .build()
         Log.i("workManager", "Periodic Work request for sync is scheduled")
