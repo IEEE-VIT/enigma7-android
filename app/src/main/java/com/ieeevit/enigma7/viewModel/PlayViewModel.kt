@@ -19,6 +19,11 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     private val _hint = MutableLiveData<String>()
     val hint: LiveData<String>
         get() = _hint
+
+    private val _status = MutableLiveData<String>()
+    val status: LiveData<String>
+        get() = _status
+
     private val _answerResponse = MutableLiveData<CheckAnswerResponse>()
     val answerResponse: LiveData<CheckAnswerResponse>
         get() = _answerResponse
@@ -90,17 +95,21 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             })
     }
 
-    fun usePowerUpSkip(authToken: String) {
+    fun usePowerUpSkip(authToken: String){
         Api.retrofitService.usePowerUpSkip(authToken).enqueue(object : Callback<PowerupResponse> {
             override fun onResponse(
                 call: Call<PowerupResponse>,
                 response: Response<PowerupResponse>
             ) {
-
+                if(response.body()!!.question_id>0){
+                    refreshQuestionsFromRepository(authToken)
+                }else {
+                    _status.value= response.body()!!.detail
+                }
             }
 
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-
+                Log.d("Powerup Error",t.message!!)
             }
         })
     }
@@ -111,11 +120,13 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 call: Call<PowerupResponse>,
                 response: Response<PowerupResponse>
             ) {
-
+                if(response.body()?.hint.isNullOrEmpty())
+                    _status.value= response.body()?.detail
+                else
+                    _hint.value= response.body()?.hint
             }
-
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-
+                Log.d("Powerup Error",t.message!!)
             }
         })
     }
