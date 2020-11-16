@@ -165,7 +165,9 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 call: Call<PowerupResponse>,
                 response: Response<PowerupResponse>
             ) {
-                if(response.body()?.hint?.isNotEmpty()!!)
+                if(response.body()?.detail?.equals("You have already taken a hint .")!! ||
+                    response.body()?.detail?.equals("Insufficient Xp")!!
+                )
                     _status.value= response.body()?.detail
                 else
                     _hint.value= response.body()?.hint
