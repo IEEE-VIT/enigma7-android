@@ -34,7 +34,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     private val _answerResponse = MutableLiveData<CheckAnswerResponse>()
     val answerResponse: LiveData<CheckAnswerResponse>
         get() = _answerResponse
-    val error =MutableLiveData<Int>()
+    val error = MutableLiveData<Int>()
 
     private val _skipResponse = MutableLiveData<String>()
     val skipResponse: LiveData<String>
@@ -43,8 +43,9 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     init {
         _hint.value = null
     }
+
     val questionResponse = repository.questions
-    val userDetails=repository.userDetails
+    val userDetails = repository.userDetails
     fun getHint(authToken: String) {
 
         Api.retrofitService.getHint(authToken).enqueue(object : Callback<HintResponse> {
@@ -52,9 +53,8 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 if (response.body() != null) {
                     val hintResponse: HintResponse? = response.body()
                     _hint.value = hintResponse?.hint
-                }
-                else {
-                    error.value=1
+                } else {
+                    error.value = 1
                 }
             }
 
@@ -83,6 +83,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
 
             })
     }
+
     fun refreshUserDetailsFromRepository(authToken: String) {
         viewModelScope.launch {
             try {
@@ -92,6 +93,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
     fun startXpRetrieval(authToken: String) {
         GlobalScope.launch {
             setRecurringWork(authToken)
@@ -113,6 +115,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             repeatingRequest
         )
     }
+
     fun refreshQuestionsFromRepository(authToken: String) {
         viewModelScope.launch {
             try {
@@ -140,41 +143,50 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             })
     }
 
-    fun usePowerUpSkip(authToken: String){
+    fun usePowerUpSkip(authToken: String) {
         Api.retrofitService.usePowerUpSkip(authToken).enqueue(object : Callback<PowerupResponse> {
             override fun onResponse(
                 call: Call<PowerupResponse>,
                 response: Response<PowerupResponse>
             ) {
-                if(response.body()!!.question_id>0){
-                    refreshQuestionsFromRepository(authToken)
-                }else {
-                    _status.value= response.body()!!.detail
+                if (response.body() != null) {
+                    if (response.body()!!.question_id > 0) {
+                        refreshQuestionsFromRepository(authToken)
+                        startXpRetrieval(authToken)
+                    } else {
+                        _status.value = response.body()!!.detail
+                    }
                 }
+
             }
 
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-                Log.d("Powerup Error",t.message!!)
+                Log.d("Powerup Error", t.message!!)
             }
         })
     }
 
-    fun usePowerUpHint(authToken: String){
-        Api.retrofitService.usePowerUpHint(authToken).enqueue(object :Callback<PowerupResponse>{
+    fun usePowerUpHint(authToken: String) {
+        Api.retrofitService.usePowerUpHint(authToken).enqueue(object : Callback<PowerupResponse> {
             override fun onResponse(
                 call: Call<PowerupResponse>,
                 response: Response<PowerupResponse>
             ) {
-                if(response.body()?.detail?.equals("You have already taken a hint .")!! ||
-                    response.body()?.detail?.equals("Insufficient Xp")!!
-                )
-                    _status.value= response.body()?.detail
-                else
-                    _hint.value= response.body()?.hint
+                if (response.body() != null) {
+                    if (response.body()?.detail?.equals("You have already taken a hint .")!! ||
+                        response.body()?.detail?.equals("Insufficient Xp")!!
+                    )
+                        _status.value = response.body()?.detail
+                    else
+                        _hint.value = response.body()?.hint
+                    startXpRetrieval(authToken)
+                }
+
 
             }
+
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-                Log.d("Powerup Error",t.message!!)
+                Log.d("Powerup Error", t.message!!)
             }
         })
     }

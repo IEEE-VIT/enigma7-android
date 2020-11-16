@@ -57,7 +57,8 @@ class SignUpFragment : Fragment() {
             if (it != null) {
                 sharedPreference.setAuthCode(it.toString())
                 Log.i("WORK","Workmanager started for the first time")
-                viewModel.startXpRetrieval(sharedPreference.getAuthCode().toString())
+                val authToken=sharedPreference.getAuthCode().toString()
+                viewModel.startXpRetrieval("Token $authToken")
 
             }
         })

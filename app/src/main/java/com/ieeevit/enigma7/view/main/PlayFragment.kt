@@ -87,9 +87,9 @@ class PlayFragment : Fragment() {
                 Log.i("NAMEEE",xp.toString())
                 root.progress_bar.progress = xp
                 root.progress_percent.text="$xp px"
-//                if (xp==100){
-//                    WorkManager.getInstance().cancelUniqueWork(RefreshXpWorker.WORK_NAME)
-//                }
+                if (xp==100){
+                    WorkManager.getInstance().cancelUniqueWork(RefreshXpWorker.WORK_NAME)
+                }
             }
         })
         viewModel.answerResponse.observe(viewLifecycleOwner, {
