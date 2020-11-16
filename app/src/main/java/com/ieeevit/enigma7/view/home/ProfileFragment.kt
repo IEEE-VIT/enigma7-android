@@ -11,6 +11,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.work.WorkManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.ieeevit.enigma7.R
@@ -20,6 +21,7 @@ import com.ieeevit.enigma7.view.auth.AuthActivity
 import com.ieeevit.enigma7.view.main.MainActivity
 import com.ieeevit.enigma7.view.main.PlayFragment
 import com.ieeevit.enigma7.viewModel.ProfileViewModel
+import com.ieeevit.enigma7.work.RefreshXpWorker
 
 
 class ProfileFragment : Fragment() {
@@ -63,6 +65,8 @@ class ProfileFragment : Fragment() {
             mGoogleSignInClient.signOut()
             viewModel.clearCacheOnLogOut()
             viewModel.logOut("Token $authCode")
+            //WorkManager.getInstance().cancelUniqueWork(RefreshXpWorker.WORK_NAME)
+            WorkManager.getInstance().cancelAllWork()
         }
         viewModel.logoutStatus.observe(viewLifecycleOwner, {
             if (it == successString) {

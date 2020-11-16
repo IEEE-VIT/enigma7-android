@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.work.WorkManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -22,6 +23,7 @@ import com.ieeevit.enigma7.databinding.FragmentSignUpBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.timer.CountdownActivity
 import com.ieeevit.enigma7.viewModel.SignUpViewModel
+import com.ieeevit.enigma7.work.RefreshXpWorker
 
 
 class SignUpFragment : Fragment() {
@@ -54,6 +56,9 @@ class SignUpFragment : Fragment() {
         viewModel.authCode.observe(this, {
             if (it != null) {
                 sharedPreference.setAuthCode(it.toString())
+                Log.i("WORK","Workmanager started for the first time")
+                viewModel.startXpRetrieval(sharedPreference.getAuthCode().toString())
+
             }
         })
         viewModel.userStatus.observe(this, {

@@ -4,14 +4,24 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.work.Data
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.Scopes
 import com.google.android.gms.common.api.Scope
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.model.AccessToken
+import com.ieeevit.enigma7.work.RefreshXpWorker
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.concurrent.TimeUnit
 
 class SignUpViewModel : ViewModel() {
     private val _authStatus = MutableLiveData<Int>()
@@ -23,7 +33,9 @@ class SignUpViewModel : ViewModel() {
     private val _userStatus = MutableLiveData<Boolean>()
     val userStatus: LiveData<Boolean>
         get() = _userStatus
-    private val clientId: String = "55484635453-c46tes445anbidhb2qnmb2qs618mvpni.apps.googleusercontent.com"
+    private val clientId: String =
+        "55484635453-c46tes445anbidhb2qnmb2qs618mvpni.apps.googleusercontent.com"
+    private val applicationScope = CoroutineScope(Dispatchers.Default)
 
     init {
         _authStatus.value = 3   // 0:fail 1:success
@@ -36,6 +48,28 @@ class SignUpViewModel : ViewModel() {
         .requestServerAuthCode(clientId)
         .requestEmail()
         .build()
+
+   fun startXpRetrieval(authToken: String) {
+        GlobalScope.launch {
+            setRecurringWork(authToken)
+        }
+    }
+
+    private fun setRecurringWork(authToken: String) {
+        val data = Data.Builder()
+        data.putString("auth_token", authToken)
+        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshXpWorker>(
+            15,
+            TimeUnit.MINUTES
+        ).setInputData(data.build())
+            .build()
+        Log.i("workManager", "Periodic Work request for sync is scheduled")
+        WorkManager.getInstance().enqueueUniquePeriodicWork(
+            RefreshXpWorker.WORK_NAME,
+            ExistingPeriodicWorkPolicy.KEEP,
+            repeatingRequest
+        )
+    }
 
     fun getAuthCode(code: String, redirectUri: String) {
         Api.retrofitService.getAccessToken(code, redirectUri)

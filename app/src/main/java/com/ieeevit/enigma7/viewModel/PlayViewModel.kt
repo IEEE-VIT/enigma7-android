@@ -4,15 +4,22 @@ import android.app.Application
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.*
+import androidx.work.Data
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.database.getDatabase
 import com.ieeevit.enigma7.model.*
 import com.ieeevit.enigma7.repository.Repository
+import com.ieeevit.enigma7.work.RefreshXpWorker
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
+import java.util.concurrent.TimeUnit
 
 class PlayViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = Repository(getDatabase(application))
@@ -27,6 +34,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         _hint.value = null
     }
     val questionResponse = repository.questions
+    val userDetails=repository.userDetails
     fun getHint(authToken: String) {
 
         Api.retrofitService.getHint(authToken).enqueue(object : Callback<HintResponse> {
@@ -62,7 +70,36 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
 
             })
     }
+    fun refreshUserDetailsFromRepository(authToken: String) {
+        viewModelScope.launch {
+            try {
+                repository.refreshUserDetails(authToken)
+            } catch (e: Exception) {
+                Log.i("get user details FAIL", e.toString())
+            }
+        }
+    }
+    fun startXpRetrieval(authToken: String) {
+        GlobalScope.launch {
+            setRecurringWork(authToken)
+        }
+    }
 
+    private fun setRecurringWork(authToken: String) {
+        val data = Data.Builder()
+        data.putString("auth_token", authToken)
+        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshXpWorker>(
+            15,
+            TimeUnit.MINUTES
+        ).setInputData(data.build())
+            .build()
+        Log.i("workManager", "Periodic Work request for sync is scheduled")
+        WorkManager.getInstance().enqueueUniquePeriodicWork(
+            RefreshXpWorker.WORK_NAME,
+            ExistingPeriodicWorkPolicy.KEEP,
+            repeatingRequest
+        )
+    }
     fun refreshQuestionsFromRepository(authToken: String) {
         viewModelScope.launch {
             try {
