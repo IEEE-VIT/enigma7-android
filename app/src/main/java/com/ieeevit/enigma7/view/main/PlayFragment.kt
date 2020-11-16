@@ -65,6 +65,11 @@ class PlayFragment : Fragment() {
                 root.view_hint_btn.visibility = VISIBLE
             }
         })
+        viewModel.error.observe(viewLifecycleOwner,{
+            if(it==1){
+                overlayFrame.visibility= GONE
+            }
+        })
 
         viewModel.userDetails.observe(viewLifecycleOwner,{
             if (it!=null){

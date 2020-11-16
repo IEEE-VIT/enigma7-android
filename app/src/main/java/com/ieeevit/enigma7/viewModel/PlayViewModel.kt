@@ -29,6 +29,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     private val _answerResponse = MutableLiveData<CheckAnswerResponse>()
     val answerResponse: LiveData<CheckAnswerResponse>
         get() = _answerResponse
+    val error =MutableLiveData<Int>()
 
     init {
         _hint.value = null
@@ -42,6 +43,9 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 if (response.body() != null) {
                     val hintResponse: HintResponse? = response.body()
                     _hint.value = hintResponse?.hint
+                }
+                else {
+                    error.value=1
                 }
             }
 
