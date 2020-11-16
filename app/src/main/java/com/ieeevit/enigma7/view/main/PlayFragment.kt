@@ -40,6 +40,7 @@ class PlayFragment : Fragment() {
     }
     private lateinit var overlayFrame: ConstraintLayout
     // TODO: 13-11-2020 clear hint after using powerup skip and close answer ig
+    // TODO: 17-11-2020 handle hint button after hint powerup is used
 
     override fun onCreateView(
         inflater: LayoutInflater,
