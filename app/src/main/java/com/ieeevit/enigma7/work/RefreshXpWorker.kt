@@ -21,6 +21,7 @@ class RefreshXpWorker(appContext: Context, params: WorkerParameters) : Coroutine
             repository.refreshUserDetails("Token $authToken")
             Log.i("WorkManager","Work request for sync is run")
         } catch (e: HttpException) {
+            Log.i("Exception",e.toString())
             return Result.retry()
         }
         return Result.success()
