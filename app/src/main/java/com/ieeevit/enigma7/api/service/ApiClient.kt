@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 val retrofit: Retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
-    .baseUrl("https://enigma7-backend.herokuapp.com/")
+    .baseUrl("http://enigma-api-staging.ieeevit.org/")
     .build()
 
 interface ApiClient {
@@ -37,7 +37,7 @@ interface ApiClient {
     suspend fun getLeaderboard(@Header("Authorization") authToken: String): ArrayList<LeaderboardEntry>
 
     @GET("api/v1/game/question/")
-    suspend fun getQuestion(@Header("Authorization") authToken: String): QuestionResponse
+    suspend fun getQuestion(@Header("Authorization") authToken: String): Call<QuestionResponse>
 
     @POST("api/v1/game/answer/")
     fun checkAnswer(@Header("Authorization") authToken: String, @Body answerRequest: CheckAnswerRequest): Call<CheckAnswerResponse>
