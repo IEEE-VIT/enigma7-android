@@ -36,6 +36,10 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         get() = _answerResponse
     val error =MutableLiveData<Int>()
 
+    private val _skipResponse = MutableLiveData<String>()
+    val skipResponse: LiveData<String>
+        get() = _skipResponse
+
     init {
         _hint.value = null
     }
@@ -165,6 +169,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                     _status.value= response.body()?.detail
                 else
                     _hint.value= response.body()?.hint
+
             }
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
                 Log.d("Powerup Error",t.message!!)
