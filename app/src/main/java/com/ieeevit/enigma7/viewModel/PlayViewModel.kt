@@ -105,6 +105,21 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         })
     }
 
+    fun usePowerUpHint(authToken: String){
+        Api.retrofitService.usePowerUpHint(authToken).enqueue(object :Callback<PowerupResponse>{
+            override fun onResponse(
+                call: Call<PowerupResponse>,
+                response: Response<PowerupResponse>
+            ) {
+
+            }
+
+            override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
+
+            }
+        })
+    }
+
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PlayViewModel::class.java)) {
