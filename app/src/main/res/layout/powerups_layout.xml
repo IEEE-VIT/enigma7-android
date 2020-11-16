@@ -7,6 +7,7 @@
 
     <ImageButton
         style="@style/hintButtonStyle"
+        android:id="@+id/hintPowerUp"
         android:src="@drawable/powerup_hint"/>
 
     <ImageButton

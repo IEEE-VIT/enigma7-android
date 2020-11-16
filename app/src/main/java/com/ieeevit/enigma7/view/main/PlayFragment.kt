@@ -2,6 +2,7 @@ package com.ieeevit.enigma7.view.main
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
@@ -15,12 +16,15 @@ import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.viewModel.PlayViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.hint_dialog_layout.view.*
+import kotlinx.android.synthetic.main.powerup_confirm_dialog_close.view.*
+import kotlinx.android.synthetic.main.powerup_confirm_dialog_hint.view.*
 import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_cancel
 import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_confirm
 import kotlinx.android.synthetic.main.powerups_layout.view.*
 import kotlinx.android.synthetic.main.questions_layout.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.hintView
+import kotlinx.android.synthetic.main.xp_alert_dialog.view.*
 
 class PlayFragment : Fragment() {
     private lateinit var sharedPreference: PrefManager
@@ -49,6 +53,11 @@ class PlayFragment : Fragment() {
             root.view_hint_btn.visibility = VISIBLE
         }
         init()
+
+        viewModel.status.observe(viewLifecycleOwner,{
+            showAlertDialog(R.layout.xp_alert_dialog)
+        })
+
         viewModel.hint.observe(viewLifecycleOwner, {
             overlayFrame.visibility= GONE
             if (it == "") {
@@ -110,6 +119,7 @@ class PlayFragment : Fragment() {
 
         root.closeAnswerPowerup.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_close) }
         root.skipPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_skip) }
+        root.hintPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_hint) }
 
         return root
     }
@@ -150,7 +160,6 @@ class PlayFragment : Fragment() {
                 customLayout.powerup_confirm.setOnClickListener {
                     viewModel.usePowerUpSkip("Token $authCode")
                     alert.dismiss()
-                    viewModel.refreshQuestionsFromRepository("Token $authCode")
                 }
                 customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
             }
@@ -160,6 +169,17 @@ class PlayFragment : Fragment() {
                     alert.dismiss()
                 }
                 customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
+            }
+            R.id.confirmPowerupDialogHint ->{
+                customLayout.powerup_confirm.setOnClickListener {
+                    viewModel.usePowerUpHint("Token $authCode")
+                    alert.dismiss()
+                }
+                customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
+            }
+            R.id.xpAlertDialog ->{
+                customLayout.powerUpStatus.text= viewModel.status.value.toString()
+                customLayout.setOnClickListener { alert.dismiss() }
             }
         }
         alert.show()
