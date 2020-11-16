@@ -120,7 +120,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 call: Call<PowerupResponse>,
                 response: Response<PowerupResponse>
             ) {
-                if(response.body()?.hint.isNullOrEmpty())
+                if(response.body()?.hint?.isNotEmpty()!!)
                     _status.value= response.body()?.detail
                 else
                     _hint.value= response.body()?.hint
