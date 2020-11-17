@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.work.Data
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.Scopes
 import com.google.android.gms.common.api.Scope
@@ -58,10 +55,13 @@ class SignUpViewModel : ViewModel() {
     private fun setRecurringWork(authToken: String) {
         val data = Data.Builder()
         data.putString("auth_token", authToken)
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
         val repeatingRequest = PeriodicWorkRequestBuilder<RefreshXpWorker>(
             1,
             TimeUnit.HOURS
-        ).setInputData(data.build())
+        ).setInputData(data.build()).setConstraints(constraints)
             .build()
         Log.i("workManager", "Periodic Work request for sync is scheduled")
         WorkManager.getInstance().enqueueUniquePeriodicWork(

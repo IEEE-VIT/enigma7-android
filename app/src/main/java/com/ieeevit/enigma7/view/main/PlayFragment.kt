@@ -84,9 +84,11 @@ class PlayFragment : Fragment() {
         viewModel.userDetails.observe(viewLifecycleOwner,{
             if (it!=null){
                 val xp:Int=it.xp!!
-                Log.i("NAMEEE",xp.toString())
-                root.progress_bar.progress = xp
-                root.progress_percent.text="$xp px"
+                Log.i("XP",xp.toString())
+                sharedPreference.setXp(xp)
+                val xpFromPref=sharedPreference.getXp()
+                root.progress_bar.progress = xpFromPref
+                root.progress_percent.text="$xpFromPref px"
                 if (xp==100){
                     WorkManager.getInstance().cancelUniqueWork(RefreshXpWorker.WORK_NAME)
                 }
@@ -129,6 +131,7 @@ class PlayFragment : Fragment() {
         }
 
         viewModel.refreshQuestionsFromRepository("Token $authCode")
+        viewModel.refreshUserDetailsFromRepository("Token $authCode")
         viewModel.questionResponse.observe(viewLifecycleOwner, {
             if(it!=null){
                 overlayFrame.visibility= GONE

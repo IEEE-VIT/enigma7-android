@@ -4,10 +4,7 @@ import android.app.Application
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.*
-import androidx.work.Data
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.database.getDatabase
 import com.ieeevit.enigma7.model.*
@@ -35,10 +32,6 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     val answerResponse: LiveData<CheckAnswerResponse>
         get() = _answerResponse
     val error = MutableLiveData<Int>()
-
-    private val _skipResponse = MutableLiveData<String>()
-    val skipResponse: LiveData<String>
-        get() = _skipResponse
 
     init {
         _hint.value = null
@@ -103,10 +96,13 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     private fun setRecurringWork(authToken: String) {
         val data = Data.Builder()
         data.putString("auth_token", authToken)
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
         val repeatingRequest = PeriodicWorkRequestBuilder<RefreshXpWorker>(
             1,
             TimeUnit.HOURS
-        ).setInputData(data.build())
+        ).setInputData(data.build()).setConstraints(constraints)
             .build()
         Log.i("workManager", "Periodic Work request for sync is scheduled")
         WorkManager.getInstance().enqueueUniquePeriodicWork(

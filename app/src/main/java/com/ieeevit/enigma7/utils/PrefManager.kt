@@ -12,6 +12,7 @@ class PrefManager(val context: Context) {
     val hint:String="hintString"
     private val IS_FIRST_TIME_LAUNCH= "IsFirstTimeLaunch"
     val gameStarted:String="IsGameStarted"
+    val xP ="xP"
     val editor: SharedPreferences.Editor = sharedPref.edit()
 
     fun save(KEY_NAME: String, text: String) {
@@ -73,7 +74,13 @@ class PrefManager(val context: Context) {
         editor.clear()
         editor.apply()
     }
-
+    fun setXp(text:Int) {
+        editor.putInt(xP, text)
+        editor.apply()
+    }
+    fun getXp(): Int {
+        return sharedPref.getInt(xP,0)
+    }
     fun removeValue(KEY_NAME: String) {
         editor.remove(KEY_NAME)
         editor.apply()
