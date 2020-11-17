@@ -1,26 +1,20 @@
 package com.ieeevit.enigma7.view.auth
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.ActivityAuthBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.main.MainActivity
 import com.ieeevit.enigma7.view.timer.CountdownActivity
-import com.ieeevit.enigma7.viewModel.SignUpViewModel
 import kotlinx.android.synthetic.main.bottom_bar.view.*
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
     private lateinit var sharedPreference: PrefManager
-    private val viewModel: SignUpViewModel by lazy {
-        ViewModelProviders.of(this).get(SignUpViewModel::class.java)
-    }
-
     override fun onStart() {
         super.onStart()
         if (sharedPreference.isLoggedIn() && sharedPreference.getUserStaus() == true && sharedPreference.isHuntStarted()){

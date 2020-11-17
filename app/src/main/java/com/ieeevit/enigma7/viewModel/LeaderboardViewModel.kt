@@ -2,17 +2,13 @@ package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.*
-import com.ieeevit.enigma7.api.service.Api
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.ieeevit.enigma7.database.getDatabase
-import com.ieeevit.enigma7.model.LeaderboardEntry
 import com.ieeevit.enigma7.repository.Repository
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.lang.Exception
 
 class LeaderboardViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = Repository(getDatabase(application))

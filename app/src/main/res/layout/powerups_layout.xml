@@ -3,21 +3,25 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:rowCount="1"
-    android:columnCount="3">
+    android:columnCount="3"
+    android:forceDarkAllowed="false">
 
     <ImageButton
-        style="@style/hintButtonStyle"
         android:id="@+id/hintPowerUp"
-        android:src="@drawable/powerup_hint"/>
+        style="@style/hintButtonStyle"
+        android:contentDescription="@string/hint"
+        android:src="@drawable/ic_hint_icon" />
 
     <ImageButton
-        style="@style/hintButtonStyle"
         android:id="@+id/closeAnswerPowerup"
-        android:src="@drawable/powerup_close"/>
+        style="@style/hintButtonStyle"
+        android:contentDescription="@string/closeanswer"
+        android:src="@drawable/ic_close_ans" />
 
     <ImageButton
-        style="@style/hintButtonStyle"
         android:id="@+id/skipPowerUp"
-        android:src="@drawable/powerup_skip"/>
+        style="@style/hintButtonStyle"
+        android:contentDescription="@string/skip"
+        android:src="@drawable/ic_skip_icon" />
 
 </LinearLayout>

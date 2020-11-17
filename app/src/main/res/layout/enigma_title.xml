@@ -2,20 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="13dp"
-    android:background="@drawable/enigma_title_back">
+    android:background="@drawable/enigma_title_back"
+    android:padding="13dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:src="@drawable/title_enigma"
-        android:layout_centerInParent="true"/>
+        android:contentDescription="@string/title" />
 
     <ImageButton
+        android:id="@+id/instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_hint"
         android:layout_alignParentEnd="true"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:hapticFeedbackEnabled="true"
+        android:src="@drawable/ic_hint"
+        android:focusable="true"
+        android:contentDescription="@string/instructions" />
 
 </RelativeLayout>

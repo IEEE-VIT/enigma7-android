@@ -9,8 +9,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.database.Leaderboard
-import com.ieeevit.enigma7.model.LeaderboardEntry
-import com.ieeevit.enigma7.view.main.LeaderboardFragment
 
 class LeaderBoardAdapter internal constructor(
     private val context: Context,
@@ -34,7 +32,8 @@ RecyclerView.Adapter<LeaderBoardAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.rank.text = (position + 1).toString() + "."
+        val rank=(position + 1).toString() + "."
+        holder.rank.text = rank
         holder.username.text = entries[position].username
         holder.score.text = entries[position].points.toString()
         holder.solved.text = entries[position].questionAnswered.toString()

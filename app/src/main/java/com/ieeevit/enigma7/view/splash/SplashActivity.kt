@@ -23,9 +23,6 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         sharedPreference = PrefManager(applicationContext)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
-        if (!sharedPreference.isFirstTimeLaunch()) {
-            navigateToProfileSetup()
-        } else {
             initialize()
             shortAnimationDuration = resources.getInteger(android.R.integer.config_longAnimTime)
             Handler(Looper.getMainLooper()).postDelayed(
@@ -64,7 +61,7 @@ class SplashActivity : AppCompatActivity() {
                         }
                     })
             }
-        }
+
 
     }
 
@@ -90,7 +87,4 @@ class SplashActivity : AppCompatActivity() {
         binding.container.crypticText.setText(R.string.angular)
     }
 
-    private fun navigateToProfileSetup() {
-        startActivity(Intent(applicationContext, AuthActivity::class.java))
-    }
 }

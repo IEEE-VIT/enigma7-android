@@ -2,12 +2,14 @@ package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.*
 import androidx.work.*
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.database.getDatabase
-import com.ieeevit.enigma7.model.*
+import com.ieeevit.enigma7.model.CheckAnswerRequest
+import com.ieeevit.enigma7.model.CheckAnswerResponse
+import com.ieeevit.enigma7.model.HintResponse
+import com.ieeevit.enigma7.model.PowerupResponse
 import com.ieeevit.enigma7.repository.Repository
 import com.ieeevit.enigma7.work.RefreshXpWorker
 import kotlinx.coroutines.GlobalScope
@@ -15,7 +17,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
 class PlayViewModel(application: Application) : AndroidViewModel(application) {
@@ -32,6 +33,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     val answerResponse: LiveData<CheckAnswerResponse>
         get() = _answerResponse
     val error = MutableLiveData<Int>()
+    val skipStatus=MutableLiveData<Int>()
 
     init {
         _hint.value = null
@@ -118,6 +120,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 repository.refreshQuestion(authToken)
 
             } catch (e: Exception) {
+                error.value=1
                 Log.i("ERROR", "Question retrieval failed $e")
             }
         }
@@ -149,6 +152,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                     if (response.body()!!.question_id > 0) {
                         refreshQuestionsFromRepository(authToken)
                         startXpRetrieval(authToken)
+                        skipStatus.value=1
                     } else {
                         _status.value = response.body()!!.detail
                     }

@@ -1,10 +1,9 @@
 package com.ieeevit.enigma7.view.timer
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.ieeevit.enigma7.R
-import com.ieeevit.enigma7.view.auth.ProfileSetupFragment
 
 class CountdownActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

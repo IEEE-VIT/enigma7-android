@@ -2,7 +2,6 @@ package com.ieeevit.enigma7.view.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +17,11 @@ import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentProfileBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.auth.AuthActivity
+import com.ieeevit.enigma7.view.main.InstructionsFragment
 import com.ieeevit.enigma7.view.main.MainActivity
 import com.ieeevit.enigma7.view.main.PlayFragment
 import com.ieeevit.enigma7.viewModel.ProfileViewModel
-import com.ieeevit.enigma7.work.RefreshXpWorker
+import kotlinx.android.synthetic.main.enigma_title.view.*
 
 
 class ProfileFragment : Fragment() {
@@ -41,7 +41,7 @@ class ProfileFragment : Fragment() {
     ): View? {
         val binding: FragmentProfileBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
-        binding.overlayFrame.visibility=View.VISIBLE
+        binding.overlayFrame.visibility = View.VISIBLE
         viewModel.userDetails.observe(viewLifecycleOwner, {
 
             if (it != null) {
@@ -50,14 +50,14 @@ class ProfileFragment : Fragment() {
                 binding.solved.text = it.questionAnswered.toString()
                 binding.rank.text = it.rank.toString()
                 binding.score.text = it.points.toString()
-                binding.overlayFrame.visibility=View.GONE
+                binding.overlayFrame.visibility = View.GONE
             }
 
         })
-        viewModel.networkStatus.observe(viewLifecycleOwner,{
-            if (it==0){
-                binding.overlayFrame.visibility=View.GONE
-                Toast.makeText(activity,"User detail Retrieval Failed",Toast.LENGTH_SHORT).show()
+        viewModel.networkStatus.observe(viewLifecycleOwner, {
+            if (it == 0) {
+                binding.overlayFrame.visibility = View.GONE
+                Toast.makeText(activity, "User detail Retrieval Failed", Toast.LENGTH_SHORT).show()
             }
         })
         binding.signOutButton.setOnClickListener {
@@ -65,16 +65,22 @@ class ProfileFragment : Fragment() {
             mGoogleSignInClient.signOut()
             viewModel.clearCacheOnLogOut()
             viewModel.logOut("Token $authCode")
-            //WorkManager.getInstance().cancelUniqueWork(RefreshXpWorker.WORK_NAME)
+            binding.overlayFrame.visibility = View.VISIBLE
             WorkManager.getInstance().cancelAllWork()
         }
         viewModel.logoutStatus.observe(viewLifecycleOwner, {
             if (it == successString) {
                 sharedPreference.clearSharedPreference()
+                binding.overlayFrame.visibility = View.GONE
                 navToLogin()
             }
         })
-
+        binding.title.instructions.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+                .replace(R.id.container, InstructionsFragment())
+                .commit()
+        }
         return binding.root
     }
 

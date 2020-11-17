@@ -9,13 +9,11 @@ import com.google.android.gms.common.api.Scope
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.database.getDatabase
 import com.ieeevit.enigma7.model.LogoutResponse
-import com.ieeevit.enigma7.model.User
 import com.ieeevit.enigma7.repository.Repository
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 
 class ProfileViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = Repository(getDatabase(application))

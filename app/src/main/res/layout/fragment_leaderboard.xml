@@ -21,9 +21,7 @@
         android:orientation="vertical"
         android:padding="4dp">
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/enigma_title" />
+        <include layout="@layout/enigma_title" />
 
         <TextView
             style="@style/headerTextStyle"

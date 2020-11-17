@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.work.*
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.Scopes
@@ -11,8 +12,6 @@ import com.google.android.gms.common.api.Scope
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.model.AccessToken
 import com.ieeevit.enigma7.work.RefreshXpWorker
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -32,8 +31,6 @@ class SignUpViewModel : ViewModel() {
         get() = _userStatus
     private val clientId: String =
         "55484635453-c46tes445anbidhb2qnmb2qs618mvpni.apps.googleusercontent.com"
-    private val applicationScope = CoroutineScope(Dispatchers.Default)
-
     init {
         _authStatus.value = 3   // 0:fail 1:success
         _authCode.value = null
@@ -91,5 +88,15 @@ class SignUpViewModel : ViewModel() {
                     _authStatus.value = 0
                 }
             })
+    }
+
+    class Factory : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return SignUpViewModel() as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
     }
 }
