@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="12dp"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="7dp"
         android:layout_toStartOf="@id/progress_percent"
         android:progress="40"
         android:progressDrawable="@drawable/progress_bar_play" />
@@ -23,6 +23,7 @@
         style="@style/simpleTextStyle"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:text="40px" />
+        android:text="40px"
+        android:textSize="18sp" />
 
 </RelativeLayout>

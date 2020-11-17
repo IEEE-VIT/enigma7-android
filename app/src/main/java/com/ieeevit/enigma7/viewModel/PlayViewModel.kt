@@ -32,6 +32,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     val answerResponse: LiveData<CheckAnswerResponse>
         get() = _answerResponse
     val error = MutableLiveData<Int>()
+    val skipStatus=MutableLiveData<Int>()
 
     init {
         _hint.value = null
@@ -118,6 +119,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 repository.refreshQuestion(authToken)
 
             } catch (e: Exception) {
+                error.value=1
                 Log.i("ERROR", "Question retrieval failed $e")
             }
         }
@@ -149,6 +151,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                     if (response.body()!!.question_id > 0) {
                         refreshQuestionsFromRepository(authToken)
                         startXpRetrieval(authToken)
+                        skipStatus.value=1
                     } else {
                         _status.value = response.body()!!.detail
                     }

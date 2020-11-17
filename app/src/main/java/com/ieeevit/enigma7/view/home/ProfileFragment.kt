@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.work.WorkManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentProfileBinding
 import com.ieeevit.enigma7.utils.PrefManager
@@ -65,12 +66,14 @@ class ProfileFragment : Fragment() {
             mGoogleSignInClient.signOut()
             viewModel.clearCacheOnLogOut()
             viewModel.logOut("Token $authCode")
+            binding.overlayFrame.visibility=View.VISIBLE
             //WorkManager.getInstance().cancelUniqueWork(RefreshXpWorker.WORK_NAME)
             WorkManager.getInstance().cancelAllWork()
         }
         viewModel.logoutStatus.observe(viewLifecycleOwner, {
             if (it == successString) {
                 sharedPreference.clearSharedPreference()
+                binding.overlayFrame.visibility=View.GONE
                 navToLogin()
             }
         })

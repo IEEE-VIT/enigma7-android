@@ -45,7 +45,6 @@ class SignUpFragment : Fragment() {
         viewModel.authStatus.observe(this, {
             if (it == 1) {
                 overlayFrame.visibility = View.GONE
-                sharedPreference.setFirstTimeLaunch(false)
                 sharedPreference.setIsLoggedIn(true)
                 navigate()
             } else if (it == 0) {
