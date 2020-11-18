@@ -17,11 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
         android:background="@android:color/transparent"
         android:clickable="true"
-        android:hapticFeedbackEnabled="true"
-        android:src="@drawable/ic_hint"
+        android:contentDescription="@string/instructions"
         android:focusable="true"
-        android:contentDescription="@string/instructions" />
+        android:hapticFeedbackEnabled="true"
+        android:src="@drawable/ic_hint" />
 
 </RelativeLayout>
