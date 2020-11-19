@@ -87,7 +87,4 @@ class SplashActivity : AppCompatActivity() {
         binding.container.crypticText.setText(R.string.angular)
     }
 
-    private fun navigateToProfileSetup() {
-        startActivity(Intent(applicationContext, AuthActivity::class.java))
-    }
 }

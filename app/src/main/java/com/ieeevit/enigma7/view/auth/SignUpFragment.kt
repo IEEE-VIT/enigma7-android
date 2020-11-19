@@ -11,8 +11,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
-import androidx.work.WorkManager
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -23,14 +22,14 @@ import com.ieeevit.enigma7.databinding.FragmentSignUpBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.timer.CountdownActivity
 import com.ieeevit.enigma7.viewModel.SignUpViewModel
-import com.ieeevit.enigma7.work.RefreshXpWorker
 
 
 class SignUpFragment : Fragment() {
     private val redirectUri: String =
         "http://127.0.0.1:8000/"
     private val viewModel: SignUpViewModel by lazy {
-        ViewModelProviders.of(this).get(SignUpViewModel::class.java)
+        ViewModelProvider(this, SignUpViewModel.Factory())
+            .get(SignUpViewModel::class.java)
     }
     private lateinit var sharedPreference: PrefManager
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -55,8 +54,8 @@ class SignUpFragment : Fragment() {
         viewModel.authCode.observe(this, {
             if (it != null) {
                 sharedPreference.setAuthCode(it.toString())
-                Log.i("WORK","Workmanager started for the first time")
-                val authToken=sharedPreference.getAuthCode().toString()
+                Log.i("WORK", "Workmanager started for the first time")
+                val authToken = sharedPreference.getAuthCode().toString()
                 viewModel.startXpRetrieval("Token $authToken")
 
             }

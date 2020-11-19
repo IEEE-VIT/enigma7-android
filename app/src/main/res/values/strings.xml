@@ -7,23 +7,19 @@
     <string name="submit">Submit</string>
     <string name="hint_confirm">Are you sure you want to use hint?</string>
     <string name="confirm_deduction">[ this will deduct points ]</string>
-    <string name="story_title">Story</string>
     <string name="story_sample">Imperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.\n\nImperdiet vitae praesent ultrices libero tincidunt magna.</string>
     <string name="leaderboard">Leaderboard</string>
     <string name="Sign_up_google">Sign up with Google</string>
-    <string name="Sign_up_insta">Sign up with Instagram</string>
     <string name="Enigma">E N I G M A</string>
     <string name="onlineCrypticHunt">Online cryptic hunt</string>
     <string name="profileSetup">Profile setup</string>
     <string name="enterUsername">How you want to be known as\n[this can’t be edited later]</string>
-    <string name="invalidText">________________\nInvalidUsername.\n-> Numerals Missing! </string>
     <string name="next">Next</string>
     <string name="countdownString">The ultimate cryptic hunt starts in</string>
     <string name="semicolon">:</string>
     <string name="_01">01</string>
     <string name="profile">Profile</string>
     <string name="user_name">User Name:</string>
-    <string name="validusername">ValidUserName:</string>
     <string name="email_id">Email ID:</string>
     <string name="questions_solved">Questions Solved:</string>
     <string name="rank">Rank:</string>
@@ -45,5 +41,12 @@
     <string name="_00">00</string>
     <string name="hint"><![CDATA[< Hint >]]></string>
     <string name="see_hint">See Hint</string>
+    <string name="play">play</string>
+    <string name="story">story</string>
+    <string name="closeanswer">closeanswer</string>
+    <string name="skip">skip</string>
+    <string name="title">title</string>
+    <string name="instructions">instructions</string>
+    <string name="are_you_sure_you_want_to_use_this_power">Are you sure you want to use this power?</string>
 
 </resources>

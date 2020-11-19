@@ -1,13 +1,9 @@
 package com.ieeevit.enigma7.view.main
 
 import android.os.Bundle
-import android.transition.Fade
 import android.view.View
-import android.widget.ImageButton
-import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.home.ProfileFragment
@@ -27,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             transaction(PlayFragment())
         }
-
 
         game.setOnClickListener { transaction(PlayFragment()) }
         leaderboard.setOnClickListener { transaction(LeaderboardFragment()) }

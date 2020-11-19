@@ -4,7 +4,8 @@
     android:id="@+id/confirmPowerupDialogClose"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/custom_dialog_back">
+    android:background="@drawable/custom_dialog_back"
+    android:forceDarkAllowed="false">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -20,13 +21,14 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:gravity="center_horizontal"
-        android:text="Are you sure you want to use this power?"
+        android:text="@string/are_you_sure_you_want_to_use_this_power"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.216" />
+        app:layout_constraintVertical_bias="0.216"
+       />
 
     <ImageButton
         android:id="@+id/powerup_confirm"
@@ -38,7 +40,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hintView"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintVertical_bias="0.49"
+        android:contentDescription="@string/yes" />
 
     <ImageButton
         android:id="@+id/powerup_cancel"
@@ -50,6 +53,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hintView"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintVertical_bias="0.49"
+        android:contentDescription="@string/cancel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

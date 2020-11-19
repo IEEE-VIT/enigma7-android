@@ -17,7 +17,6 @@
 
     <include
         layout="@layout/bottom_bar"
-        android:id="@+id/bottom_nav"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_marginBottom="10dp"

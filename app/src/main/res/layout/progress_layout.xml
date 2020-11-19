@@ -5,7 +5,8 @@
     android:paddingStart="20dp"
     android:paddingTop="24dp"
     android:paddingEnd="9dp"
-    android:paddingBottom="20dp">
+    android:paddingBottom="20dp"
+    android:forceDarkAllowed="false">
 
     <ProgressBar
         android:id="@+id/progress_bar"

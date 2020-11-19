@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.adapter.LeaderBoardAdapter
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.viewModel.LeaderboardViewModel
+import kotlinx.android.synthetic.main.enigma_title.view.*
 import kotlinx.android.synthetic.main.fragment_leaderboard.view.*
 
 class LeaderboardFragment : Fragment() {
@@ -51,7 +53,23 @@ class LeaderboardFragment : Fragment() {
             }
 
         })
-
+        root.instructions.setOnClickListener {
+            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+                .replace(R.id.container, InstructionsFragment())
+                .commit()
+        }
         return root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val fragment = PlayFragment()
+                parentFragmentManager.beginTransaction()
+                    .add(R.id.container, fragment)
+                    .commit()
+            }
+        })
     }
 }

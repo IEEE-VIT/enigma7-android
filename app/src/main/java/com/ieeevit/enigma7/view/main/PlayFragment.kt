@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -17,10 +18,8 @@ import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.viewModel.PlayViewModel
 import com.ieeevit.enigma7.work.RefreshXpWorker
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_play.view.*
+import kotlinx.android.synthetic.main.enigma_title.view.*
 import kotlinx.android.synthetic.main.hint_dialog_layout.view.*
-import kotlinx.android.synthetic.main.powerup_confirm_dialog_close.view.*
-import kotlinx.android.synthetic.main.powerup_confirm_dialog_hint.view.*
 import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_cancel
 import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_confirm
 import kotlinx.android.synthetic.main.powerups_layout.view.*
@@ -53,8 +52,8 @@ class PlayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root: View = inflater.inflate(R.layout.fragment_play, container, false)
-        overlayFrame=root.findViewById(R.id.overlayFrame)
-        overlayFrame.visibility=VISIBLE
+        overlayFrame = root.findViewById(R.id.overlayFrame)
+        overlayFrame.visibility = VISIBLE
         sharedPreference = PrefManager(this.requireActivity())
         if (sharedPreference.getHintString() != null) {
             root.get_hint_btn.visibility = GONE
@@ -154,7 +153,11 @@ class PlayFragment : Fragment() {
             }
 
         })
-
+        root.instructions.setOnClickListener {
+            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+                .replace(R.id.container, InstructionsFragment())
+                .commit()
+        }
         root.closeAnswerPowerup.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_close) }
         root.skipPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_skip) }
         root.hintPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_hint) }
@@ -162,7 +165,6 @@ class PlayFragment : Fragment() {
 
         return root
     }
-
 
 
     private fun init() {

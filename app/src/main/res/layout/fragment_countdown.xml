@@ -46,7 +46,6 @@
             app:lineHeight="49sp" />
 
         <TextView
-            android:id="@+id/textView7"
             style="@style/semicolon"
             android:layout_weight="1"
             android:fontFamily="@font/ibm_plex_mono_regular"
@@ -65,7 +64,6 @@
             app:lineHeight="49sp" />
 
         <TextView
-            android:id="@+id/textView9"
             style="@style/semicolon"
             android:layout_weight="1"
             android:fontFamily="@font/ibm_plex_mono_regular"

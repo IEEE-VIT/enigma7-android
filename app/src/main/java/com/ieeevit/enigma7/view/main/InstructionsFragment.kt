@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
@@ -24,5 +25,17 @@ class InstructionsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreference = PrefManager(this.requireActivity())
+        if (!sharedPreference.isFirstTimeInstruction()){
+            activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    val fragment = PlayFragment()
+                    parentFragmentManager.beginTransaction()
+                        .add(R.id.container, fragment)
+                        .commit()
+                }
+            })
+        }
+
+
     }
 }

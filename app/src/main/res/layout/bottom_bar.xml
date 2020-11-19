@@ -7,13 +7,15 @@
     <RelativeLayout
         android:id="@+id/game_back"
         style="@style/BottomButtonBack"
-        android:background="@drawable/bottom_button_back">
+        android:background="@drawable/bottom_button_back"
+       >
 
         <ImageButton
             android:id="@+id/game"
             style="@style/BottomButton"
             android:background="@drawable/bottom_button"
-            android:src="@drawable/play_icon1" />
+            android:src="@drawable/play_icon1"
+            android:contentDescription="@string/play" />
 
     </RelativeLayout>
 
@@ -27,7 +29,8 @@
             android:id="@+id/leaderboard"
             style="@style/BottomButton"
             android:background="@drawable/bottom_button"
-            android:src="@drawable/leaderboard_icon" />
+            android:src="@drawable/leaderboard_icon"
+            android:contentDescription="@string/leaderboard" />
 
     </RelativeLayout>
 
@@ -41,12 +44,12 @@
             android:id="@+id/story"
             style="@style/BottomButton"
             android:background="@drawable/bottom_button"
-            android:src="@drawable/story_icon" />
+            android:src="@drawable/story_icon"
+            android:contentDescription="@string/story" />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/profile_back"
         style="@style/BottomButtonBack"
         android:layout_toEndOf="@+id/story_back"
         android:background="@drawable/bottom_button_back">
@@ -55,7 +58,8 @@
             android:id="@+id/profile"
             style="@style/BottomButton"
             android:background="@drawable/bottom_button"
-            android:src="@drawable/profile_icon" />
+            android:src="@drawable/profile_icon"
+            android:contentDescription="@string/profile" />
 
     </RelativeLayout>
 

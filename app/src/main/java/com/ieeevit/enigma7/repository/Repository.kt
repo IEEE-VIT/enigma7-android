@@ -2,11 +2,13 @@ package com.ieeevit.enigma7.repository
 
 import androidx.lifecycle.LiveData
 import com.ieeevit.enigma7.api.service.Api
-import com.ieeevit.enigma7.database.*
+import com.ieeevit.enigma7.database.EnigmaDatabase
+import com.ieeevit.enigma7.database.Question
+import com.ieeevit.enigma7.database.UserDetails
+import com.ieeevit.enigma7.database.asDatabaseModel
 import com.ieeevit.enigma7.model.LeaderboardEntry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Call
 
 class Repository(private val database: EnigmaDatabase) {
 

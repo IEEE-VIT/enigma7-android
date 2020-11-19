@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
@@ -16,7 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentProfileSetupBinding
 import com.ieeevit.enigma7.utils.PrefManager
@@ -27,14 +26,15 @@ import java.util.regex.Pattern
 
 class ProfileSetupFragment : Fragment() {
     private lateinit var sharedPreference: PrefManager
-    var usernameEntered = MutableLiveData<Int>()
+    private var usernameEntered = MutableLiveData<Int>()
     var userName: String = ""
     val invalid = "________________\nInvalidUsername.\n"
     private val failure="Incorrect string type for field 'username'"
     private val duplicateUsername="User with this username already exists"
     lateinit var pattern: Pattern
     private val viewModel: ProfileSetupViewModel by lazy {
-        ViewModelProviders.of(this).get(ProfileSetupViewModel::class.java)
+        ViewModelProvider(this, ProfileSetupViewModel.Factory())
+            .get(ProfileSetupViewModel::class.java)
     }
     private lateinit var overlayFrame: ConstraintLayout
     override fun onCreate(savedInstanceState: Bundle?) {

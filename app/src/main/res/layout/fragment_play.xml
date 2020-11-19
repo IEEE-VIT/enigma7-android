@@ -17,7 +17,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true">
 
         <ProgressBar
             android:id="@+id/progress_bar_overlay"
@@ -42,8 +43,7 @@
     android:padding="4dp">
 
     <include
-        layout="@layout/enigma_title"
-        android:id="@+id/questions_view"/>
+        layout="@layout/enigma_title" />
 
     <include
         layout="@layout/progress_layout"/>
@@ -55,13 +55,11 @@
         android:layout_gravity="center_horizontal"/>
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
 
         <include
-            android:id="@+id/main_screen"
             layout="@layout/questions_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
