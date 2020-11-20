@@ -43,13 +43,19 @@ interface ApiClient {
     fun checkAnswer(@Header("Authorization") authToken: String, @Body answerRequest: CheckAnswerRequest): Call<CheckAnswerResponse>
 
     @POST("api/v1/game/powerup/close-answer/")
-    fun usePowerUpCloseAnswer(@Header("Authorization") authToken: String): Call<PowerupResponse>
+    fun usePowerUpCloseAnswer(@Header("Authorization") authToken: String, @Body answer:CloseAnswer): Call<PowerupResponse>
 
     @POST("api/v1/game/powerup/skip/")
     fun usePowerUpSkip(@Header("Authorization") authToken: String): Call<PowerupResponse>
 
     @GET("api/v1/game/powerup/hint/")
     fun usePowerUpHint(@Header("Authorization") authToken: String): Call<PowerupResponse>
+
+    @GET("api/v1/game/story/")
+    fun getStory(@Header("Authorization") authToken: String): Call<Story>
+
+    @GET("api/v1/game/story/complete/")
+    fun getCompleteStory(@Header("Authorization") authToken: String): Call<ArrayList<Story>>
 }
 
 object Api {

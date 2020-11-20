@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.work.WorkManager
 import com.ieeevit.enigma7.R
+import com.ieeevit.enigma7.model.CloseAnswer
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.viewModel.PlayViewModel
 import com.ieeevit.enigma7.work.RefreshXpWorker
@@ -24,6 +25,7 @@ import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_c
 import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_confirm
 import kotlinx.android.synthetic.main.powerups_layout.view.*
 import kotlinx.android.synthetic.main.progress_layout.view.*
+import kotlinx.android.synthetic.main.questions_layout.*
 import kotlinx.android.synthetic.main.questions_layout.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.hintView
@@ -35,6 +37,7 @@ class PlayFragment : Fragment() {
     private lateinit var builder: AlertDialog.Builder
     private lateinit var customInflater: LayoutInflater
     private lateinit var hint: String
+    private lateinit var answer: String
     private val viewModel: PlayViewModel by lazy {
         val activity = requireNotNull(this.activity) {
         }
@@ -158,14 +161,15 @@ class PlayFragment : Fragment() {
                 .replace(R.id.container, InstructionsFragment())
                 .commit()
         }
-        root.closeAnswerPowerup.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_close) }
+        root.closeAnswerPowerup.setOnClickListener {
+            answer=root.answerBox.text.toString()
+            showAlertDialog(R.layout.powerup_confirm_dialog_close)
+        }
         root.skipPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_skip) }
         root.hintPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_hint) }
 
-
         return root
     }
-
 
     private fun init() {
         authCode = sharedPreference.getAuthCode()!!
@@ -206,7 +210,7 @@ class PlayFragment : Fragment() {
             }
             R.id.confirmPowerupDialogClose -> {
                 customLayout.powerup_confirm.setOnClickListener {
-                    viewModel.usePowerUpCloseAnswer("Token $authCode")
+                    viewModel.usePowerUpCloseAnswer("Token $authCode", CloseAnswer(answer))
                     alert.dismiss()
                     viewModel.refreshUserDetailsFromRepository("Token $authCode")
                 }

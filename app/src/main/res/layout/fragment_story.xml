@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="17dp">
 
-            <in.codeshuffle.typewriterview.TypeWriterView
+            <TextView
                 style="@style/simpleTextStyle"
                 android:id="@+id/story"
                 android:layout_marginHorizontal="21dp"
