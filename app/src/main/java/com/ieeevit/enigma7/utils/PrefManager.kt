@@ -15,6 +15,7 @@ class PrefManager(val context: Context) {
     private val xP ="xP"
     private val editor: SharedPreferences.Editor = sharedPref.edit()
      private val loggedIN="IsLoggedIn"
+    private val enigmaStatus="EnigmaStatus"
 
 
     fun setAuthCode(text: String) {
@@ -73,6 +74,14 @@ class PrefManager(val context: Context) {
     }
     fun getXp(): Int {
         return sharedPref.getInt(xP,0)
+    }
+
+    fun setEnigmaStatus(text:Boolean) {
+        editor.putBoolean(enigmaStatus, text)
+        editor.apply()
+    }
+    fun getEnigmaStatus(): Boolean {
+        return sharedPref.getBoolean(enigmaStatus, false)
     }
 
 }
