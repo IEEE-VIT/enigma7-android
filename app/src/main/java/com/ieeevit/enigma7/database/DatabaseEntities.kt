@@ -17,13 +17,6 @@ data class UserDetails constructor(
     val points: Int?
 )
 
-@Entity(tableName = "hint")
-data class Hint constructor(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val hint: String?
-)
-
 @Entity(tableName = "questions")
 data class Question constructor(
     @PrimaryKey
@@ -41,16 +34,23 @@ data class Leaderboard constructor(
     val questionAnswered: Int
 )
 
+@Entity(tableName = "story_history")
+data class StoryHistory constructor(
+    @PrimaryKey
+    val primKey: Int,
+    val storyHistory: String
+)
+
 @Database(
-    entities = [UserDetails::class, Hint::class, Question::class, Leaderboard::class],
+    entities = [UserDetails::class, StoryHistory::class, Question::class, Leaderboard::class],
     version = 1,
     exportSchema = false
 )
 abstract class EnigmaDatabase : RoomDatabase() {
     abstract val userDao: UserDao
-    abstract val hintDao: HintDao
     abstract val questionsDao: QuestionsDao
-    abstract val leaderBoardDao:LeaderBoardDao
+    abstract val leaderBoardDao: LeaderBoardDao
+    abstract val storyHistoryDao:StoryHistoryDao
 }
 
 private lateinit var INSTANCE: EnigmaDatabase

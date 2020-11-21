@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.ieeevit.enigma7.model.Story
 
 @Dao
 interface UserDao {
@@ -16,14 +15,6 @@ interface UserDao {
     fun insertUserDetails(userDetails: UserDetails)
 }
 
-@Dao
-interface HintDao{
-    @Query("select * from hint")
-    fun getHint():LiveData<Hint>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertHint(hint:Hint)
-}
 @Dao
 interface QuestionsDao{
     @Query("select * from questions")
@@ -40,6 +31,15 @@ interface LeaderBoardDao{
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLeaderBoard(leaderboard: List<Leaderboard>)
+}
+
+@Dao
+interface StoryHistoryDao{
+    @Query("select * from story_history")
+    fun getStoryHistory():LiveData<StoryHistory>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertStoryHistory(storyHistory: StoryHistory)
 }
 
 
