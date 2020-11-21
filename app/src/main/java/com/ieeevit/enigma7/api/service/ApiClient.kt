@@ -50,6 +50,9 @@ interface ApiClient {
 
     @GET("api/v1/game/powerup/hint/")
     fun usePowerUpHint(@Header("Authorization") authToken: String): Call<PowerupResponse>
+
+    @GET("api/v1/game/status/")
+    fun getEnigmaStatus(@Header("Authorization") authToken: String):Call<StatusResponse>
 }
 
 object Api {

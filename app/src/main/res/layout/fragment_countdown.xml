@@ -188,7 +188,7 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="24sp"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

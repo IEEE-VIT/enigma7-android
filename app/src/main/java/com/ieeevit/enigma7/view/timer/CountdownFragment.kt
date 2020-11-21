@@ -9,19 +9,30 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.ieeevit.enigma7.R
+import com.ieeevit.enigma7.model.StatusResponse
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.main.MainActivity
+import com.ieeevit.enigma7.viewModel.CountdownViewModel
 import kotlinx.android.synthetic.main.fragment_countdown.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class CountdownFragment : Fragment() {
     private lateinit var startButton: TextView
     private lateinit var sharedPreference: PrefManager
-    private lateinit var currentCalendar:Calendar
-    private lateinit var eventCalendar:Calendar
-    private var currentTime:Long = 0
-    private var eventStartTime:Long = 0
+    private lateinit var currentCalendar: Calendar
+    private lateinit var eventCalendar: Calendar
+    private var currentTime: Long = 0
+    private var eventStartTime: Long = 0
+
+
+    private val viewModel: CountdownViewModel by lazy {
+        ViewModelProvider(this, CountdownViewModel.Factory())
+            .get(CountdownViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,23 +40,40 @@ class CountdownFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_countdown, container, false)
         startButton = root.findViewById(R.id.startButton)
         init()
-        currentTime = currentCalendar.timeInMillis
-        eventStartTime = eventCalendar.timeInMillis
-        val timeLeft = eventStartTime - currentTime
-        startTimer(timeLeft)
+        val authToken = sharedPreference.getAuthCode()
+        viewModel.getEnigmaStatus("Token $authToken")
         startButton.setOnClickListener {
             startActivity(Intent(activity, MainActivity::class.java))
             sharedPreference.setHuntStarted(true)
         }
+
+        viewModel.enigmaStatus.observe(viewLifecycleOwner, {
+            if (it != null) {
+                sharedPreference.setEnigmaStatus(it.status)
+                val date: Date = convertStringToDate(it)
+                eventCalendar.time = date
+                currentTime = currentCalendar.timeInMillis
+                eventStartTime = eventCalendar.timeInMillis
+                val timeLeft = eventStartTime - currentTime
+                startTimer(timeLeft)
+            }
+        })
         return root
+    }
+
+    private fun convertStringToDate(it: StatusResponse): Date {
+        val day: String = it.day
+        val time: String = it.time
+        val finalDate = day + 'T' + time
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        val date: Date = sdf.parse(finalDate)
+        return date
     }
 
     private fun init() {
         sharedPreference = PrefManager(this.requireActivity())
         currentCalendar = Calendar.getInstance(TimeZone.getDefault())
         eventCalendar = Calendar.getInstance(TimeZone.getDefault())
-        // TODO: 02-11-2020 Set Event Start Date Here Format: year,month(jan->0),date,hour,minute,second
-        eventCalendar.set(2020, 10, 2, 18, 6, 10) // Format: year,month(jan->0),date,hour,minute,second
     }
 
     private fun startTimer(timeDifference: Long) {
@@ -53,8 +81,12 @@ class CountdownFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 updateTimerUI(millisUntilFinished)
             }
+
             override fun onFinish() {
-                startButton.visibility = VISIBLE
+                if (sharedPreference.getEnigmaStatus()) {
+                    startButton.visibility = VISIBLE
+                }
+
             }
         }
         countdownTimer.start()
