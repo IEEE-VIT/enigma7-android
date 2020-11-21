@@ -4,29 +4,45 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.ieeevit.enigma7.R
+import com.ieeevit.enigma7.utils.PrefManager
+import com.ieeevit.enigma7.viewModel.StoryViewModel
 import kotlinx.android.synthetic.main.enigma_title.view.*
 import kotlinx.android.synthetic.main.fragment_story.view.*
 
 
 class StoryFragment : Fragment() {
+
+    val viewModel: StoryViewModel by viewModels()
+    private lateinit var sharedPreference: PrefManager
+    private lateinit var authCode: String
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val root=inflater.inflate(R.layout.fragment_story, container, false)
 
-        root.story.setDelay(1)
-        root.story.setWithMusic(false)
-        root.story.animateText(resources.getString(R.string.story_sample))
+        sharedPreference = PrefManager(this.requireActivity())
+        authCode=sharedPreference.getAuthCode()!!
+
+        viewModel.getCompleteStory(authCode)
+        viewModel.history.observe(viewLifecycleOwner,{
+            root.story.text=it
+        })
+
         root.instructions.setOnClickListener {
             parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
                 .replace(R.id.container, InstructionsFragment())
                 .commit()
         }
+
         return root
     }
 

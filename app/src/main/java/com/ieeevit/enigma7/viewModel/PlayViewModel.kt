@@ -6,10 +6,7 @@ import androidx.lifecycle.*
 import androidx.work.*
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.database.getDatabase
-import com.ieeevit.enigma7.model.CheckAnswerRequest
-import com.ieeevit.enigma7.model.CheckAnswerResponse
-import com.ieeevit.enigma7.model.HintResponse
-import com.ieeevit.enigma7.model.PowerupResponse
+import com.ieeevit.enigma7.model.*
 import com.ieeevit.enigma7.repository.Repository
 import com.ieeevit.enigma7.work.RefreshXpWorker
 import kotlinx.coroutines.GlobalScope
@@ -24,6 +21,10 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     private val _hint = MutableLiveData<String>()
     val hint: LiveData<String>
         get() = _hint
+
+    private val _story = MutableLiveData<Story>()
+    val story:LiveData<Story>
+        get() = _story
 
     private val _status = MutableLiveData<String>()
     val status: LiveData<String>
@@ -126,18 +127,25 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun usePowerUpCloseAnswer(authToken: String) {
-        Api.retrofitService.usePowerUpCloseAnswer(authToken)
+    fun usePowerUpCloseAnswer(authToken: String, answer:CloseAnswer) {
+        Api.retrofitService.usePowerUpCloseAnswer(authToken, answer)
             .enqueue(object : Callback<PowerupResponse> {
                 override fun onResponse(
                     call: Call<PowerupResponse>,
                     response: Response<PowerupResponse>
                 ) {
-
+                    if (response.body() != null && response.body().toString().contains("detail")) {
+                        if (response.body()?.detail?.equals("The answer isn't a close answer")!! ||
+                            response.body()?.detail?.equals("Insufficient Xp")!!
+                        )
+                            _status.value = response.body()?.detail
+                        else
+                            refreshQuestionsFromRepository(authToken)
+                    }
                 }
 
                 override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-
+                    Log.d("Close Answer Check Failed", t.message.toString())
                 }
             })
     }
@@ -182,7 +190,6 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                     startXpRetrieval(authToken)
                 }
 
-
             }
 
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
@@ -200,4 +207,17 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
+
+    fun getStory(authToken: String){
+        Api.retrofitService.getStory("Token $authToken").enqueue(object :Callback<Story>{
+            override fun onResponse(call: Call<Story>, response: Response<Story>) {
+                _story.value=response.body()
+            }
+
+            override fun onFailure(call: Call<Story>, t: Throwable) {
+                Log.d("Story retrieval failed", t.message.toString())
+            }
+        })
+    }
+
 }

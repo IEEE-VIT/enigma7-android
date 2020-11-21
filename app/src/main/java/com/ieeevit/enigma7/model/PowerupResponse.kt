@@ -8,5 +8,6 @@ data class PowerupResponse (
     @SerializedName("status") val status : Boolean,
     @SerializedName("question_id") val question_id : Int,
     @SerializedName("xp") val xp : Int,
-    @SerializedName("hint") val hint : String
+    @SerializedName("hint") val hint : String,
+    @SerializedName("close_answer") val close_answer : Boolean
 )

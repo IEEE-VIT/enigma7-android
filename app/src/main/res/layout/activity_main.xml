@@ -15,6 +15,13 @@
         android:layout_marginBottom="100dp"
         android:elevation="5dp"/>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar_main"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"/>
+
     <include
         layout="@layout/bottom_bar"
         android:layout_height="wrap_content"
