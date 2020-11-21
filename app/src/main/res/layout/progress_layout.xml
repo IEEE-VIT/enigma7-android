@@ -24,7 +24,7 @@
         style="@style/simpleTextStyle"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:text="40px"
+        android:text="40xp"
         android:textSize="18sp" />
 
 </RelativeLayout>

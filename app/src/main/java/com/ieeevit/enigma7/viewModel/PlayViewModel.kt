@@ -23,7 +23,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         get() = _hint
 
     private val _story = MutableLiveData<Story>()
-    val story:LiveData<Story>
+    val story: LiveData<Story>
         get() = _story
 
     private val _status = MutableLiveData<String>()
@@ -34,9 +34,11 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     val answerResponse: LiveData<CheckAnswerResponse>
         get() = _answerResponse
     val error = MutableLiveData<Int>()
-    val skipStatus=MutableLiveData<Int>()
+    val skipStatus = MutableLiveData<Int>()
+    val closeAnswerStatus = MutableLiveData<Int>()
 
     init {
+        skipStatus.value = 0
         _hint.value = null
     }
 
@@ -121,27 +123,29 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 repository.refreshQuestion(authToken)
 
             } catch (e: Exception) {
-                error.value=1
+                error.value = 1
                 Log.i("ERROR", "Question retrieval failed $e")
             }
         }
     }
 
-    fun usePowerUpCloseAnswer(authToken: String, answer:CloseAnswer) {
+    fun usePowerUpCloseAnswer(authToken: String, answer: CloseAnswer) {
         Api.retrofitService.usePowerUpCloseAnswer(authToken, answer)
             .enqueue(object : Callback<PowerupResponse> {
                 override fun onResponse(
                     call: Call<PowerupResponse>,
                     response: Response<PowerupResponse>
                 ) {
-                    Log.d("Response",response.body().toString())
-                    if (response.body() != null && response.body()!!.detail!=null) {
+                    Log.d("Response", response.body().toString())
+                    if (response.body() != null && response.body()!!.detail != null) {
                         if (response.body()?.detail?.equals("The answer isn't a close answer")!! ||
                             response.body()?.detail?.equals("Insufficient Xp")!!
                         )
                             _status.value = response.body()?.detail
-                    }else {
+                    } else {
                         _status.value = "Close answer accepted"
+                        closeAnswerStatus.value = 1
+                        startXpRetrieval(authToken)
                         refreshQuestionsFromRepository(authToken)
                     }
                 }
@@ -162,7 +166,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                     if (response.body()!!.question_id > 0) {
                         refreshQuestionsFromRepository(authToken)
                         startXpRetrieval(authToken)
-                        skipStatus.value=1
+                        skipStatus.value = 1
                     } else {
                         _status.value = response.body()!!.detail
                     }
@@ -183,19 +187,38 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 response: Response<PowerupResponse>
             ) {
                 if (response.body() != null) {
-                    if (response.body()?.detail?.equals("You have already taken a hint .")!! ||
-                        response.body()?.detail?.equals("Insufficient Xp")!!
-                    )
-                        _status.value = response.body()?.detail
-                    else
+                    if (response.body()?.detail != null) {
+                        if (response.body()?.detail?.equals("You have already taken a hint .")!! ||
+                            response.body()?.detail?.equals("Insufficient Xp")!!
+                        ) {
+                            _status.value = response.body()?.detail
+                        }
+                    } else {
                         _hint.value = response.body()?.hint
-                    startXpRetrieval(authToken)
+                        startXpRetrieval(authToken)
+                    }
+
                 }
 
             }
 
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
                 Log.d("Powerup Error", t.message!!)
+            }
+        })
+    }
+
+    fun getStory(authToken: String) {
+        Api.retrofitService.getStory("Token $authToken").enqueue(object : Callback<Story> {
+            override fun onResponse(call: Call<Story>, response: Response<Story>) {
+                if (response.body() != null) {
+                    _story.value = response.body()
+                }
+
+            }
+
+            override fun onFailure(call: Call<Story>, t: Throwable) {
+                Log.d("Story retrieval failed", t.message.toString())
             }
         })
     }
@@ -210,16 +233,5 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getStory(authToken: String){
-        Api.retrofitService.getStory("Token $authToken").enqueue(object :Callback<Story>{
-            override fun onResponse(call: Call<Story>, response: Response<Story>) {
-                _story.value=response.body()
-            }
-
-            override fun onFailure(call: Call<Story>, t: Throwable) {
-                Log.d("Story retrieval failed", t.message.toString())
-            }
-        })
-    }
 
 }

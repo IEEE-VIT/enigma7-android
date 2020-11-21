@@ -25,10 +25,9 @@ import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_c
 import kotlinx.android.synthetic.main.powerup_confirm_dialog_skip.view.powerup_confirm
 import kotlinx.android.synthetic.main.powerups_layout.view.*
 import kotlinx.android.synthetic.main.progress_layout.view.*
-import kotlinx.android.synthetic.main.questions_layout.*
 import kotlinx.android.synthetic.main.questions_layout.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.*
-import kotlinx.android.synthetic.main.view_hint_dialog.view.hintView
+import kotlinx.android.synthetic.main.view_hint_dialog.view.errorview
 import kotlinx.android.synthetic.main.xp_alert_dialog.view.*
 
 class PlayFragment : Fragment() {
@@ -45,10 +44,6 @@ class PlayFragment : Fragment() {
             .get(PlayViewModel::class.java)
     }
     private lateinit var overlayFrame: ConstraintLayout
-    // TODO: 13-11-2020 clear hint after using close answer ig
-    // TODO: 17-11-2020 handle hint button after hint powerup is used
-    // TODO: 17-11-2020 start workmanager once the powerups give appropriate response
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -91,7 +86,18 @@ class PlayFragment : Fragment() {
             if (it == 1) {
                 root.get_hint_btn.visibility = VISIBLE
                 root.view_hint_btn.visibility = GONE
+                viewModel.getStory(authCode)
+                viewModel.refreshQuestionsFromRepository("Token $authCode")
+                viewModel.refreshUserDetailsFromRepository("Token $authCode")
                 sharedPreference.setHint(null)
+            }
+        })
+        viewModel.closeAnswerStatus.observe(viewLifecycleOwner, {
+            if (it == 1) {
+                root.get_hint_btn.visibility = VISIBLE
+                root.view_hint_btn.visibility = GONE
+                sharedPreference.setHint(null)
+                viewModel.getStory(authCode)
             }
         })
         viewModel.userDetails.observe(viewLifecycleOwner, {
@@ -101,11 +107,19 @@ class PlayFragment : Fragment() {
                 sharedPreference.setXp(xp)
                 val xpFromPref = sharedPreference.getXp()
                 root.progress_bar.progress = xpFromPref
-                val percentage = xpFromPref.toString() + "px"
+                val percentage = xpFromPref.toString() + "xp"
                 root.progress_percent.text = percentage
                 if (xp == 100) {
                     WorkManager.getInstance().cancelUniqueWork(RefreshXpWorker.WORK_NAME)
                 }
+            }
+        })
+        viewModel.story.observe(viewLifecycleOwner, {
+            if (it?.question_story != null) {
+                parentFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+                    .replace(R.id.container, StorySnippetFragment(it.question_story.story_text))
+                    .commit()
             }
         })
         viewModel.answerResponse.observe(viewLifecycleOwner, {
@@ -120,6 +134,7 @@ class PlayFragment : Fragment() {
                     }
                     it.answer == true -> {
                         showAlertDialog(R.layout.correct_response_dialog)
+                        viewModel.getStory(authCode)
                         root.get_hint_btn.visibility = VISIBLE
                         root.view_hint_btn.visibility = GONE
                         sharedPreference.setHint(null)
@@ -127,7 +142,6 @@ class PlayFragment : Fragment() {
                         overlayFrame.visibility = VISIBLE
                         viewModel.refreshQuestionsFromRepository("Token $authCode")
                         // TODO: 11-11-2020 get the keyboard down
-                        // TODO: 30-10-2020 try to update profile(db)
                     }
                 }
             }
@@ -157,13 +171,19 @@ class PlayFragment : Fragment() {
 
         })
         root.instructions.setOnClickListener {
-            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+            parentFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
                 .replace(R.id.container, InstructionsFragment())
                 .commit()
         }
         root.closeAnswerPowerup.setOnClickListener {
-            answer=root.answerBox.text.toString()
-            showAlertDialog(R.layout.powerup_confirm_dialog_close)
+            answer = root.answerBox.text.toString()
+            if (answer.isEmpty()) {
+                showAlertDialog(R.layout.answer_box_null_layout)
+            } else {
+                showAlertDialog(R.layout.powerup_confirm_dialog_close)
+            }
+
         }
         root.skipPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_skip) }
         root.hintPowerUp.setOnClickListener { showAlertDialog(R.layout.powerup_confirm_dialog_hint) }
@@ -193,7 +213,7 @@ class PlayFragment : Fragment() {
                 }
             }
             R.id.viewHintDialog -> {
-                customLayout.hintView.text = sharedPreference.getHintString()
+                customLayout.errorview.text = sharedPreference.getHintString()
                 customLayout.close.setOnClickListener {
                     alert.dismiss()
                 }
@@ -202,8 +222,7 @@ class PlayFragment : Fragment() {
                 customLayout.powerup_confirm.setOnClickListener {
                     viewModel.usePowerUpSkip("Token $authCode")
                     alert.dismiss()
-                    viewModel.refreshQuestionsFromRepository("Token $authCode")
-                    viewModel.refreshUserDetailsFromRepository("Token $authCode")
+
 
                 }
                 customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }

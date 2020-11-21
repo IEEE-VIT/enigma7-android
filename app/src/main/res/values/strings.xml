@@ -49,5 +49,6 @@
     <string name="instructions">instructions</string>
     <string name="are_you_sure_you_want_to_use_this_power">Are you sure you want to use this power?</string>
     <string name="sample_story_snippet">Massa semper accumsan cursus quam quis tellus. Sagittis augue enim tortor gravida. Mattis laoreet arcu, ut ac, enim. Enim, eu posuere tincidunt viverra lectus lectus semper.</string>
+    <string name="please_enter_the_answer">Please Enter the Answer !</string>
 
 </resources>
