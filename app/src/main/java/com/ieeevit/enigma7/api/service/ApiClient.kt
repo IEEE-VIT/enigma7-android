@@ -22,7 +22,10 @@ interface ApiClient {
 
     @PATCH("api/v1/users/me/edit/")
     @Headers("Content-Type: application/json")
-    fun editUsername(@Header("Authorization") authToken: String, @Body username: EditUsernameRequest): Call<EditUsernameResponse>
+    fun editUsername(
+        @Header("Authorization") authToken: String,
+        @Body username: EditUsernameRequest
+    ): Call<EditUsernameResponse>
 
     @GET("api/v1/users/me/")
     suspend fun getUserDetails(@Header("Authorization") authToken: String): User
@@ -40,10 +43,16 @@ interface ApiClient {
     suspend fun getQuestion(@Header("Authorization") authToken: String): QuestionResponse
 
     @POST("api/v1/game/answer/")
-    fun checkAnswer(@Header("Authorization") authToken: String, @Body answerRequest: CheckAnswerRequest): Call<CheckAnswerResponse>
+    fun checkAnswer(
+        @Header("Authorization") authToken: String,
+        @Body answerRequest: CheckAnswerRequest
+    ): Call<CheckAnswerResponse>
 
     @POST("api/v1/game/powerup/close-answer/")
-    fun usePowerUpCloseAnswer(@Header("Authorization") authToken: String, @Body answer:CloseAnswer): Call<PowerupResponse>
+    fun usePowerUpCloseAnswer(
+        @Header("Authorization") authToken: String,
+        @Body answer: CloseAnswer
+    ): Call<PowerupResponse>
 
     @POST("api/v1/game/powerup/skip/")
     fun usePowerUpSkip(@Header("Authorization") authToken: String): Call<PowerupResponse>
@@ -52,13 +61,13 @@ interface ApiClient {
     fun usePowerUpHint(@Header("Authorization") authToken: String): Call<PowerupResponse>
 
     @GET("api/v1/game/status/")
-    fun getEnigmaStatus(@Header("Authorization") authToken: String):Call<StatusResponse>
+    fun getEnigmaStatus(@Header("Authorization") authToken: String): Call<StatusResponse>
 
     @GET("api/v1/game/story/")
     fun getStory(@Header("Authorization") authToken: String): Call<Story>
 
     @GET("api/v1/game/story/complete/")
-    fun getCompleteStory(@Header("Authorization") authToken: String): Call<ArrayList<Story>>
+    suspend fun getCompleteStory(@Header("Authorization") authToken: String): ArrayList<Story>
 }
 
 object Api {

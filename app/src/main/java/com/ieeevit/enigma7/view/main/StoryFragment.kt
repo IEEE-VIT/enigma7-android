@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -32,9 +31,12 @@ class StoryFragment : Fragment() {
         sharedPreference = PrefManager(this.requireActivity())
         authCode=sharedPreference.getAuthCode()!!
 
-        viewModel.getCompleteStory(authCode)
+        viewModel.refreshCompleteStoryFromRepository("Token $authCode")
         viewModel.history.observe(viewLifecycleOwner,{
-            root.story.text=it
+            if(it!=null){
+                root.story.text=it.storyHistory
+            }
+
         })
 
         root.instructions.setOnClickListener {
