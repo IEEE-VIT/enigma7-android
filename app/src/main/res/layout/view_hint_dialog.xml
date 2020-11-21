@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/hintView"
+        android:id="@+id/errorview"
         style="@style/dialogTextStyle"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -55,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hintView" />
+        app:layout_constraintTop_toBottomOf="@+id/errorview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

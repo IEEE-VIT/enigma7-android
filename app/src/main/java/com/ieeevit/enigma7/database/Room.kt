@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.ieeevit.enigma7.model.Story
 
 @Dao
 interface UserDao {
@@ -40,6 +41,7 @@ interface LeaderBoardDao{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLeaderBoard(leaderboard: List<Leaderboard>)
 }
+
 
 
 
