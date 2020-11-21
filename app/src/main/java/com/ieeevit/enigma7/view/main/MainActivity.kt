@@ -34,10 +34,16 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getStory(sharedPreference.getAuthCode()!!)
         viewModel.story.observe(this,{
-            supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
-                .replace(R.id.container, StorySnippetFragment(it.question_story.story_text))
-                .commit()
+            if(it?.question_story != null)
+                supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+                    .replace(R.id.container, StorySnippetFragment(it.question_story.story_text))
+                    .commit()
+            else
+                supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+                    .replace(R.id.container, PlayFragment())
+                    .commit()
         })
 
         progress_bar_main.visibility=View.GONE
