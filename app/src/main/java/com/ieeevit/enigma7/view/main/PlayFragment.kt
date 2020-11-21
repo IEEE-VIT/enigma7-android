@@ -141,7 +141,6 @@ class PlayFragment : Fragment() {
                         root.answerBox.setText("")
                         overlayFrame.visibility = VISIBLE
                         viewModel.refreshQuestionsFromRepository("Token $authCode")
-                        // TODO: 11-11-2020 get the keyboard down
                     }
                 }
             }
