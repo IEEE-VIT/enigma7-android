@@ -212,7 +212,6 @@ class PlayFragment : Fragment() {
                 customLayout.powerup_confirm.setOnClickListener {
                     viewModel.usePowerUpCloseAnswer("Token $authCode", CloseAnswer(answer))
                     alert.dismiss()
-                    viewModel.refreshUserDetailsFromRepository("Token $authCode")
                 }
                 customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
             }
