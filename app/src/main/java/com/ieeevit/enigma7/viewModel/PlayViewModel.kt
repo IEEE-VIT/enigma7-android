@@ -142,7 +142,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                             _status.value = response.body()?.detail
                     }else {
                         _status.value = "Close answer accepted"
-                        refreshQuestionsFromRepository("Token $authToken")
+                        refreshQuestionsFromRepository(authToken)
                     }
                 }
 
