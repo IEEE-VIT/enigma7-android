@@ -31,6 +31,9 @@ interface ApiClient {
     @POST("api/v1/users/logout/")
     fun logOut(@Header("Authorization") authToken: String): Call<LogoutResponse>
 
+    @POST("api/v1/users/outreach/")
+    fun sendOutreachDetails(@Header("Authorization") authToken: String, @Body outreachRequest: OutreachRequest):Call<OutreachResponse>
+
     @GET("api/v1/users/me/")
     suspend fun getUserDetails(@Header("Authorization") authToken: String): User
 

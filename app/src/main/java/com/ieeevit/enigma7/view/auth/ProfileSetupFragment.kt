@@ -19,9 +19,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentProfileSetupBinding
+import com.ieeevit.enigma7.model.OutreachRequest
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.timer.CountdownActivity
 import com.ieeevit.enigma7.viewModel.ProfileSetupViewModel
+import kotlinx.android.synthetic.main.fragment_profile_setup.*
 import java.util.regex.Pattern
 
 
@@ -33,8 +35,8 @@ class ProfileSetupFragment : Fragment() {
     private val failure = "Incorrect string type for field 'username'"
     private val duplicateUsername = "User with this username already exists"
     lateinit var pattern: Pattern
-    private var platformPos: Int? = null
-    private var graduationPos: Int? = null
+    private var platformPos: Int = 1
+    private var graduationPos: Int = 1
     private val viewModel: ProfileSetupViewModel by lazy {
         ViewModelProvider(this, ProfileSetupViewModel.Factory())
             .get(ProfileSetupViewModel::class.java)
@@ -75,6 +77,7 @@ class ProfileSetupFragment : Fragment() {
             ) {
                 platformPos = position
                 Log.i("POS", parentView?.getItemAtPosition(position).toString())
+                Log.i("POS", position.toString())
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -145,9 +148,19 @@ class ProfileSetupFragment : Fragment() {
         })
 
         binding.nextButton.setOnClickListener {
+            val year: Int?
+
+            year = (graduation.getItemAtPosition(graduationPos).toString()).toInt()
+
+            val outreachRequest = OutreachRequest(
+                collegeStudent.isChecked,
+                publicitySpinner.getItemAtPosition(platformPos).toString(),
+                year
+            )
             val authCode: String? = sharedPreference.getAuthCode()
             overlayFrame.visibility = VISIBLE
             viewModel.editUsername("Token $authCode", userName)
+            viewModel.sendOutreachDetails("Token $authCode",outreachRequest)
         }
 
         viewModel.usernameBody.observe(viewLifecycleOwner, {
