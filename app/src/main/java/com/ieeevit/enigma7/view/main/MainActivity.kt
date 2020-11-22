@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
-import com.ieeevit.enigma7.view.home.ProfileFragment
 import kotlinx.android.synthetic.main.bottom_bar.*
 
 
