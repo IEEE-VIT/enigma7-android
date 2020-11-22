@@ -269,7 +269,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8"
             app:strokeColor="@color/enigmaColor"
-            app:strokeWidth="2dp" />
+            app:strokeWidth="2dp"
+            android:focusable="true" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group"
