@@ -76,8 +76,6 @@ class ProfileSetupFragment : Fragment() {
                 parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long
             ) {
                 platformPos = position
-                Log.i("POS", parentView?.getItemAtPosition(position).toString())
-                Log.i("POS", position.toString())
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
