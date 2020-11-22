@@ -33,6 +33,8 @@ class ProfileSetupFragment : Fragment() {
     private val failure = "Incorrect string type for field 'username'"
     private val duplicateUsername = "User with this username already exists"
     lateinit var pattern: Pattern
+    private var platformPos: Int? = null
+    private var graduationPos: Int? = null
     private val viewModel: ProfileSetupViewModel by lazy {
         ViewModelProvider(this, ProfileSetupViewModel.Factory())
             .get(ProfileSetupViewModel::class.java)
@@ -71,6 +73,7 @@ class ProfileSetupFragment : Fragment() {
             override fun onItemSelected(
                 parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long
             ) {
+                platformPos = position
                 Log.i("POS", parentView?.getItemAtPosition(position).toString())
             }
 
@@ -88,7 +91,7 @@ class ProfileSetupFragment : Fragment() {
         }
         graduation.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-
+                graduationPos = p2
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {

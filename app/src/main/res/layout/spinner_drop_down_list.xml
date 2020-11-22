@@ -5,5 +5,4 @@
     android:fontFamily="@font/ibm_plex_mono_regular"
     android:padding="10dp"
     android:textColor="@color/enigmaColor"
-    android:textSize="12sp"
-    android:textStyle="italic" />
+    android:textSize="12sp" />
