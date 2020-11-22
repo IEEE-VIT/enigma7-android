@@ -26,21 +26,23 @@ class StoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root=inflater.inflate(R.layout.fragment_story, container, false)
-
+        val root = inflater.inflate(R.layout.fragment_story, container, false)
+        root.overlayFrame.visibility = View.VISIBLE
         sharedPreference = PrefManager(this.requireActivity())
-        authCode=sharedPreference.getAuthCode()!!
+        authCode = sharedPreference.getAuthCode()!!
 
         viewModel.refreshCompleteStoryFromRepository("Token $authCode")
-        viewModel.history.observe(viewLifecycleOwner,{
-            if(it!=null){
-                root.story.text=it.storyHistory
+        viewModel.history.observe(viewLifecycleOwner, {
+            if (it != null) {
+                root.overlayFrame.visibility=View.GONE
+                root.story.text = it.storyHistory
             }
 
         })
 
         root.instructions.setOnClickListener {
-            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+            parentFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
                 .replace(R.id.container, InstructionsFragment())
                 .commit()
         }

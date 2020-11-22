@@ -61,6 +61,7 @@ class PlayFragment : Fragment() {
 
         viewModel.status.observe(viewLifecycleOwner, {
             showAlertDialog(R.layout.xp_alert_dialog)
+            overlayFrame.visibility = GONE
         })
 
         viewModel.hint.observe(viewLifecycleOwner, {
@@ -86,6 +87,7 @@ class PlayFragment : Fragment() {
             if (it == 1) {
                 root.get_hint_btn.visibility = VISIBLE
                 root.view_hint_btn.visibility = GONE
+                overlayFrame.visibility = GONE
                 viewModel.getStory(authCode)
                 viewModel.refreshQuestionsFromRepository("Token $authCode")
                 viewModel.refreshUserDetailsFromRepository("Token $authCode")
@@ -96,6 +98,7 @@ class PlayFragment : Fragment() {
             if (it == 1) {
                 root.get_hint_btn.visibility = VISIBLE
                 root.view_hint_btn.visibility = GONE
+                overlayFrame.visibility = GONE
                 sharedPreference.setHint(null)
                 viewModel.getStory(authCode)
             }
@@ -164,7 +167,8 @@ class PlayFragment : Fragment() {
             if (it != null) {
                 overlayFrame.visibility = GONE
                 root.question.text = it.text
-                root.question_id.text = "Q${it.id}."
+                val id = "Q${it.id}."
+                root.question_id.text = id
                 Picasso.get().load(it.img_url).into(root.question_image)
             }
 
@@ -220,6 +224,7 @@ class PlayFragment : Fragment() {
             R.id.confirmPowerupDialogSkip -> {
                 customLayout.powerup_confirm.setOnClickListener {
                     viewModel.usePowerUpSkip("Token $authCode")
+                    overlayFrame.visibility = VISIBLE
                     alert.dismiss()
 
 
@@ -229,6 +234,7 @@ class PlayFragment : Fragment() {
             R.id.confirmPowerupDialogClose -> {
                 customLayout.powerup_confirm.setOnClickListener {
                     viewModel.usePowerUpCloseAnswer("Token $authCode", CloseAnswer(answer))
+                    overlayFrame.visibility = VISIBLE
                     alert.dismiss()
                 }
                 customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }
@@ -236,6 +242,7 @@ class PlayFragment : Fragment() {
             R.id.confirmPowerupDialogHint -> {
                 customLayout.powerup_confirm.setOnClickListener {
                     viewModel.usePowerUpHint("Token $authCode")
+                    overlayFrame.visibility = VISIBLE
                     alert.dismiss()
                 }
                 customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }

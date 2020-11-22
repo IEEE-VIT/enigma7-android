@@ -151,7 +151,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-                    Log.d("Close Answer Check Failed", t.message.toString())
+                    Log.d("Close Answer Failed", t.message.toString())
                 }
             })
     }
