@@ -13,6 +13,7 @@ import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.ActivitySplashBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.auth.AuthActivity
+import kotlinx.android.synthetic.main.bottom_bar.view.*
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
@@ -23,6 +24,10 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         sharedPreference = PrefManager(applicationContext)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
+        binding.include2.game.isEnabled=false
+        binding.include2.leaderboard.isEnabled=false
+        binding.include2.story.isEnabled=false
+        binding.include2.profile.isEnabled=false
             initialize()
             shortAnimationDuration = resources.getInteger(android.R.integer.config_longAnimTime)
             Handler(Looper.getMainLooper()).postDelayed(

@@ -1,7 +1,6 @@
 package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.ieeevit.enigma7.database.getDatabase
@@ -20,7 +19,7 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 repository.refreshStoryHistory(authToken)
             } catch (e: Exception) {
-                Log.d("Story Retrieval Failed", e.toString())
+
             }
         }
     }

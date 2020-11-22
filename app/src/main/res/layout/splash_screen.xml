@@ -79,7 +79,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:strokeColor="@color/strokeColor"
-            app:strokeWidth="@dimen/strokeWidth" />
+            app:strokeWidth="@dimen/strokeWidth"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/crypticText"

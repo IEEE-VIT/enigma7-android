@@ -1,4 +1,4 @@
-package com.ieeevit.enigma7.view.home
+package com.ieeevit.enigma7.view.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,9 +17,6 @@ import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentProfileBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.auth.AuthActivity
-import com.ieeevit.enigma7.view.main.InstructionsFragment
-import com.ieeevit.enigma7.view.main.MainActivity
-import com.ieeevit.enigma7.view.main.PlayFragment
 import com.ieeevit.enigma7.viewModel.ProfileViewModel
 import kotlinx.android.synthetic.main.enigma_title.view.*
 

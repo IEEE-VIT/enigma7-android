@@ -2,7 +2,6 @@ package com.ieeevit.enigma7.view.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.ieeevit.enigma7.R
@@ -33,21 +32,18 @@ class AuthActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth)
         if (savedInstanceState == null) {
             val fragment = SignUpFragment()
-            supportFragmentManager.beginTransaction()
-                .add(R.id.container, fragment)
-                .commit()
+            supportFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
         }
 
-        binding.include2.game.setOnClickListener {
-            Toast.makeText(applicationContext, "Please Login", Toast.LENGTH_SHORT).show()
-        }
+        binding.include2.game.isEnabled=false
+        binding.include2.leaderboard.isEnabled=false
+        binding.include2.story.isEnabled=false
+        binding.include2.profile.isEnabled=false
 
     }
 
     private fun navigateToProfileSetup() {
         val fragment = ProfileSetupFragment()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.container, fragment)
-            .commit()
+        supportFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
     }
 }

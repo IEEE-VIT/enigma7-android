@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/fragment_back"
         android:orientation="vertical"
-        tools:context=".view.home.ProfileFragment">
+        tools:context=".view.main.ProfileFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/overlayFrame"
@@ -23,7 +23,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView2">
+            app:layout_constraintTop_toTopOf="@+id/textView2"
+            android:focusable="true">
 
             <ProgressBar
                 android:id="@+id/progress_bar_overlay"
@@ -268,7 +269,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8"
             app:strokeColor="@color/enigmaColor"
-            app:strokeWidth="2dp" />
+            app:strokeWidth="2dp"
+            android:focusable="true" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group"

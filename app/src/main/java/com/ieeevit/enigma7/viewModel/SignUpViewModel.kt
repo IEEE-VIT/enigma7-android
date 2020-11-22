@@ -60,7 +60,7 @@ class SignUpViewModel : ViewModel() {
             TimeUnit.HOURS
         ).setInputData(data.build()).setConstraints(constraints)
             .build()
-        Log.i("workManager", "Periodic Work request for sync is scheduled")
+
         WorkManager.getInstance().enqueueUniquePeriodicWork(
             RefreshXpWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
-import com.ieeevit.enigma7.view.home.ProfileFragment
 import kotlinx.android.synthetic.main.bottom_bar.*
 
 
@@ -27,9 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun transaction(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+        supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
             .replace(R.id.container, fragment)
             .commit()
     }

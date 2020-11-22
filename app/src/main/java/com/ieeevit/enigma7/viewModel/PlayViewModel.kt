@@ -1,7 +1,6 @@
 package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.work.*
 import com.ieeevit.enigma7.api.service.Api
@@ -58,7 +57,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
 
             override fun onFailure(call: Call<HintResponse>, t: Throwable) {
                 _hint.value = ""
-                Log.i("ERROR", "Hint retrieval Failed", t)
+
             }
         })
     }
@@ -76,7 +75,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 override fun onFailure(call: Call<CheckAnswerResponse>, t: Throwable) {
-                    Log.i("ERROR", "Check Answer Failed", t)
+
                 }
 
             })
@@ -87,7 +86,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 repository.refreshUserDetails(authToken)
             } catch (e: Exception) {
-                Log.i("get user details FAIL", e.toString())
+
             }
         }
     }
@@ -109,7 +108,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             TimeUnit.HOURS
         ).setInputData(data.build()).setConstraints(constraints)
             .build()
-        Log.i("workManager", "Periodic Work request for sync is scheduled")
+
         WorkManager.getInstance().enqueueUniquePeriodicWork(
             RefreshXpWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
@@ -124,7 +123,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
 
             } catch (e: Exception) {
                 error.value = 1
-                Log.i("ERROR", "Question retrieval failed $e")
+
             }
         }
     }
@@ -136,7 +135,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                     call: Call<PowerupResponse>,
                     response: Response<PowerupResponse>
                 ) {
-                    Log.d("Response", response.body().toString())
+
                     if (response.body() != null && response.body()!!.detail != null) {
                         if (response.body()?.detail?.equals("The answer isn't a close answer")!! ||
                             response.body()?.detail?.equals("Insufficient Xp")!!
@@ -151,7 +150,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-                    Log.d("Close Answer Check Failed", t.message.toString())
+
                 }
             })
     }
@@ -175,7 +174,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-                Log.d("Powerup Error", t.message!!)
+
             }
         })
     }
@@ -203,7 +202,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-                Log.d("Powerup Error", t.message!!)
+
             }
         })
     }
@@ -218,7 +217,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<Story>, t: Throwable) {
-                Log.d("Story retrieval failed", t.message.toString())
+
             }
         })
     }

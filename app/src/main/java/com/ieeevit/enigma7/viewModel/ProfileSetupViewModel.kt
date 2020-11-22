@@ -1,6 +1,5 @@
 package com.ieeevit.enigma7.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -39,7 +38,7 @@ class ProfileSetupViewModel : ViewModel() {
 
                 override fun onFailure(call: Call<EditUsernameResponse>, t: Throwable) {
                     _usernameChanged.value = 0
-                    Log.i("ERROR", "on username edit failure ", t)
+
                 }
             })
     }
