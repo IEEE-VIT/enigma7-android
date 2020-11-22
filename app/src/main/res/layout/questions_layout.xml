@@ -67,7 +67,8 @@
                 android:textAlignment="center"
                 android:textColor="@color/enigmaColor"
                 android:textSize="18sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:focusable="true" />
 
             <TextView
                 android:id="@+id/get_hint_btn"
@@ -84,7 +85,8 @@
                 android:text="@string/use_hint"
                 android:textAlignment="center"
                 android:textColor="@color/enigmaColor"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:focusable="true" />
 
             <TextView
                 android:id="@+id/submit_btn"
@@ -102,7 +104,8 @@
                 android:text="@string/submit"
                 android:textAlignment="center"
                 android:textColor="@color/enigmaColor"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:focusable="true" />
         </LinearLayout>
 
     </LinearLayout>
