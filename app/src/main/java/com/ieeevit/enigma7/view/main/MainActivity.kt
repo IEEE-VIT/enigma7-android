@@ -27,9 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun transaction(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+        supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
             .replace(R.id.container, fragment)
             .commit()
     }

@@ -1,7 +1,6 @@
 package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +18,7 @@ class LeaderboardViewModel(application: Application) : AndroidViewModel(applicat
             try {
                 repository.refreshLeaderBoard(authToken)
             } catch (e: Exception) {
-                Log.i("LeaderBoard Retrieval FAIL", e.toString())
+
             }
         }
     }

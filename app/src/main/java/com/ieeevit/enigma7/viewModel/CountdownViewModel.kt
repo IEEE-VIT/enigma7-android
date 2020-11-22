@@ -1,6 +1,5 @@
 package com.ieeevit.enigma7.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,9 +31,6 @@ class CountdownViewModel : ViewModel() {
                 if (response.body() != null) {
                     _enigmaStatus.value = response.body()
                     callStatus.value=response.code()
-                  if (callStatus.value==401){
-                      Log.i("ERROR","Unauthorised")
-                  }
 
                 } else {
                     error.value = 1
@@ -43,7 +39,7 @@ class CountdownViewModel : ViewModel() {
 
             override fun onFailure(call: Call<StatusResponse>, t: Throwable) {
                 error.value = 1
-                Log.i("ERROR", "Status Retrieval  failure ", t)
+
 
             }
 

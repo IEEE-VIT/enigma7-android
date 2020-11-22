@@ -1,7 +1,6 @@
 package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.Scopes
@@ -41,7 +40,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
                 repository.refreshUserDetails(authToken)
             } catch (e: Exception) {
                 networkStatus.value = 0
-                Log.i("get user details FAIL", e.toString())
+
             }
         }
     }
@@ -51,7 +50,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
             try {
                 repository.clearCache()
             } catch (e: Exception) {
-                Log.i("delete Cache FAIL", e.toString())
+
             }
         }
     }
@@ -70,7 +69,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
             }
 
             override fun onFailure(call: Call<LogoutResponse>, t: Throwable) {
-                Log.i("log out FAIL", t.toString())
+
             }
         }))
     }

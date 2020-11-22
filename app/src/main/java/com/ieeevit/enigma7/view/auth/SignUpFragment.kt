@@ -1,9 +1,7 @@
 package com.ieeevit.enigma7.view.auth
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,7 +52,6 @@ class SignUpFragment : Fragment() {
         viewModel.authCode.observe(this, {
             if (it != null) {
                 sharedPreference.setAuthCode(it.toString())
-                Log.i("WORK", "Workmanager started for the first time")
                 val authToken = sharedPreference.getAuthCode().toString()
                 viewModel.startXpRetrieval("Token $authToken")
 
@@ -92,7 +89,6 @@ class SignUpFragment : Fragment() {
             overlayFrame.visibility = View.VISIBLE
             viewModel.getAuthCode(authToken.toString(), redirectUri)
         } catch (e: ApiException) {
-            Log.w(TAG, "handleSignInResult:error" + e.statusCode, e)
             Toast.makeText(activity, "handleSignInResult:error", Toast.LENGTH_SHORT).show()
         }
     }
@@ -114,9 +110,7 @@ class SignUpFragment : Fragment() {
     private fun navigate() {
         val fragment = ProfileSetupFragment()
         if (sharedPreference.getUserStaus() == false) {
-            parentFragmentManager.beginTransaction()
-                .add(R.id.container, fragment)
-                .commit()
+            parentFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
         } else if (sharedPreference.getUserStaus() == true) {
             startActivity(Intent(activity, CountdownActivity::class.java))
         }

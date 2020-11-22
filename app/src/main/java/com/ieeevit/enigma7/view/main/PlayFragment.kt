@@ -148,20 +148,6 @@ class PlayFragment : Fragment() {
                 }
             }
         })
-        root.submit_btn.setOnClickListener {
-            overlayFrame.visibility = VISIBLE
-            val answer = root.answerBox.text.toString()
-            viewModel.checkAnswer("Token $authCode", answer)
-        }
-        root.get_hint_btn.setOnClickListener {
-            showAlertDialog(R.layout.hint_dialog_layout)
-        }
-        root.view_hint_btn.setOnClickListener {
-            showAlertDialog(R.layout.view_hint_dialog)
-        }
-
-        viewModel.refreshQuestionsFromRepository("Token $authCode")
-        viewModel.refreshUserDetailsFromRepository("Token $authCode")
         viewModel.questionResponse.observe(viewLifecycleOwner, {
 
             if (it != null) {
@@ -173,6 +159,21 @@ class PlayFragment : Fragment() {
             }
 
         })
+
+        viewModel.refreshQuestionsFromRepository("Token $authCode")
+        viewModel.refreshUserDetailsFromRepository("Token $authCode")
+
+        root.submit_btn.setOnClickListener {
+            overlayFrame.visibility = VISIBLE
+            val answer = root.answerBox.text.toString()
+            viewModel.checkAnswer("Token $authCode", answer)
+        }
+        root.get_hint_btn.setOnClickListener {
+            showAlertDialog(R.layout.hint_dialog_layout)
+        }
+        root.view_hint_btn.setOnClickListener {
+            showAlertDialog(R.layout.view_hint_dialog)
+        }
         root.instructions.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)

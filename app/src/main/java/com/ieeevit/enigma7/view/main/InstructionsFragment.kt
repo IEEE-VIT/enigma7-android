@@ -29,9 +29,7 @@ class InstructionsFragment : Fragment() {
             activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     val fragment = PlayFragment()
-                    parentFragmentManager.beginTransaction()
-                        .add(R.id.container, fragment)
-                        .commit()
+                    parentFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
                 }
             })
         }

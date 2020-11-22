@@ -31,8 +31,7 @@ class StorySnippetFragment(private val story:String) : Fragment() {
 
     private fun transaction(fragment: Fragment){
         parentFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+            .beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
             .replace(R.id.container, fragment)
             .commit()
     }

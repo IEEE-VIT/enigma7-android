@@ -41,8 +41,7 @@ class StoryFragment : Fragment() {
         })
 
         root.instructions.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
                 .replace(R.id.container, InstructionsFragment())
                 .commit()
         }
@@ -55,9 +54,7 @@ class StoryFragment : Fragment() {
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val fragment = PlayFragment()
-                parentFragmentManager.beginTransaction()
-                    .add(R.id.container, fragment)
-                    .commit()
+                parentFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
             }
         })
     }
