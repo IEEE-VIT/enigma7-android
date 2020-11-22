@@ -34,7 +34,6 @@
     <string name="use_hint">Use Hint</string>
     <string name="response_is_close_to_the_answer">Response is close to the answer</string>
     <string name="cancel">Cancel</string>
-    <string name="yes">Yes</string>
     <string name="correct_response">Correct response</string>
     <string name="try_again">Try Again!</string>
     <string name="start">Start</string>
@@ -50,5 +49,10 @@
     <string name="are_you_sure_you_want_to_use_this_power">Are you sure you want to use this power?</string>
     <string name="sample_story_snippet">Massa semper accumsan cursus quam quis tellus. Sagittis augue enim tortor gravida. Mattis laoreet arcu, ut ac, enim. Enim, eu posuere tincidunt viverra lectus semper.</string>
     <string name="please_enter_the_answer">Please Enter the Answer !</string>
+    <string name="where_did_you_hear_about_us">Where did you hear about us?</string>
+    <string name="are_you_a_college_student">Are you a College Student</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="which_year_will_you_graduate_in">Which year will you graduate in?</string>
 
 </resources>
