@@ -32,6 +32,9 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
     private val _answerResponse = MutableLiveData<CheckAnswerResponse>()
     val answerResponse: LiveData<CheckAnswerResponse>
         get() = _answerResponse
+    private val _powerUpStatus = MutableLiveData<UserStatus>()
+    val powerUpStatus: LiveData<UserStatus>
+        get() = _powerUpStatus
     val error = MutableLiveData<Int>()
     val skipStatus = MutableLiveData<Int>()
     val closeAnswerStatus = MutableLiveData<Int>()
@@ -43,6 +46,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
 
     val questionResponse = repository.questions
     val userDetails = repository.userDetails
+
     fun getHint(authToken: String) {
 
         Api.retrofitService.getHint(authToken).enqueue(object : Callback<HintResponse> {
@@ -89,6 +93,21 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
 
             }
         }
+    }
+
+    fun getPowerUpStatus(authToken: String) {
+        Api.retrofitService.getPowerupStatus(authToken).enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.body() != null) {
+                    val userDetails = response.body()
+                    _powerUpStatus.value = userDetails?.userStatus
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+
+            }
+        })
     }
 
     fun startXpRetrieval(authToken: String) {

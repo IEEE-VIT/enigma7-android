@@ -37,6 +37,9 @@ interface ApiClient {
     @GET("api/v1/users/me/")
     suspend fun getUserDetails(@Header("Authorization") authToken: String): User
 
+    @GET("api/v1/users/me/")
+    fun getPowerupStatus(@Header("Authorization") authToken: String):Call<User>
+
     @GET("api/v1/game/hint/")
     fun getHint(@Header("Authorization") authToken: String): Call<HintResponse>
 
