@@ -50,7 +50,7 @@ abstract class EnigmaDatabase : RoomDatabase() {
     abstract val userDao: UserDao
     abstract val questionsDao: QuestionsDao
     abstract val leaderBoardDao: LeaderBoardDao
-    abstract val storyHistoryDao:StoryHistoryDao
+    abstract val storyHistoryDao: StoryHistoryDao
 }
 
 private lateinit var INSTANCE: EnigmaDatabase

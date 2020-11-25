@@ -48,7 +48,7 @@ class PlayFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val root: View = inflater.inflate(R.layout.fragment_play, container, false)
         overlayFrame = root.findViewById(R.id.overlayFrame)
         overlayFrame.visibility = VISIBLE
@@ -58,22 +58,25 @@ class PlayFragment : Fragment() {
             root.view_hint_btn.visibility = VISIBLE
         }
         init()
-
         viewModel.status.observe(viewLifecycleOwner, {
             showAlertDialog(R.layout.xp_alert_dialog)
             overlayFrame.visibility = GONE
         })
 
         viewModel.hint.observe(viewLifecycleOwner, {
-
             if (it == "") {
                 overlayFrame.visibility = GONE
                 Toast.makeText(activity, "Hint retrieval failed", Toast.LENGTH_SHORT).show()
             } else if (it != null) {
                 overlayFrame.visibility = GONE
                 hint = it
-                sharedPreference.setHint(hint)
-                showAlertDialog(R.layout.view_hint_dialog)
+                if (sharedPreference.getHintString() == null) {
+                    sharedPreference.setHint(hint)
+                    if (sharedPreference.isShowHintDialog()) {
+                        showAlertDialog(R.layout.view_hint_dialog)
+                    }
+
+                }
                 root.get_hint_btn.visibility = GONE
                 root.view_hint_btn.visibility = VISIBLE
             }
@@ -115,6 +118,18 @@ class PlayFragment : Fragment() {
                 if (xp == 100) {
                     WorkManager.getInstance().cancelUniqueWork(RefreshXpWorker.WORK_NAME)
                 }
+            }
+        })
+        viewModel.powerUpStatus.observe(viewLifecycleOwner, {
+            if (it != null) {
+                if (it.hintPowerup!! || it.hintUsed!! && it.hintUsed != null) {
+                    viewModel.getHint("Token $authCode")
+                } else {
+                    root.get_hint_btn.visibility = VISIBLE
+                    root.view_hint_btn.visibility = GONE
+                    sharedPreference.setHint(null)
+                }
+
             }
         })
         viewModel.story.observe(viewLifecycleOwner, {
@@ -162,10 +177,12 @@ class PlayFragment : Fragment() {
 
         viewModel.refreshQuestionsFromRepository("Token $authCode")
         viewModel.refreshUserDetailsFromRepository("Token $authCode")
+        //   viewModel.refreshPowerUpStatusFromRepository("Token $authCode")
+        viewModel.getPowerUpStatus("Token $authCode")
 
         root.submit_btn.setOnClickListener {
             overlayFrame.visibility = VISIBLE
-            val answer = root.answerBox.text.toString()
+            val answer = root.answerBox.text.toString().trimEnd()
             viewModel.checkAnswer("Token $authCode", answer)
         }
         root.get_hint_btn.setOnClickListener {
@@ -211,6 +228,7 @@ class PlayFragment : Fragment() {
                     alert.dismiss()
                 }
                 customLayout.accept.setOnClickListener {
+                    sharedPreference.setIsShowHintDialog(true)
                     overlayFrame.visibility = VISIBLE
                     viewModel.getHint("Token $authCode")
                     alert.dismiss()
@@ -242,6 +260,7 @@ class PlayFragment : Fragment() {
             }
             R.id.confirmPowerupDialogHint -> {
                 customLayout.powerup_confirm.setOnClickListener {
+                    sharedPreference.setIsShowHintDialog(true)
                     viewModel.usePowerUpHint("Token $authCode")
                     overlayFrame.visibility = VISIBLE
                     alert.dismiss()

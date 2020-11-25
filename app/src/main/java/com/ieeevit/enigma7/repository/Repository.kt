@@ -24,7 +24,7 @@ class Repository(private val database: EnigmaDatabase) {
                 user.questionAnswered,
                 user.email,
                 user.username,
-                user.points
+                user.points,
             )
             database.userDao.insertUserDetails(userDetails)
         }

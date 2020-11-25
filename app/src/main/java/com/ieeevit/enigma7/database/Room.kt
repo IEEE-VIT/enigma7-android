@@ -2,6 +2,7 @@ package com.ieeevit.enigma7.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.ieeevit.enigma7.model.UserStatus
 
 @Dao
 interface UserDao {

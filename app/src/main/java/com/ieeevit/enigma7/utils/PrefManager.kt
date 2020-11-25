@@ -16,6 +16,7 @@ class PrefManager(val context: Context) {
     private val editor: SharedPreferences.Editor = sharedPref.edit()
      private val loggedIN="IsLoggedIn"
     private val enigmaStatus="EnigmaStatus"
+    private val canShowHintDialog="CanShowHintDialog"
 
 
     fun setAuthCode(text: String) {
@@ -82,6 +83,14 @@ class PrefManager(val context: Context) {
     }
     fun getEnigmaStatus(): Boolean {
         return sharedPref.getBoolean(enigmaStatus, false)
+    }
+
+    fun setIsShowHintDialog(text: Boolean) {
+        editor.putBoolean(canShowHintDialog, text)
+        editor.apply()
+    }
+    fun isShowHintDialog(): Boolean {
+        return sharedPref.getBoolean(canShowHintDialog, false)
     }
 
 }
