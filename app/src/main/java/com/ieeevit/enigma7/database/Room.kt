@@ -1,10 +1,7 @@
 package com.ieeevit.enigma7.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface UserDao {
@@ -16,27 +13,33 @@ interface UserDao {
 }
 
 @Dao
-interface QuestionsDao{
+interface QuestionsDao {
     @Query("select * from questions")
-    fun getQuestion():LiveData<Question>
+    fun getQuestion(): LiveData<Question>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertQuestion(question:Question)
+    fun insertQuestion(question: Question)
 }
 
 @Dao
-interface LeaderBoardDao{
+interface LeaderBoardDao {
     @Query("select * from leader_board")
-    fun getLeaderBoard():LiveData<List<Leaderboard>>
+    fun getLeaderBoard(): LiveData<List<Leaderboard>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLeaderBoard(leaderboard: List<Leaderboard>)
+
+    @Query("delete from leader_board")
+    fun deleteAll()
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    fun updateLeaderBoard(leaderboard: List<Leaderboard>)
 }
 
 @Dao
-interface StoryHistoryDao{
+interface StoryHistoryDao {
     @Query("select * from story_history")
-    fun getStoryHistory():LiveData<StoryHistory>
+    fun getStoryHistory(): LiveData<StoryHistory>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertStoryHistory(storyHistory: StoryHistory)
