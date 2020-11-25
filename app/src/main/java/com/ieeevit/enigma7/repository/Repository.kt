@@ -12,7 +12,7 @@ class Repository(private val database: EnigmaDatabase) {
     val userDetails: LiveData<UserDetails> = database.userDao.getUserDetails()
     val questions: LiveData<Question> = database.questionsDao.getQuestion()
     val leaderBoard = database.leaderBoardDao.getLeaderBoard()
-    val storyHistory=database.storyHistoryDao.getStoryHistory()
+    val storyHistory = database.storyHistoryDao.getStoryHistory()
     suspend fun refreshUserDetails(authToken: String) {
         withContext(Dispatchers.IO) {
             val user = Api.retrofitService.getUserDetails(authToken)
@@ -47,8 +47,8 @@ class Repository(private val database: EnigmaDatabase) {
 
     suspend fun refreshLeaderBoard(authToken: String) {
         withContext(Dispatchers.IO) {
-            val leaderboardEntry: ArrayList<LeaderboardEntry> =
-                Api.retrofitService.getLeaderboard(authToken)
+            val leaderboardEntry: ArrayList<LeaderboardEntry> = Api.retrofitService.getLeaderboard(authToken)
+            database.leaderBoardDao.deleteAll()
             database.leaderBoardDao.insertLeaderBoard(leaderboardEntry.asDatabaseModel())
         }
     }
@@ -62,8 +62,7 @@ class Repository(private val database: EnigmaDatabase) {
                     storyString += "${story.question_story.story_text} \n\n"
                 }
             }
-
-            val storyHistory =StoryHistory(1,storyString)
+            val storyHistory = StoryHistory(1, storyString)
             database.storyHistoryDao.insertStoryHistory(storyHistory)
         }
     }
