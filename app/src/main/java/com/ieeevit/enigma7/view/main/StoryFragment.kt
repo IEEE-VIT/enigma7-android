@@ -35,6 +35,9 @@ class StoryFragment : Fragment() {
                 root.overlayFrame.visibility=View.GONE
                 root.story.text = it.storyHistory
             }
+            else{
+                root.overlayFrame.visibility=View.GONE
+            }
         })
 
         root.instructions.setOnClickListener {
