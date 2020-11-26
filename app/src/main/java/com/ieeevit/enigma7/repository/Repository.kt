@@ -60,8 +60,9 @@ class Repository(private val database: EnigmaDatabase) {
     suspend fun refreshStoryHistory(authToken: String, username: String) {
         withContext(Dispatchers.IO) {
             val completeStory = Api.retrofitService.getCompleteStory(authToken)
+            val completeStoryReversed= completeStory.reversed()
             var storyString = ""
-            for (story in completeStory) {
+            for (story in completeStoryReversed) {
                 var text=""
                 var word=""
                 if (story.question_story != null) {
