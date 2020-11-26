@@ -166,6 +166,7 @@ class ProfileSetupFragment : Fragment() {
             when {
                 it.username == userName -> {
                     sharedPreference.setUserStatus(true)
+                    sharedPreference.setUsername(userName)
                     startActivity(Intent(activity, CountdownActivity::class.java))
                 }
                 it.username == failure -> {
