@@ -135,9 +135,36 @@ class PlayFragment : Fragment() {
         })
         viewModel.story.observe(viewLifecycleOwner, {
             if (it?.question_story != null) {
+                var text=""
+                var word=""
+                for (i:Char in it.question_story.story_text){
+                    if(i!= ' ') word+=i
+                    else{
+                        when {
+                            word.contains("<br>") -> {
+                                text+="\n"
+                                word=""
+                            }
+                            word.contains("<username>") -> {
+                                text+="\n${sharedPreference.getUsername()}: "
+                                word=""
+                            }
+                            word.contains("<4777>") -> {
+                                text+="\n4777: "
+                                word=""
+                            }
+                            else -> {
+                                text+="$word "
+                                word=""
+                            }
+                        }
+                    }
+                }
+                val words=it.question_story.story_text.split(' ')
+                text+=words[words.size-1]
                 parentFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
-                    .replace(R.id.container, StorySnippetFragment(it.question_story.story_text))
+                    .replace(R.id.container, StorySnippetFragment(text))
                     .commit()
             }
         })
@@ -178,7 +205,6 @@ class PlayFragment : Fragment() {
 
         viewModel.refreshQuestionsFromRepository("Token $authCode")
         viewModel.refreshUserDetailsFromRepository("Token $authCode")
-        //   viewModel.refreshPowerUpStatusFromRepository("Token $authCode")
         viewModel.getPowerUpStatus("Token $authCode")
 
         root.submit_btn.setOnClickListener {

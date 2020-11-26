@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fragment_back"
-    android:padding="20dp">
+    tools:ignore="ContentDescription">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,13 +14,394 @@
 
         <TextView
             style="@style/headerTextStyle"
-            android:layout_marginTop="20dp"
-            android:text="@string/instructions_n"/>
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="31dp"
+            android:text="@string/instructions_n"
+            app:lineHeight="0sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="26dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point1"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point2"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point3"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point4"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point5"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point6"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point7"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point8"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/point9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/ibm_plex_mono_regular"
+                    android:text="@string/point9"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="21dp"
+                        android:src="@drawable/ic_free_hint" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_close_answer_inst" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_skip_question" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point10"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point11"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point12"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_rectangle" />
+
+            <TextView
+                android:id="@+id/point13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ibm_plex_mono_regular"
+                android:text="@string/point13"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
         <TextView
-            style="@style/simpleTextStyle"
-            android:text="@string/sample"/>
-
+            android:id="@+id/point14"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="31dp"
+            android:layout_marginEnd="31dp"
+            android:layout_marginBottom="28dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/ibm_plex_mono_regular"
+            android:text="@string/point14"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </ScrollView>

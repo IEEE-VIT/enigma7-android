@@ -13,9 +13,7 @@ import com.ieeevit.enigma7.viewModel.StoryViewModel
 import kotlinx.android.synthetic.main.enigma_title.view.*
 import kotlinx.android.synthetic.main.fragment_story.view.*
 
-
 class StoryFragment : Fragment() {
-
     val viewModel: StoryViewModel by viewModels()
     private lateinit var sharedPreference: PrefManager
     private lateinit var authCode: String
@@ -30,14 +28,13 @@ class StoryFragment : Fragment() {
         root.overlayFrame.visibility = View.VISIBLE
         sharedPreference = PrefManager(this.requireActivity())
         authCode = sharedPreference.getAuthCode()!!
-
-        viewModel.refreshCompleteStoryFromRepository("Token $authCode")
+       val username = sharedPreference.getUsername()
+        viewModel.refreshCompleteStoryFromRepository("Token $authCode",username!!)
         viewModel.history.observe(viewLifecycleOwner, {
             if (it != null) {
                 root.overlayFrame.visibility=View.GONE
                 root.story.text = it.storyHistory
             }
-
         })
 
         root.instructions.setOnClickListener {
@@ -45,7 +42,6 @@ class StoryFragment : Fragment() {
                 .replace(R.id.container, InstructionsFragment())
                 .commit()
         }
-
         return root
     }
 
