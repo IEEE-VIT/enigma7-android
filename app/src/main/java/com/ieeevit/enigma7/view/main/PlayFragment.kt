@@ -108,6 +108,7 @@ class PlayFragment : Fragment() {
         })
         viewModel.userDetails.observe(viewLifecycleOwner, {
             if (it != null) {
+                sharedPreference.setUsername(it.username)
                 val xp: Int = it.xp!!
                 Log.i("XP", xp.toString())
                 sharedPreference.setXp(xp)
