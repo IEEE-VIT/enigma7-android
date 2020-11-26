@@ -135,9 +135,25 @@ class PlayFragment : Fragment() {
         })
         viewModel.story.observe(viewLifecycleOwner, {
             if (it?.question_story != null) {
+                var text=""
+                var word=""
+                for (i:Char in it.question_story.story_text){
+                    if(i!= ' ') word+=i
+                    else{
+                        if(word.contains("<br>")) text+="\n"
+                        else if(word.contains("<username>")) text+="\n${sharedPreference.getUsername()}:\n"
+                        else if(word.contains("<4777>")) text+="\n4777:\n"
+                        else{
+                            text+="$word "
+                            word=""
+                        }
+                    }
+                }
+                val words=it.question_story.story_text.split(' ')
+                text+=words[words.size-1]
                 parentFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
-                    .replace(R.id.container, StorySnippetFragment(it.question_story.story_text))
+                    .replace(R.id.container, StorySnippetFragment(text))
                     .commit()
             }
         })

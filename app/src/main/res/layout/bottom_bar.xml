@@ -7,8 +7,7 @@
     <RelativeLayout
         android:id="@+id/game_back"
         style="@style/BottomButtonBack"
-        android:background="@drawable/bottom_button_back"
-       >
+        android:background="@drawable/bottom_button_back">
 
         <ImageButton
             android:id="@+id/game"

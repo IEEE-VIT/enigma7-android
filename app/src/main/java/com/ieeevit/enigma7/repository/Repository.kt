@@ -1,9 +1,11 @@
 package com.ieeevit.enigma7.repository
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.database.*
 import com.ieeevit.enigma7.model.LeaderboardEntry
+import com.ieeevit.enigma7.utils.PrefManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -13,6 +15,8 @@ class Repository(private val database: EnigmaDatabase) {
     val questions: LiveData<Question> = database.questionsDao.getQuestion()
     val leaderBoard = database.leaderBoardDao.getLeaderBoard()
     val storyHistory = database.storyHistoryDao.getStoryHistory()
+    private lateinit var sharedPreferences:PrefManager
+
     suspend fun refreshUserDetails(authToken: String) {
         withContext(Dispatchers.IO) {
             val user = Api.retrofitService.getUserDetails(authToken)
@@ -53,19 +57,33 @@ class Repository(private val database: EnigmaDatabase) {
         }
     }
 
-    suspend fun refreshStoryHistory(authToken: String) {
+    suspend fun refreshStoryHistory(authToken: String, username: String) {
         withContext(Dispatchers.IO) {
             val completeStory = Api.retrofitService.getCompleteStory(authToken)
             var storyString = ""
             for (story in completeStory) {
+                var text=""
+                var word=""
                 if (story.question_story != null) {
-                    storyString += "${story.question_story.story_text} \n\n"
+                    for (i:Char in story.question_story.story_text){
+                        if(i!= ' ') word+=i
+                        else{
+                            if(word.contains("<br>")) text+="\n"
+                            else if(word.contains("<username>")) text+="\n$username:\n"
+                            else if(word.contains("<4777>")) text+="\n4777:\n"
+                            else{
+                                text+="$word "
+                                word=""
+                            }
+                        }
+                    }
                 }
+                val words=story.question_story.story_text.split(' ')
+                text+=words[words.size-1]
+                storyString+="$text\n\n"
             }
             val storyHistory = StoryHistory(1, storyString)
             database.storyHistoryDao.insertStoryHistory(storyHistory)
         }
     }
-
-
 }

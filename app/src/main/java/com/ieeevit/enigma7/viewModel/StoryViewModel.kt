@@ -1,6 +1,7 @@
 package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.ieeevit.enigma7.database.getDatabase
@@ -11,19 +12,17 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = Repository(getDatabase(application))
     val context = this
 
-
     val history = repository.storyHistory
 
-    fun refreshCompleteStoryFromRepository(authToken: String) {
+    fun refreshCompleteStoryFromRepository(authToken: String, username:String) {
         viewModelScope.launch {
             try {
-                repository.refreshStoryHistory(authToken)
+                repository.refreshStoryHistory(authToken, username)
             } catch (e: Exception) {
 
             }
         }
     }
-
 
 }
 

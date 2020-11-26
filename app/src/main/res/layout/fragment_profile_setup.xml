@@ -75,10 +75,12 @@
                 android:textColor="@color/buttonTextColor"
                 android:textSize="18sp"
                 android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/nextButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/graduation"
+                app:layout_constraintVertical_bias="0.108"
                 app:lineHeight="23sp" />
 
             <TextView
@@ -113,7 +115,7 @@
                 android:id="@+id/publicitySpinner"
                 style="@style/mySpinnerItemStyle"
                 android:layout_width="0dp"
-                android:layout_height="32dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="23dp"
                 android:layout_marginEnd="143dp"
@@ -237,7 +239,7 @@
                 android:id="@+id/graduation"
                 style="@style/editTextStyle"
                 android:layout_width="0dp"
-                android:layout_height="32dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="23dp"
                 android:layout_marginEnd="143dp"

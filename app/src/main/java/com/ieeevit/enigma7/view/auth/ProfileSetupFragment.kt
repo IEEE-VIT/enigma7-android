@@ -147,7 +147,6 @@ class ProfileSetupFragment : Fragment() {
 
         binding.nextButton.setOnClickListener {
             val year: Int?
-
             year = (graduation.getItemAtPosition(graduationPos).toString()).toInt()
 
             val outreachRequest = OutreachRequest(

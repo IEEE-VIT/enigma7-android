@@ -8,17 +8,16 @@ class PrefManager(val context: Context) {
     private val sharedPref: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     private val authorizationCode: String = "AuthorizationCode"
+    private val username: String = "Username"
     private val userNameExist: String = "userStatus"
     val hint:String="hintString"
     private val IS_FIRST_TIME_LAUNCH= "IsFirstTimeLaunch"
     private val gameStarted:String="IsGameStarted"
     private val xP ="xP"
     private val editor: SharedPreferences.Editor = sharedPref.edit()
-     private val loggedIN="IsLoggedIn"
+    private val loggedIN="IsLoggedIn"
     private val enigmaStatus="EnigmaStatus"
     private val canShowHintDialog="CanShowHintDialog"
-    private val username="Username"
-
 
     fun setAuthCode(text: String) {
         editor.putString(authorizationCode, text)
