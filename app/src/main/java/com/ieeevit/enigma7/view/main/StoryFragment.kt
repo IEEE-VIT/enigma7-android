@@ -13,13 +13,10 @@ import com.ieeevit.enigma7.viewModel.StoryViewModel
 import kotlinx.android.synthetic.main.enigma_title.view.*
 import kotlinx.android.synthetic.main.fragment_story.view.*
 
-
 class StoryFragment : Fragment() {
-
     val viewModel: StoryViewModel by viewModels()
     private lateinit var sharedPreference: PrefManager
     private lateinit var authCode: String
-    private lateinit var username: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,15 +28,13 @@ class StoryFragment : Fragment() {
         root.overlayFrame.visibility = View.VISIBLE
         sharedPreference = PrefManager(this.requireActivity())
         authCode = sharedPreference.getAuthCode()!!
-        username = sharedPreference.getUsername()!!
-
-        viewModel.refreshCompleteStoryFromRepository("Token $authCode",username)
+       val username = sharedPreference.getUsername()
+        viewModel.refreshCompleteStoryFromRepository("Token $authCode",username!!)
         viewModel.history.observe(viewLifecycleOwner, {
             if (it != null) {
                 root.overlayFrame.visibility=View.GONE
                 root.story.text = it.storyHistory
             }
-
         })
 
         root.instructions.setOnClickListener {

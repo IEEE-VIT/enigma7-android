@@ -21,8 +21,7 @@
             android:id="@+id/question"
             style="@style/questionTextStyle"
             android:layout_marginTop="1dp"
-            android:minLines="2"
-            android:text="@string/sample2" />
+            android:minLines="2" />
 
         <ImageView
             android:id="@+id/question_image"

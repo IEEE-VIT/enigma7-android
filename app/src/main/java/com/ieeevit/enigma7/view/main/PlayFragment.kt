@@ -140,12 +140,23 @@ class PlayFragment : Fragment() {
                 for (i:Char in it.question_story.story_text){
                     if(i!= ' ') word+=i
                     else{
-                        if(word.contains("<br>")) text+="\n"
-                        else if(word.contains("<username>")) text+="\n${sharedPreference.getUsername()}:\n"
-                        else if(word.contains("<4777>")) text+="\n4777:\n"
-                        else{
-                            text+="$word "
-                            word=""
+                        when {
+                            word.contains("<br>") -> {
+                                text+="\n"
+                                word=""
+                            }
+                            word.contains("<username>") -> {
+                                text+="\n${sharedPreference.getUsername()}: "
+                                word=""
+                            }
+                            word.contains("<4777>") -> {
+                                text+="\n4777: "
+                                word=""
+                            }
+                            else -> {
+                                text+="$word "
+                                word=""
+                            }
                         }
                     }
                 }
@@ -194,7 +205,6 @@ class PlayFragment : Fragment() {
 
         viewModel.refreshQuestionsFromRepository("Token $authCode")
         viewModel.refreshUserDetailsFromRepository("Token $authCode")
-        //   viewModel.refreshPowerUpStatusFromRepository("Token $authCode")
         viewModel.getPowerUpStatus("Token $authCode")
 
         root.submit_btn.setOnClickListener {

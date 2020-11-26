@@ -54,10 +54,9 @@
             android:layout_marginVertical="17dp">
 
             <TextView
-                style="@style/simpleTextStyle"
                 android:id="@+id/story"
-                android:layout_marginHorizontal="21dp"
-                android:text="@string/story_sample"/>
+                style="@style/simpleTextStyle"
+                android:layout_marginHorizontal="21dp" />
 
         </ScrollView>
 

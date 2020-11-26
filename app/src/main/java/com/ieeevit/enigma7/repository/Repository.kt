@@ -1,11 +1,9 @@
 package com.ieeevit.enigma7.repository
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.database.*
 import com.ieeevit.enigma7.model.LeaderboardEntry
-import com.ieeevit.enigma7.utils.PrefManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -15,7 +13,6 @@ class Repository(private val database: EnigmaDatabase) {
     val questions: LiveData<Question> = database.questionsDao.getQuestion()
     val leaderBoard = database.leaderBoardDao.getLeaderBoard()
     val storyHistory = database.storyHistoryDao.getStoryHistory()
-    private lateinit var sharedPreferences:PrefManager
 
     suspend fun refreshUserDetails(authToken: String) {
         withContext(Dispatchers.IO) {
@@ -68,12 +65,23 @@ class Repository(private val database: EnigmaDatabase) {
                     for (i:Char in story.question_story.story_text){
                         if(i!= ' ') word+=i
                         else{
-                            if(word.contains("<br>")) text+="\n"
-                            else if(word.contains("<username>")) text+="\n$username:\n"
-                            else if(word.contains("<4777>")) text+="\n4777:\n"
-                            else{
-                                text+="$word "
-                                word=""
+                            when {
+                                word.contains("<br>") -> {
+                                    text+="\n"
+                                    word=""
+                                }
+                                word.contains("<username>") -> {
+                                    text+="\n$username: "
+                                    word=""
+                                }
+                                word.contains("<4777>") -> {
+                                    text+="\n4777: "
+                                    word=""
+                                }
+                                else -> {
+                                    text+="$word "
+                                    word=""
+                                }
                             }
                         }
                     }
