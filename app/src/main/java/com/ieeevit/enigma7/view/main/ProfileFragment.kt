@@ -55,15 +55,7 @@ class ProfileFragment : Fragment() {
         viewModel.networkStatus.observe(viewLifecycleOwner, {
             if (it == 0) {
                 binding.overlayFrame.visibility = View.GONE
-                Toast.makeText(activity, "User detail Retrieval Failed", Toast.LENGTH_SHORT).show()
-                val snack = Snackbar.make(
-                    binding.scroll,
-                    "User detail Retrieval Failed",
-                    Snackbar.LENGTH_INDEFINITE
-                )
-
-
-
+               Snackbar.make(binding.scroll, "User detail Retrieval Failed", Snackbar.LENGTH_SHORT)
             }
         })
         binding.signOutButton.setOnClickListener {

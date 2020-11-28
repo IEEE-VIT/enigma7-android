@@ -2,14 +2,15 @@ package com.ieeevit.enigma7.view.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.snackbar.Snackbar
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.ActivityAuthBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.BaseActivity
 import com.ieeevit.enigma7.view.main.MainActivity
 import com.ieeevit.enigma7.view.timer.CountdownActivity
+import kotlinx.android.synthetic.main.activity_count_down.*
 import kotlinx.android.synthetic.main.bottom_bar.view.*
 
 class AuthActivity : BaseActivity() {
@@ -36,10 +37,10 @@ class AuthActivity : BaseActivity() {
             supportFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
         }
 
-        binding.include2.game.setOnClickListener { Toast.makeText(applicationContext,"Please Login",Toast.LENGTH_SHORT).show() }
-        binding.include2.leaderboard.setOnClickListener { Toast.makeText(applicationContext,"Please Login",Toast.LENGTH_SHORT).show() }
-        binding.include2.story.setOnClickListener { Toast.makeText(applicationContext,"Please Login",Toast.LENGTH_SHORT).show() }
-        binding.include2.profile.setOnClickListener { Toast.makeText(applicationContext,"Please Login",Toast.LENGTH_SHORT).show() }
+        binding.include2.game.setOnClickListener { Snackbar.make(constraint,"Please Login",Snackbar.LENGTH_SHORT).show() }
+        binding.include2.leaderboard.setOnClickListener { Snackbar.make(constraint,"Please Login",Snackbar.LENGTH_SHORT).show() }
+        binding.include2.story.setOnClickListener { Snackbar.make(constraint,"Please Login",Snackbar.LENGTH_SHORT).show() }
+        binding.include2.profile.setOnClickListener { Snackbar.make(constraint,"Please Login",Snackbar.LENGTH_SHORT).show() }
 
     }
 

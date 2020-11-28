@@ -13,15 +13,15 @@
         android:src="@drawable/ic_hint_icon" />
 
     <ImageButton
-        android:id="@+id/closeAnswerPowerup"
-        style="@style/hintButtonStyle"
-        android:contentDescription="@string/closeanswer"
-        android:src="@drawable/ic_close_ans" />
-
-    <ImageButton
         android:id="@+id/skipPowerUp"
         style="@style/hintButtonStyle"
         android:contentDescription="@string/skip"
         android:src="@drawable/ic_skip_icon" />
+
+    <ImageButton
+        android:id="@+id/closeAnswerPowerup"
+        style="@style/hintButtonStyle"
+        android:contentDescription="@string/closeanswer"
+        android:src="@drawable/ic_close_ans" />
 
 </LinearLayout>

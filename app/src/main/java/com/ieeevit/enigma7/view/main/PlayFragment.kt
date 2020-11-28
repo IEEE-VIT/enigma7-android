@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.work.WorkManager
+import com.google.android.material.snackbar.Snackbar
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.model.CloseAnswer
 import com.ieeevit.enigma7.utils.PrefManager
@@ -69,7 +70,7 @@ class PlayFragment : Fragment() {
         viewModel.hint.observe(viewLifecycleOwner, {
             if (it == "") {
                 overlayFrame.visibility = GONE
-                Toast.makeText(activity, "Hint retrieval failed", Toast.LENGTH_SHORT).show()
+                Snackbar.make(root.rootView,"Hint retrieval failed",Snackbar.LENGTH_SHORT).show()
             } else if (it != null) {
                 overlayFrame.visibility = GONE
                 hint = it
