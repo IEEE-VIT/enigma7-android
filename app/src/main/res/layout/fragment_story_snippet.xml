@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:ignore="ContentDescription">
 
     <LinearLayout
@@ -15,22 +16,22 @@
         <include
             layout="@layout/enigma_title"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <VideoView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/character_video"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/enigma_character"
-             />
+            android:layout_marginTop="40dp"/>
         
         <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             android:paddingVertical="20dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingHorizontal="30dp"
                 android:orientation="vertical">
 
                 <in.codeshuffle.typewriterview.TypeWriterView
@@ -38,7 +39,6 @@
                     style="@style/simpleTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="50dp"
                     android:layout_marginTop="40dp" />
 
                 <LinearLayout

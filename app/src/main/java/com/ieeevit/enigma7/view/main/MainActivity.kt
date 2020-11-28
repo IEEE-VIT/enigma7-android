@@ -7,7 +7,6 @@ import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
 import kotlinx.android.synthetic.main.bottom_bar.*
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var sharedPreference: PrefManager
     override fun onCreate(savedInstanceState: Bundle?) {
