@@ -15,7 +15,6 @@
             android:id="@+id/question_id"
             style="@style/questionTextStyle"
             android:layout_marginTop="17dp"
-            android:text="@string/q1"
             android:textStyle="bold" />
 
         <TextView
@@ -45,7 +44,9 @@
             android:padding="5dp"
             android:singleLine="true"
             android:textCursorDrawable="@drawable/edit_text_cursor"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            tools:ignore="LabelFor" />
 
         <LinearLayout
             android:layout_width="match_parent"
