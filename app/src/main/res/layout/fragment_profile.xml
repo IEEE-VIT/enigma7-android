@@ -3,10 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/fragment_back"
         android:orientation="vertical"
         tools:context=".view.main.ProfileFragment">
@@ -63,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="17dp"
             android:layout_marginTop="30dp"
-            android:layout_marginEnd="217dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/ibm_plex_mono_regular"
             android:padding="2dp"
             android:text="@string/profile"
@@ -81,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="34dp"
-            android:layout_marginEnd="188dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/ibm_plex_mono_semi_bold"
             android:padding="2dp"
             android:text="@string/user_name"
@@ -114,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="22dp"
-            android:layout_marginEnd="204dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/ibm_plex_mono_semi_bold"
             android:padding="2dp"
             android:text="@string/email_id"
@@ -144,7 +147,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="26dp"
-            android:layout_marginEnd="76dp"
+            android:layout_marginEnd="10dp"
             android:orientation="horizontal"
             android:padding="2dp"
             app:layout_constraintBottom_toTopOf="@+id/textView6"
@@ -179,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="26dp"
-            android:layout_marginEnd="214dp"
+            android:layout_marginEnd="10dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/textView8"
             app:layout_constraintEnd_toEndOf="parent"
@@ -213,7 +216,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="186dp"
+            android:layout_marginEnd="10dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/signOutButton"
             app:layout_constraintEnd_toEndOf="parent"
@@ -278,5 +281,5 @@
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="textView2,username" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </ScrollView>
 </layout>
