@@ -55,14 +55,14 @@
         android:layout_gravity="center_horizontal"/>
 
         <ScrollView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="35dp"
             android:layout_gravity="center_horizontal">
-
 
             <include
                 layout="@layout/questions_layout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout_conversion_absoluteHeight="448dp"
                 tools:layout_conversion_absoluteWidth="403dp"
