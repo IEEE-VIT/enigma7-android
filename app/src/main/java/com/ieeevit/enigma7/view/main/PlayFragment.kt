@@ -38,7 +38,7 @@ class PlayFragment : Fragment() {
     private lateinit var customInflater: LayoutInflater
     private lateinit var hint: String
     private lateinit var answer: String
-    lateinit var pattern: Pattern
+    private lateinit var pattern: Pattern
     private val viewModel: PlayViewModel by lazy {
         val activity = requireNotNull(this.activity) {
         }

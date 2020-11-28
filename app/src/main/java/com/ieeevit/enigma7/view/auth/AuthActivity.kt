@@ -3,16 +3,16 @@ package com.ieeevit.enigma7.view.auth
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.ActivityAuthBinding
 import com.ieeevit.enigma7.utils.PrefManager
+import com.ieeevit.enigma7.view.BaseActivity
 import com.ieeevit.enigma7.view.main.MainActivity
 import com.ieeevit.enigma7.view.timer.CountdownActivity
 import kotlinx.android.synthetic.main.bottom_bar.view.*
 
-class AuthActivity : AppCompatActivity() {
+class AuthActivity : BaseActivity() {
     private lateinit var binding: ActivityAuthBinding
     private lateinit var sharedPreference: PrefManager
     override fun onStart() {
