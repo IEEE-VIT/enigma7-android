@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="30dp">
+        android:paddingHorizontal="10dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/question_id"
@@ -25,7 +25,7 @@
 
         <ImageView
             android:id="@+id/question_image"
-            android:layout_width="260dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:paddingHorizontal="10dp"
             android:layout_gravity="center_horizontal"

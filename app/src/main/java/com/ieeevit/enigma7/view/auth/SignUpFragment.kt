@@ -1,5 +1,6 @@
 package com.ieeevit.enigma7.view.auth
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -78,6 +79,14 @@ class SignUpFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up, container, false)
         binding.googleSignup.setOnClickListener {
             signIn()
+        }
+        binding.sponsorButton.setOnClickListener {
+            val builder = AlertDialog.Builder(activity)
+            val customInflater = requireActivity().layoutInflater
+            val customLayout: View = customInflater.inflate(R.layout.sponsor_dialog, null)
+            builder.setView(customLayout)
+            val alert = builder.create()
+            alert.show()
         }
         return binding.root
     }

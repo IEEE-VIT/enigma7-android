@@ -153,8 +153,8 @@ class PlayFragment : Fragment() {
                                 text+="\n${sharedPreference.getUsername()}: "
                                 word=""
                             }
-                            word.contains("<4777>") -> {
-                                text+="\n4777: "
+                            word.contains("<4747>") -> {
+                                text+="\n4747: "
                                 word=""
                             }
                             else -> {
@@ -283,7 +283,6 @@ class PlayFragment : Fragment() {
                     viewModel.usePowerUpSkip("Token $authCode")
                     overlayFrame.visibility = VISIBLE
                     alert.dismiss()
-
 
                 }
                 customLayout.powerup_cancel.setOnClickListener { alert.dismiss() }

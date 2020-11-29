@@ -40,6 +40,7 @@ class CountdownFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_countdown, container, false)
         startButton = root.findViewById(R.id.startButton)
         init()
+
         val authToken = sharedPreference.getAuthCode()
         viewModel.getEnigmaStatus("Token $authToken")
         startButton.setOnClickListener {

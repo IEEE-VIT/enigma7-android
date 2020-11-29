@@ -64,6 +64,7 @@
     <string name="point12">The third power up, Close answer (consumes 100 xp), the players can successfully move to the next question and earn points for the question.There will be a penalty of 10 points.</string>
     <string name="point13">Any form of malpractice shall be dealt with extreme seriousness. We are constantly trying to enhance the experience and security of the system. Your cooperation is highly appreciated.</string>
     <string name="point14">[Press the play button]</string>
+    <string name="sponsors_partners"><![CDATA[Sponsors & partners]]></string>
     <string name="answer_cannot_contain_special_characters">Answer cannot contain special characters!!</string>
     <string name="no_internet_connection">Please check your Internet connection!</string>
 
