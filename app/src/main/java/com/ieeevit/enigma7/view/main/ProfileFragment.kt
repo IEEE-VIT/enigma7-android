@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -55,21 +54,22 @@ class ProfileFragment : Fragment() {
         viewModel.networkStatus.observe(viewLifecycleOwner, {
             if (it == 0) {
                 binding.overlayFrame.visibility = View.GONE
-               Snackbar.make(binding.scroll, "User detail Retrieval Failed", Snackbar.LENGTH_SHORT)
+               Snackbar.make(binding.scroll, "Please check your internet connection!", Snackbar.LENGTH_SHORT).show()
             }
         })
         binding.signOutButton.setOnClickListener {
             val authCode: String? = sharedPreference.getAuthCode()
-            mGoogleSignInClient.signOut()
-            viewModel.clearCacheOnLogOut()
             viewModel.logOut("Token $authCode")
             binding.overlayFrame.visibility = View.VISIBLE
-            WorkManager.getInstance().cancelAllWork()
+
         }
         viewModel.logoutStatus.observe(viewLifecycleOwner, {
             if (it == successString) {
                 sharedPreference.clearSharedPreference()
                 binding.overlayFrame.visibility = View.GONE
+                mGoogleSignInClient.signOut()
+                viewModel.clearCacheOnLogOut()
+                WorkManager.getInstance().cancelAllWork()
                 navToLogin()
             }
         })
