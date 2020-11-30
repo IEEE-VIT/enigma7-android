@@ -8,7 +8,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.model.CloseAnswer
 import com.ieeevit.enigma7.utils.PrefManager
+import com.ieeevit.enigma7.view.BaseActivity
 import com.ieeevit.enigma7.viewModel.PlayViewModel
 import com.ieeevit.enigma7.work.RefreshXpWorker
 import com.squareup.picasso.Picasso
@@ -88,6 +88,7 @@ class PlayFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner, {
             if (it == 1) {
                 overlayFrame.visibility = GONE
+                Snackbar.make(root.rootView,"Please check your internet connection!",Snackbar.LENGTH_SHORT).show()
             }
         })
         viewModel.skipStatus.observe(viewLifecycleOwner, {
@@ -196,7 +197,6 @@ class PlayFragment : Fragment() {
             }
         })
         viewModel.questionResponse.observe(viewLifecycleOwner, {
-
             if (it != null) {
                 overlayFrame.visibility = GONE
                 root.question.text = it.text
@@ -207,9 +207,15 @@ class PlayFragment : Fragment() {
 
         })
 
-        viewModel.refreshQuestionsFromRepository("Token $authCode")
-        viewModel.refreshUserDetailsFromRepository("Token $authCode")
-        viewModel.getPowerUpStatus("Token $authCode")
+        if(BaseActivity().networkIsAvailable!=0){
+            viewModel.refreshQuestionsFromRepository("Token $authCode")
+            viewModel.refreshUserDetailsFromRepository("Token $authCode")
+            viewModel.getPowerUpStatus("Token $authCode")
+        }
+
+
+
+
 
         root.submit_btn.setOnClickListener {
             overlayFrame.visibility = VISIBLE

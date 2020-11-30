@@ -16,11 +16,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentSignUpBinding
 import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.timer.CountdownActivity
 import com.ieeevit.enigma7.viewModel.SignUpViewModel
+import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
 class SignUpFragment : Fragment() {
@@ -47,7 +49,7 @@ class SignUpFragment : Fragment() {
                 navigate()
             } else if (it == 0) {
                 overlayFrame.visibility = View.GONE
-                Toast.makeText(activity, "Server Sign in FAIL", Toast.LENGTH_SHORT).show()
+                Snackbar.make(constraintLayout,"Sign in failed !",Snackbar.LENGTH_SHORT).show()
             }
         })
         viewModel.authCode.observe(this, {
@@ -74,7 +76,7 @@ class SignUpFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: FragmentSignUpBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up, container, false)
         binding.googleSignup.setOnClickListener {
@@ -98,7 +100,7 @@ class SignUpFragment : Fragment() {
             overlayFrame.visibility = View.VISIBLE
             viewModel.getAuthCode(authToken.toString(), redirectUri)
         } catch (e: ApiException) {
-            Toast.makeText(activity, "handleSignInResult:error", Toast.LENGTH_SHORT).show()
+            Snackbar.make(constraintLayout,"Sign in failed !",Snackbar.LENGTH_SHORT).show()
         }
     }
 

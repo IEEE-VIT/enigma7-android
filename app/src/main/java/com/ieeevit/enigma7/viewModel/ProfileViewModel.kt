@@ -70,7 +70,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
             }
 
             override fun onFailure(call: Call<LogoutResponse>, t: Throwable) {
-
+                networkStatus.value = 0
             }
         }))
     }
