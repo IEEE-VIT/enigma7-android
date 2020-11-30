@@ -67,5 +67,7 @@
     <string name="sponsors_partners"><![CDATA[Sponsors & partners]]></string>
     <string name="answer_cannot_contain_special_characters">Answer cannot contain special characters!!</string>
     <string name="no_internet_connection">Please check your Internet connection!</string>
+    <string name="title_sponsor">Title Sponsor</string>
+    <string name="sponsors">Sponsors</string>
 
 </resources>

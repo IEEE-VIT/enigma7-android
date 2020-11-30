@@ -52,7 +52,7 @@ class PlayFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        pattern = Pattern.compile("[0-9a-zA-Z]*")
+        pattern = Pattern.compile("[0-9a-zA-Z ]*")
         val root: View = inflater.inflate(R.layout.fragment_play, container, false)
         overlayFrame = root.findViewById(R.id.overlayFrame)
         overlayFrame.visibility = VISIBLE
