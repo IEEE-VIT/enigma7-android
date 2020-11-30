@@ -71,11 +71,11 @@ class Repository(private val database: EnigmaDatabase) {
                                     word=""
                                 }
                                 word.contains("<username>") -> {
-                                    text+="\n$username: "
+                                    text+="$username: "
                                     word=""
                                 }
-                                word.contains("<4777>") -> {
-                                    text+="\n4777: "
+                                word.contains("<4747>") -> {
+                                    text+="4747: "
                                     word=""
                                 }
                                 else -> {

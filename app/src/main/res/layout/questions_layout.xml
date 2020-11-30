@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,14 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="30dp">
+        android:paddingHorizontal="10dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/question_id"
             style="@style/questionTextStyle"
             android:layout_marginTop="17dp"
-            android:text="@string/q1"
             android:textStyle="bold" />
 
         <TextView
@@ -26,7 +25,7 @@
 
         <ImageView
             android:id="@+id/question_image"
-            android:layout_width="260dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:paddingHorizontal="10dp"
             android:layout_gravity="center_horizontal"
@@ -45,7 +44,9 @@
             android:padding="5dp"
             android:singleLine="true"
             android:textCursorDrawable="@drawable/edit_text_cursor"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            tools:ignore="LabelFor" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,4 +113,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -1,9 +1,11 @@
 package com.ieeevit.enigma7.view.main
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 
 import androidx.fragment.app.Fragment
 import com.ieeevit.enigma7.R
@@ -22,6 +24,10 @@ class StorySnippetFragment(private val story:String) : Fragment() {
         root.story_snippet.setWithMusic(false)
         root.story_snippet.animateText(story)
 
+        val path="android.resource://${requireContext().packageName}/${R.raw.char_video}"
+        root.character_video.setVideoURI(Uri.parse(path))
+        root.character_video.start()
+root.click.setOnClickListener {transaction(PlayFragment())  }
         root.setOnClickListener {
             transaction(PlayFragment())
         }

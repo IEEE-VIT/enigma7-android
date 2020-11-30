@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 val retrofit: Retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
-    .baseUrl("https://enigma-api.ieeevit.org/")
+    .baseUrl("https://enigma-api-staging.ieeevit.org/")
     .build()
 
 interface ApiClient {
