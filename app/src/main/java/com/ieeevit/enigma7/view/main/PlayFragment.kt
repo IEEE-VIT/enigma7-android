@@ -150,11 +150,11 @@ class PlayFragment : Fragment() {
                                 word=""
                             }
                             word.contains("<username>") -> {
-                                text+="\n${sharedPreference.getUsername()}: "
+                                text+="${sharedPreference.getUsername()}: "
                                 word=""
                             }
                             word.contains("<4747>") -> {
-                                text+="\n4747: "
+                                text+="4747: "
                                 word=""
                             }
                             else -> {
