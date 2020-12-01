@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.*
 import androidx.work.*
+import com.google.android.material.snackbar.Snackbar
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.database.getDatabase
 import com.ieeevit.enigma7.model.*
@@ -62,6 +63,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
 
             override fun onFailure(call: Call<HintResponse>, t: Throwable) {
                 _hint.value = ""
+                error.value=1
 
             }
         })
@@ -80,7 +82,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 override fun onFailure(call: Call<CheckAnswerResponse>, t: Throwable) {
-
+                    error.value=1
                 }
 
             })
@@ -106,7 +108,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
-
+                error.value=1
             }
         })
     }
@@ -170,7 +172,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-
+                    error.value=1
                 }
             })
     }
@@ -194,7 +196,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-
+                error.value=1
             }
         })
     }
@@ -222,7 +224,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-
+                error.value=1
             }
         })
     }
@@ -237,7 +239,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<Story>, t: Throwable) {
-
+                error.value=1
             }
         })
     }

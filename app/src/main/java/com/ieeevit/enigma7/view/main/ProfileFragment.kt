@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.work.WorkManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.material.snackbar.Snackbar
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.databinding.FragmentProfileBinding
 import com.ieeevit.enigma7.utils.PrefManager
@@ -35,7 +36,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: FragmentProfileBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         binding.overlayFrame.visibility = View.VISIBLE
@@ -54,7 +55,7 @@ class ProfileFragment : Fragment() {
         viewModel.networkStatus.observe(viewLifecycleOwner, {
             if (it == 0) {
                 binding.overlayFrame.visibility = View.GONE
-                Toast.makeText(activity, "User detail Retrieval Failed", Toast.LENGTH_SHORT).show()
+               Snackbar.make(binding.scroll, "User detail Retrieval Failed", Snackbar.LENGTH_SHORT)
             }
         })
         binding.signOutButton.setOnClickListener {

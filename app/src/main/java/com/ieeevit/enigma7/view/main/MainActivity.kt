@@ -1,13 +1,14 @@
 package com.ieeevit.enigma7.view.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.utils.PrefManager
+import com.ieeevit.enigma7.view.BaseActivity
 import kotlinx.android.synthetic.main.bottom_bar.*
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : BaseActivity() {
     private lateinit var sharedPreference: PrefManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

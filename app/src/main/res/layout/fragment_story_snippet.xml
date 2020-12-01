@@ -7,22 +7,22 @@
     tools:ignore="ContentDescription">
 
     <LinearLayout
+        android:id="@+id/click"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="4dp"
         android:orientation="vertical"
+        android:padding="4dp"
         tools:ignore="UselessParent">
 
-        <include
-            layout="@layout/enigma_title"/>
+        <include layout="@layout/enigma_title" />
 
         <VideoView
+            android:id="@+id/character_video"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/character_video"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"/>
-        
+            android:layout_marginTop="40dp" />
+
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="300dp"
@@ -31,8 +31,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="30dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="30dp">
 
                 <in.codeshuffle.typewriterview.TypeWriterView
                     android:id="@+id/story_snippet"
@@ -44,18 +44,20 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    tools:ignore="UselessLeaf" />
+                    tools:ignore="UselessLeaf">
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/ic_tap_to_continue" />
 
             </LinearLayout>
 
         </ScrollView>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_tap_to_continue"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"/>
 
     </LinearLayout>
 

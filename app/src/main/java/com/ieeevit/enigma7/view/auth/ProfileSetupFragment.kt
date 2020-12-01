@@ -45,7 +45,7 @@ class ProfileSetupFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreference = PrefManager(this.requireActivity())
-        pattern = Pattern.compile("[0-9a-zA-Z]*")
+        pattern = Pattern.compile("[0-9a-zA-Z ]*")
     }
 
     init {
@@ -55,7 +55,7 @@ class ProfileSetupFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: FragmentProfileSetupBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile_setup, container, false)
         val spinner: Spinner = binding.publicitySpinner

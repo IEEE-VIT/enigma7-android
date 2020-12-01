@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.work.WorkManager
+import com.google.android.material.snackbar.Snackbar
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.model.CloseAnswer
 import com.ieeevit.enigma7.utils.PrefManager
@@ -29,6 +30,7 @@ import kotlinx.android.synthetic.main.questions_layout.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.*
 import kotlinx.android.synthetic.main.view_hint_dialog.view.errorview
 import kotlinx.android.synthetic.main.xp_alert_dialog.view.*
+import java.util.regex.Pattern
 
 class PlayFragment : Fragment() {
     private lateinit var sharedPreference: PrefManager
@@ -37,6 +39,7 @@ class PlayFragment : Fragment() {
     private lateinit var customInflater: LayoutInflater
     private lateinit var hint: String
     private lateinit var answer: String
+    private lateinit var pattern: Pattern
     private val viewModel: PlayViewModel by lazy {
         val activity = requireNotNull(this.activity) {
         }
@@ -49,6 +52,7 @@ class PlayFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        pattern = Pattern.compile("[0-9a-zA-Z ]*")
         val root: View = inflater.inflate(R.layout.fragment_play, container, false)
         overlayFrame = root.findViewById(R.id.overlayFrame)
         overlayFrame.visibility = VISIBLE
@@ -66,7 +70,7 @@ class PlayFragment : Fragment() {
         viewModel.hint.observe(viewLifecycleOwner, {
             if (it == "") {
                 overlayFrame.visibility = GONE
-                Toast.makeText(activity, "Hint retrieval failed", Toast.LENGTH_SHORT).show()
+                Snackbar.make(root.rootView,"Hint retrieval failed",Snackbar.LENGTH_SHORT).show()
             } else if (it != null) {
                 overlayFrame.visibility = GONE
                 hint = it
@@ -146,11 +150,11 @@ class PlayFragment : Fragment() {
                                 word=""
                             }
                             word.contains("<username>") -> {
-                                text+="\n${sharedPreference.getUsername()}: "
+                                text+="${sharedPreference.getUsername()}: "
                                 word=""
                             }
                             word.contains("<4747>") -> {
-                                text+="\n4747: "
+                                text+="4747: "
                                 word=""
                             }
                             else -> {
@@ -210,8 +214,15 @@ class PlayFragment : Fragment() {
         root.submit_btn.setOnClickListener {
             overlayFrame.visibility = VISIBLE
             val answer = root.answerBox.text.toString().trimEnd()
-            viewModel.checkAnswer("Token $authCode", answer)
+            val matcher = pattern.matcher(answer)
+            if(!matcher.matches()){
+              showAlertDialog(R.layout.special_character_dialog)
+                overlayFrame.visibility = GONE
+            }else{
+                viewModel.checkAnswer("Token $authCode", answer)
+            }
         }
+
         root.get_hint_btn.setOnClickListener {
             showAlertDialog(R.layout.hint_dialog_layout)
         }

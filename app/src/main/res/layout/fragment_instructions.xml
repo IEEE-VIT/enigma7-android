@@ -274,13 +274,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:src="@drawable/ic_close_answer_inst" />
+                        android:src="@drawable/ic_skip_question" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:src="@drawable/ic_skip_question" />
+                        android:src="@drawable/ic_close_answer_inst" />
+
                 </LinearLayout>
             </LinearLayout>
 
