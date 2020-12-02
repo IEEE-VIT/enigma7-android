@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/coding_ninjas"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/coding_ninjas"
@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.168" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/coding_blocks"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
@@ -63,24 +63,24 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/humorbaba"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/humorbaba"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.434"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/coding_blocks"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
         app:layout_constraintVertical_bias="0.128" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/technical_sapien"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ts"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/coding_blocks"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
@@ -89,11 +89,12 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="100dp"
+        android:id="@+id/sashido"
         android:src="@drawable/sashido"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/coding_blocks"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
