@@ -80,7 +80,10 @@ class CountdownFragment : Fragment() {
     private fun startTimer(timeDifference: Long) {
         val countdownTimer = object : CountDownTimer(timeDifference, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                updateTimerUI(millisUntilFinished)
+                days?.text= (millisUntilFinished / (24 * 60 * 60 * 1000)).toString()
+                hours?.text = (millisUntilFinished / (60 * 60 * 1000) % 24).toString()
+                minutes?.text = (millisUntilFinished / (60 * 1000) % 60).toString()
+                seconds?.text = (millisUntilFinished / (1000) % 60).toString()
             }
 
             override fun onFinish() {
@@ -93,12 +96,6 @@ class CountdownFragment : Fragment() {
         countdownTimer.start()
     }
 
-    private fun updateTimerUI(millisUntilFinished: Long) {
-        days.text = (millisUntilFinished / (24 * 60 * 60 * 1000)).toString()
-        hours.text = (millisUntilFinished / (60 * 60 * 1000) % 24).toString()
-        minutes.text = (millisUntilFinished / (60 * 1000) % 60).toString()
-        seconds.text = (millisUntilFinished / (1000) % 60).toString()
-    }
 
 
 }
