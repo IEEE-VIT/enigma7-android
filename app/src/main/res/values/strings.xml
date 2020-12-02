@@ -53,7 +53,7 @@
     <string name="point1">ENIGMA 7.0 is an online cryptic hunt where players solve a series of challenging riddles and puzzles to win exciting prizes.</string>
     <string name="point2">The points earned on answering each question are completely relative to the competition</string>
     <string name="point3">the earlier you solve a question, the higher your score will be. These points determine your position on the leaderboard.</string>
-    <string name="point4">Upon using a hint, a one-time penalty of 10xp shall be applied on the points earned from the corresponding question.</string>
+    <string name="point4">Upon using a hint, a one-time penalty of 10 points shall be applied on the points earned from the corresponding question.</string>
     <string name="point5">Every player will have xp (experience points) which can be redeemed to use power ups.</string>
     <string name="point6">xp does not play a part in determining the leaderboard position and is different from “points” mentioned.</string>
     <string name="point7">All players start with 0 xp and can collect a maximum of 100 xp.</string>
@@ -69,7 +69,6 @@
     <string name="no_internet_connection">Please check your Internet connection!</string>
     <string name="title_sponsor">Title Sponsor</string>
     <string name="sponsors">Sponsors</string>
-    <string name="title_sponsor">Title Sponsor</string>
-    <string name="sponsors">Sponsors</string>
+
 
 </resources>
