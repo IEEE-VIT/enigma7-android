@@ -57,13 +57,15 @@
     <string name="point5">Every player will have xp (experience points) which can be redeemed to use power ups.</string>
     <string name="point6">xp does not play a part in determining the leaderboard position and is different from “points” mentioned.</string>
     <string name="point7">All players start with 0 xp and can collect a maximum of 100 xp.</string>
-    <string name="point8">Players earn xp every hour and upon solving the questions.</string>
+    <string name="point8">Players earn 10 xp every hour and 5 xp upon solving a question.</string>
     <string name="point9">There are three different power ups that players can redeem from the collected xp.</string>
     <string name="point10">The first power up, Free hint (consumes 50 xp), gives the player the hint to the question without the penalty to their points.</string>
     <string name="point11">The second power up, Skip question (consumes 75 xp), the players can skip the current question but will not be awarded any points. </string>
-    <string name="point12">The third power up, Close answer (consumes 100 xp), the players can successfully move to the next question and earn points for the question.There will be a penalty of 10 points.</string>
+    <string name="point12">The third power up, Close answer (consumes 100 xp), the players can successfully move to the next question by entering a close answer and there will be a penalty of 10 points for the question.</string>
     <string name="point13">Any form of malpractice shall be dealt with extreme seriousness. We are constantly trying to enhance the experience and security of the system. Your cooperation is highly appreciated.</string>
     <string name="point14">[Press the play button]</string>
+    <string name="point15">The xp stops generating after the 14th question</string>
+    <string name="point16">You have one opportunity to redeem 20 xp for using any of our instagram filters and tagging us (@ieeevitvellore) during the event.</string>
     <string name="sponsors_partners"><![CDATA[Sponsors & partners]]></string>
     <string name="answer_cannot_contain_special_characters">Answer cannot contain special characters!!</string>
     <string name="no_internet_connection">Please check your Internet connection!</string>
