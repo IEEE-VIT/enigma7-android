@@ -2,6 +2,8 @@ package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.*
 import androidx.work.*
 import com.google.android.material.snackbar.Snackbar
@@ -157,17 +159,20 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                     call: Call<PowerupResponse>,
                     response: Response<PowerupResponse>
                 ) {
-
-                    if (response.body() != null && response.body()!!.detail != null) {
-                        if (response.body()?.detail?.equals("The answer isn't a close answer")!! ||
-                            response.body()?.detail?.equals("Insufficient Xp")!!
-                        )
-                            _status.value = response.body()?.detail
-                    } else {
+                    if (response.body()!=null && response.body()!!.xp!=null){
                         _status.value = "Close answer accepted"
                         closeAnswerStatus.value = 1
                         startXpRetrieval(authToken)
                         refreshQuestionsFromRepository(authToken)
+                    }
+                    if (response.body() != null && response.body()!!.detail != null) {
+                        if (response.body()?.detail?.equals("The answer isn't a close answer")!! ||
+                            response.body()?.detail?.equals("Insufficient Xp")!! ||
+                            response.body()?.xp==null
+                        )
+                            _status.value = response.body()?.detail
+                    } else {
+                        _status.value = "Try again!"
                     }
                 }
 
