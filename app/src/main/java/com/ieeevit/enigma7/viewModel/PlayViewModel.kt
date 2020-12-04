@@ -164,7 +164,11 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                             response.body()?.detail?.equals("Insufficient Xp")!!
                         )
                             _status.value = response.body()?.detail
-                    } else {
+                    }
+                    else if(response.body()==null){
+                        _status.value="Try again"
+                    }
+                    else {
                         _status.value = "Close answer accepted"
                     }
                 }
