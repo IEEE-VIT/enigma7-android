@@ -199,8 +199,8 @@ class PlayFragment : Fragment() {
         viewModel.questionResponse.observe(viewLifecycleOwner, {
             if (it != null) {
                 if(!sharedPreference.getQuestionFlag()){
-                    viewModel.getStory(authCode)
                     sharedPreference.setQuestionFlag(true)
+                    viewModel.getStory(authCode)
                 }
                 overlayFrame.visibility = GONE
                 root.question.text = it.text
