@@ -43,7 +43,6 @@ class SignUpFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         sharedPreference = PrefManager(this.requireActivity())
-        sharedPreference.setQuestionFlag(false)
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), viewModel.gso)
         viewModel.authStatus.observe(this, {
             if (it == 1) {
