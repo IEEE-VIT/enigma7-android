@@ -159,17 +159,22 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                     call: Call<PowerupResponse>,
                     response: Response<PowerupResponse>
                 ) {
+
                     if (response.body() != null && response.body()!!.detail != null) {
                         if (response.body()?.detail?.equals("The answer isn't a close answer")!! ||
-                            response.body()?.detail?.equals("Insufficient Xp")!!
+                            response.body()?.detail?.equals("Insufficient Xp")!! ||
+                            response.body()?.xp==null
                         )
                             _status.value = response.body()?.detail
                     }
-                    else if(response.body()==null){
-                        _status.value="Try again"
+                    else if(response.body()!=null && response.body()!!.xp!=null){
+                        _status.value = "Close answer accepted"
+                        closeAnswerStatus.value = 1
+                        startXpRetrieval(authToken)
+                        refreshQuestionsFromRepository(authToken)
                     }
                     else {
-                        _status.value = "Close answer accepted"
+                        _status.value = "Try again!"
                     }
                 }
 
