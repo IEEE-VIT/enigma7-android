@@ -202,7 +202,6 @@ class PlayFragment : Fragment() {
                     viewModel.getStory(authCode)
                     sharedPreference.setQuestionFlag(true)
                 }
-
                 overlayFrame.visibility = GONE
                 root.question.text = it.text
                 val id = "Q${it.id}."
