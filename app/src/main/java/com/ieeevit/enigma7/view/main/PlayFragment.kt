@@ -151,11 +151,11 @@ class PlayFragment : Fragment() {
                                 word=""
                             }
                             word.contains("<username>") -> {
-                                text+="${sharedPreference.getUsername()}: "
+                                text+=sharedPreference.getUsername()
                                 word=""
                             }
                             word.contains("<4747>") -> {
-                                text+="4747: "
+                                text+="4747"
                                 word=""
                             }
                             else -> {
@@ -198,6 +198,11 @@ class PlayFragment : Fragment() {
         })
         viewModel.questionResponse.observe(viewLifecycleOwner, {
             if (it != null) {
+                if(!sharedPreference.getQuestionFlag()){
+                    viewModel.getStory(authCode)
+                    sharedPreference.setQuestionFlag(true)
+                }
+
                 overlayFrame.visibility = GONE
                 root.question.text = it.text
                 val id = "Q${it.id}."
