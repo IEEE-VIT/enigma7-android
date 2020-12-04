@@ -28,6 +28,7 @@ class StorySnippetFragment(private val story:String) : Fragment() {
         root.character_video.setVideoURI(Uri.parse(path))
         root.character_video.start()
 root.click.setOnClickListener {transaction(PlayFragment())  }
+        root.tap.setOnClickListener {transaction(PlayFragment())  }
         root.setOnClickListener {
             transaction(PlayFragment())
         }
