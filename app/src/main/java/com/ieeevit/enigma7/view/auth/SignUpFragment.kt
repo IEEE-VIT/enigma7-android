@@ -2,6 +2,7 @@ package com.ieeevit.enigma7.view.auth
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.timer.CountdownActivity
 import com.ieeevit.enigma7.viewModel.SignUpViewModel
 import kotlinx.android.synthetic.main.fragment_sign_up.*
+import kotlinx.android.synthetic.main.sponsor_dialog.view.*
 
 
 class SignUpFragment : Fragment() {
@@ -84,6 +86,14 @@ class SignUpFragment : Fragment() {
             val builder = AlertDialog.Builder(activity)
             val customInflater = requireActivity().layoutInflater
             val customLayout: View = customInflater.inflate(R.layout.sponsor_dialog, null)
+
+            customLayout.sashido.setOnClickListener { openLink("https://www.sashido.io/") }
+            customLayout.coding_blocks.setOnClickListener { openLink("https://codingblocks.com/") }
+            customLayout.coding_ninjas.setOnClickListener { openLink("https://www.codingninjas.com/") }
+            customLayout.humorbaba.setOnClickListener { openLink("https://www.humourbaba.com/") }
+            customLayout.technical_sapien.setOnClickListener { openLink("https://instagram.com/technical_sapien?igshid=ikix2085peht") }
+
+
             builder.setView(customLayout)
             val alert = builder.create()
             alert.show()
@@ -123,6 +133,11 @@ class SignUpFragment : Fragment() {
         } else if (sharedPreference.getUserStaus() == true) {
             startActivity(Intent(activity, CountdownActivity::class.java))
         }
+    }
 
+    private fun openLink(url: String){
+        val uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        requireContext().startActivity(intent)
     }
 }

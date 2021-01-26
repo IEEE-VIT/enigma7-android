@@ -72,6 +72,16 @@ class PrefManager(val context: Context) {
         return sharedPref.getString(hint, null)
     }
 
+    fun setQuestionFlag(boolean: Boolean){
+        editor.putBoolean("Question Flag", boolean)
+        editor.apply()
+    }
+
+    fun getQuestionFlag(): Boolean{
+        return sharedPref.getBoolean("Question Flag", false)
+    }
+
+
     fun clearSharedPreference() {
         editor.clear()
         editor.apply()

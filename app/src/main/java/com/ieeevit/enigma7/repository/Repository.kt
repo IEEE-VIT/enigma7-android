@@ -48,8 +48,7 @@ class Repository(private val database: EnigmaDatabase) {
 
     suspend fun refreshLeaderBoard(authToken: String) {
         withContext(Dispatchers.IO) {
-            val leaderboardEntry: ArrayList<LeaderboardEntry> =
-                Api.retrofitService.getLeaderboard(authToken)
+            val leaderboardEntry: ArrayList<LeaderboardEntry> = Api.retrofitService.getLeaderboard(authToken)
             database.leaderBoardDao.deleteAll()
             database.leaderBoardDao.insertLeaderBoard(leaderboardEntry.asDatabaseModel())
         }
@@ -60,36 +59,36 @@ class Repository(private val database: EnigmaDatabase) {
             val completeStory = Api.retrofitService.getCompleteStory(authToken)
             var storyString = ""
             for (story in completeStory) {
-                var text = ""
-                var word = ""
+                var text=""
+                var word=""
                 if (story.question_story != null) {
-                    for (i: Char in story.question_story.story_text) {
-                        if (i != ' ') word += i
-                        else {
+                    for (i:Char in story.question_story.story_text){
+                        if(i!= ' ') word+=i
+                        else{
                             when {
                                 word.contains("<br>") -> {
-                                    text += "\n"
-                                    word = ""
+                                    text+="\n"
+                                    word=""
                                 }
                                 word.contains("<username>") -> {
-                                    text += "$username: "
-                                    word = ""
+                                    text+=username
+                                    word=""
                                 }
                                 word.contains("<4747>") -> {
-                                    text += "4747: "
-                                    word = ""
+                                    text+="4747"
+                                    word=""
                                 }
                                 else -> {
-                                    text += "$word "
-                                    word = ""
+                                    text+="$word "
+                                    word=""
                                 }
                             }
                         }
                     }
                 }
-                val words = story.question_story.story_text.split(' ')
-                text += words[words.size - 1]
-                storyString += "$text\n\n"
+                val words=story.question_story.story_text.split(' ')
+                text+=words[words.size-1]
+                storyString+="$text\n\n"
             }
             val storyHistory = StoryHistory(1, storyString)
             database.storyHistoryDao.insertStoryHistory(storyHistory)

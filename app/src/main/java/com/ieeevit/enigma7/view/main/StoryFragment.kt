@@ -28,7 +28,7 @@ class StoryFragment : Fragment() {
         root.overlayFrame.visibility = View.VISIBLE
         sharedPreference = PrefManager(this.requireActivity())
         authCode = sharedPreference.getAuthCode()!!
-       val username = sharedPreference.getUsername()
+        val username = sharedPreference.getUsername()
         viewModel.refreshCompleteStoryFromRepository("Token $authCode",username!!)
         viewModel.history.observe(viewLifecycleOwner, {
             if (it != null) {
