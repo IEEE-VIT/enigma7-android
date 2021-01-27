@@ -1,12 +1,8 @@
 package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.*
 import androidx.work.*
-import com.google.android.material.snackbar.Snackbar
 import com.ieeevit.enigma7.api.service.Api
 import com.ieeevit.enigma7.database.getDatabase
 import com.ieeevit.enigma7.model.*
@@ -65,7 +61,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
 
             override fun onFailure(call: Call<HintResponse>, t: Throwable) {
                 _hint.value = ""
-                error.value=1
+                error.value = 1
 
             }
         })
@@ -84,7 +80,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 override fun onFailure(call: Call<CheckAnswerResponse>, t: Throwable) {
-                    error.value=1
+                    error.value = 1
                 }
 
             })
@@ -110,7 +106,7 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
-                error.value=1
+                error.value = 1
             }
         })
     }
@@ -163,23 +159,21 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                     if (response.body() != null && response.body()!!.detail != null) {
                         if (response.body()?.detail?.equals("The answer isn't a close answer")!! ||
                             response.body()?.detail?.equals("Insufficient Xp")!! ||
-                            response.body()?.xp==null
+                            response.body()?.xp == null
                         )
                             _status.value = response.body()?.detail
-                    }
-                    else if(response.body()!=null && response.body()!!.xp!=null){
+                    } else if (response.body() != null && response.body()!!.xp != null) {
                         _status.value = "Close answer accepted"
                         closeAnswerStatus.value = 1
                         startXpRetrieval(authToken)
                         refreshQuestionsFromRepository(authToken)
-                    }
-                    else {
+                    } else {
                         _status.value = "Try again!"
                     }
                 }
 
                 override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-                    error.value=1
+                    error.value = 1
                 }
             })
     }
@@ -199,11 +193,10 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                         _status.value = response.body()!!.detail
                     }
                 }
-
             }
 
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-                error.value=1
+                error.value = 1
             }
         })
     }
@@ -225,13 +218,11 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                         _hint.value = response.body()?.hint
                         startXpRetrieval(authToken)
                     }
-
                 }
-
             }
 
             override fun onFailure(call: Call<PowerupResponse>, t: Throwable) {
-                error.value=1
+                error.value = 1
             }
         })
     }
@@ -242,11 +233,10 @@ class PlayViewModel(application: Application) : AndroidViewModel(application) {
                 if (response.body() != null) {
                     _story.value = response.body()
                 }
-
             }
 
             override fun onFailure(call: Call<Story>, t: Throwable) {
-                error.value=1
+                error.value = 1
             }
         })
     }

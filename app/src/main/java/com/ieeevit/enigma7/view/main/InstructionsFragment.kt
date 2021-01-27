@@ -19,19 +19,20 @@ class InstructionsFragment : Fragment() {
     ): View? {
         sharedPreference.setFirstTimeInstruction(false)
         return inflater.inflate(R.layout.fragment_instructions, container, false)
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreference = PrefManager(this.requireActivity())
-        if (!sharedPreference.isFirstTimeInstruction()){
-            activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    val fragment = PlayFragment()
-                    parentFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
-                }
-            })
+        if (!sharedPreference.isFirstTimeInstruction()) {
+            activity?.onBackPressedDispatcher?.addCallback(this,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        val fragment = PlayFragment()
+                        parentFragmentManager.beginTransaction().add(R.id.container, fragment)
+                            .commit()
+                    }
+                })
         }
 
 

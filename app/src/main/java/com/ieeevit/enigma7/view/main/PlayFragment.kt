@@ -40,13 +40,14 @@ class PlayFragment : Fragment() {
     private lateinit var hint: String
     private lateinit var answer: String
     private lateinit var pattern: Pattern
+    private lateinit var overlayFrame: ConstraintLayout
     private val viewModel: PlayViewModel by lazy {
         val activity = requireNotNull(this.activity) {
         }
         ViewModelProvider(this, PlayViewModel.Factory(activity.application))
             .get(PlayViewModel::class.java)
     }
-    private lateinit var overlayFrame: ConstraintLayout
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,7 +71,7 @@ class PlayFragment : Fragment() {
         viewModel.hint.observe(viewLifecycleOwner, {
             if (it == "") {
                 overlayFrame.visibility = GONE
-                Snackbar.make(root.rootView,"Hint retrieval failed",Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(root.rootView, "Hint retrieval failed", Snackbar.LENGTH_SHORT).show()
             } else if (it != null) {
                 overlayFrame.visibility = GONE
                 hint = it
@@ -88,7 +89,11 @@ class PlayFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner, {
             if (it == 1) {
                 overlayFrame.visibility = GONE
-                Snackbar.make(root.rootView,"Please check your internet connection!",Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(
+                    root.rootView,
+                    "Please check your internet connection!",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
         })
         viewModel.skipStatus.observe(viewLifecycleOwner, {
@@ -140,33 +145,33 @@ class PlayFragment : Fragment() {
         })
         viewModel.story.observe(viewLifecycleOwner, {
             if (it?.question_story != null) {
-                var text=""
-                var word=""
-                for (i:Char in it.question_story.story_text){
-                    if(i!= ' ') word+=i
-                    else{
+                var text = ""
+                var word = ""
+                for (i: Char in it.question_story.story_text) {
+                    if (i != ' ') word += i
+                    else {
                         when {
                             word.contains("<br>") -> {
-                                text+="\n"
-                                word=""
+                                text += "\n"
+                                word = ""
                             }
                             word.contains("<username>") -> {
-                                text+=sharedPreference.getUsername()
-                                word=""
+                                text += sharedPreference.getUsername()
+                                word = ""
                             }
                             word.contains("<4747>") -> {
-                                text+="4747"
-                                word=""
+                                text += "4747"
+                                word = ""
                             }
                             else -> {
-                                text+="$word "
-                                word=""
+                                text += "$word "
+                                word = ""
                             }
                         }
                     }
                 }
-                val words=it.question_story.story_text.split(' ')
-                text+=words[words.size-1]
+                val words = it.question_story.story_text.split(' ')
+                text += words[words.size - 1]
                 parentFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
                     .replace(R.id.container, StorySnippetFragment(text))
@@ -198,7 +203,7 @@ class PlayFragment : Fragment() {
         })
         viewModel.questionResponse.observe(viewLifecycleOwner, {
             if (it != null) {
-                if(!sharedPreference.getQuestionFlag()){
+                if (!sharedPreference.getQuestionFlag()) {
                     sharedPreference.setQuestionFlag(true)
                     viewModel.getStory(authCode)
                 }
@@ -211,7 +216,7 @@ class PlayFragment : Fragment() {
 
         })
 
-        if(BaseActivity().networkIsAvailable!=0){
+        if (BaseActivity().networkIsAvailable != 0) {
             viewModel.refreshQuestionsFromRepository("Token $authCode")
             viewModel.refreshUserDetailsFromRepository("Token $authCode")
             viewModel.getPowerUpStatus("Token $authCode")
@@ -225,10 +230,10 @@ class PlayFragment : Fragment() {
             overlayFrame.visibility = VISIBLE
             val answer = root.answerBox.text.toString().trimEnd()
             val matcher = pattern.matcher(answer)
-            if(!matcher.matches()){
-              showAlertDialog(R.layout.special_character_dialog)
+            if (!matcher.matches()) {
+                showAlertDialog(R.layout.special_character_dialog)
                 overlayFrame.visibility = GONE
-            }else{
+            } else {
                 viewModel.checkAnswer("Token $authCode", answer)
             }
         }

@@ -15,17 +15,17 @@ import retrofit2.Response
 
 class ProfileSetupViewModel : ViewModel() {
     private val _usernameChanged = MutableLiveData<Int>()
+    val outreachResponse = MutableLiveData<OutreachResponse>()
+    private val _usernameBody = MutableLiveData<EditUsernameResponse>()
+    val usernameBody: LiveData<EditUsernameResponse>
+        get() = _usernameBody
     val usernameChanged: LiveData<Int>
         get() = _usernameChanged
-    val outreachResponse = MutableLiveData<OutreachResponse>()
 
     init {
         _usernameChanged.value = 3
     }
 
-    private val _usernameBody = MutableLiveData<EditUsernameResponse>()
-    val usernameBody: LiveData<EditUsernameResponse>
-        get() = _usernameBody
 
     fun editUsername(authToken: String, userName: String) {
         Api.retrofitService.editUsername(authToken, EditUsernameRequest(userName))
@@ -55,13 +55,10 @@ class ProfileSetupViewModel : ViewModel() {
                 ) {
                     if (response.body() != null) {
                         outreachResponse.value = response.body()
-
-
                     }
                 }
 
                 override fun onFailure(call: Call<OutreachResponse>, t: Throwable) {
-
                 }
             })
     }

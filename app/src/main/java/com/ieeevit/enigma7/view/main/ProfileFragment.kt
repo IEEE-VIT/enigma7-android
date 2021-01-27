@@ -20,17 +20,17 @@ import com.ieeevit.enigma7.view.auth.AuthActivity
 import com.ieeevit.enigma7.viewModel.ProfileViewModel
 import kotlinx.android.synthetic.main.enigma_title.view.*
 
-
 class ProfileFragment : Fragment() {
     private lateinit var sharedPreference: PrefManager
+    private val successString: String = "Successfully logged out."
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
     private val viewModel: ProfileViewModel by lazy {
         val activity = requireNotNull(this.activity) {
         }
         ViewModelProvider(this, ProfileViewModel.Factory(activity.application))
             .get(ProfileViewModel::class.java)
     }
-    private val successString: String = "Successfully logged out."
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,7 +54,11 @@ class ProfileFragment : Fragment() {
         viewModel.networkStatus.observe(viewLifecycleOwner, {
             if (it == 0) {
                 binding.overlayFrame.visibility = View.GONE
-               Snackbar.make(binding.scroll, "Please check your internet connection!", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(
+                    binding.scroll,
+                    "Please check your internet connection!",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
         })
         binding.signOutButton.setOnClickListener {

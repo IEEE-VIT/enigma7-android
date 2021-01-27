@@ -31,6 +31,7 @@ class SignUpViewModel : ViewModel() {
         get() = _userStatus
     private val clientId: String =
         "55484635453-c46tes445anbidhb2qnmb2qs618mvpni.apps.googleusercontent.com"
+
     init {
         _authStatus.value = 3   // 0:fail 1:success
         _authCode.value = null
@@ -43,7 +44,7 @@ class SignUpViewModel : ViewModel() {
         .requestEmail()
         .build()
 
-   fun startXpRetrieval(authToken: String) {
+    fun startXpRetrieval(authToken: String) {
         GlobalScope.launch {
             setRecurringWork(authToken)
         }

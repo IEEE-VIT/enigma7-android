@@ -24,48 +24,48 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         sharedPreference = PrefManager(applicationContext)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
-        binding.include2.game.isEnabled=false
-        binding.include2.leaderboard.isEnabled=false
-        binding.include2.story.isEnabled=false
-        binding.include2.profile.isEnabled=false
-            initialize()
-            shortAnimationDuration = resources.getInteger(android.R.integer.config_longAnimTime)
-            Handler(Looper.getMainLooper()).postDelayed(
-                { binding.container.crypticText.setText(R.string.anglur_cryptic) },
-                800
-            )
-            binding.container.crypticText.apply {
-                //fade in animation for the crypticText
-                alpha = 0f
-                visibility = View.VISIBLE
-                animate().alpha(1f).setDuration(1500.toLong())
-                    .setListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator) {
-                            binding.container.crypticText.setText(R.string.onlineCrypticHunt)
-                            Handler(Looper.getMainLooper()).postDelayed({
-                                if (sharedPreference.isLoggedIn()) {
-                                    startIntent()
-                                } else {
-                                    binding.constraintLayout.setBackgroundResource(R.color.baseBackground)
-                                    binding.include2.visibility = View.VISIBLE
-                                    binding.container.constraintLayout.setBackgroundResource(R.drawable.fragment_back)
-                                    binding.container.zeroOne.visibility = View.VISIBLE
-                                    binding.container.zeroOne.animate()
-                                        .translationYBy((1500).toFloat())
-                                        .setDuration(400).setListener(
-                                            object : AnimatorListenerAdapter() {
-                                                override fun onAnimationEnd(animation: Animator) {
-                                                    translateXY()
-                                                    startIntent()
-                                                    animate().setListener(null)
-                                                }
-                                            })
-                                }
+        binding.include2.game.isEnabled = false
+        binding.include2.leaderboard.isEnabled = false
+        binding.include2.story.isEnabled = false
+        binding.include2.profile.isEnabled = false
+        initialize()
+        shortAnimationDuration = resources.getInteger(android.R.integer.config_longAnimTime)
+        Handler(Looper.getMainLooper()).postDelayed(
+            { binding.container.crypticText.setText(R.string.anglur_cryptic) },
+            800
+        )
+        binding.container.crypticText.apply {
+            //fade in animation for the crypticText
+            alpha = 0f
+            visibility = View.VISIBLE
+            animate().alpha(1f).setDuration(1500.toLong())
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        binding.container.crypticText.setText(R.string.onlineCrypticHunt)
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            if (sharedPreference.isLoggedIn()) {
+                                startIntent()
+                            } else {
+                                binding.constraintLayout.setBackgroundResource(R.color.baseBackground)
+                                binding.include2.visibility = View.VISIBLE
+                                binding.container.constraintLayout.setBackgroundResource(R.drawable.fragment_back)
+                                binding.container.zeroOne.visibility = View.VISIBLE
+                                binding.container.zeroOne.animate()
+                                    .translationYBy((1500).toFloat())
+                                    .setDuration(400).setListener(
+                                        object : AnimatorListenerAdapter() {
+                                            override fun onAnimationEnd(animation: Animator) {
+                                                translateXY()
+                                                startIntent()
+                                                animate().setListener(null)
+                                            }
+                                        })
+                            }
 
-                            }, 250)
-                        }
-                    })
-            }
+                        }, 250)
+                    }
+                })
+        }
 
 
     }

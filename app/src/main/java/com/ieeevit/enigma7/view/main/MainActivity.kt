@@ -7,7 +7,6 @@ import com.ieeevit.enigma7.utils.PrefManager
 import com.ieeevit.enigma7.view.BaseActivity
 import kotlinx.android.synthetic.main.bottom_bar.*
 
-
 class MainActivity : BaseActivity() {
     private lateinit var sharedPreference: PrefManager
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +24,9 @@ class MainActivity : BaseActivity() {
         profile.setOnClickListener { transaction(ProfileFragment()) }
     }
 
-
     private fun transaction(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
             .replace(R.id.container, fragment)
             .commit()
     }

@@ -1,7 +1,6 @@
 package com.ieeevit.enigma7.viewModel
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.*
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.Scopes
@@ -56,7 +55,6 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-
     fun logOut(authToken: String) {
         Api.retrofitService.logOut(authToken).enqueue((object : Callback<LogoutResponse> {
             override fun onResponse(
@@ -74,7 +72,6 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
             }
         }))
     }
-
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {

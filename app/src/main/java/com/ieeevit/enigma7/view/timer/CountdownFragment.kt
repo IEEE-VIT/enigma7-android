@@ -26,8 +26,6 @@ class CountdownFragment : Fragment() {
     private lateinit var eventCalendar: Calendar
     private var currentTime: Long = 0
     private var eventStartTime: Long = 0
-
-
     private val viewModel: CountdownViewModel by lazy {
         ViewModelProvider(this, CountdownViewModel.Factory())
             .get(CountdownViewModel::class.java)
@@ -38,10 +36,9 @@ class CountdownFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_countdown, container, false)
+        val authToken = sharedPreference.getAuthCode()
         startButton = root.findViewById(R.id.startButton)
         init()
-
-        val authToken = sharedPreference.getAuthCode()
         viewModel.getEnigmaStatus("Token $authToken")
         startButton.setOnClickListener {
             startActivity(Intent(activity, MainActivity::class.java))
@@ -67,8 +64,7 @@ class CountdownFragment : Fragment() {
         val time: String = it.time
         val finalDate = day + 'T' + time
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-        val date: Date = sdf.parse(finalDate)
-        return date
+        return sdf.parse(finalDate)
     }
 
     private fun init() {
@@ -80,7 +76,7 @@ class CountdownFragment : Fragment() {
     private fun startTimer(timeDifference: Long) {
         val countdownTimer = object : CountDownTimer(timeDifference, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                days?.text= (millisUntilFinished / (24 * 60 * 60 * 1000)).toString()
+                days?.text = (millisUntilFinished / (24 * 60 * 60 * 1000)).toString()
                 hours?.text = (millisUntilFinished / (60 * 60 * 1000) % 24).toString()
                 minutes?.text = (millisUntilFinished / (60 * 1000) % 60).toString()
                 seconds?.text = (millisUntilFinished / (1000) % 60).toString()
@@ -95,7 +91,5 @@ class CountdownFragment : Fragment() {
         }
         countdownTimer.start()
     }
-
-
 
 }

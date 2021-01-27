@@ -19,7 +19,7 @@ class LeaderboardFragment : Fragment() {
 
     private lateinit var sharedPreference: PrefManager
     private lateinit var authCode: String
-    private lateinit var adapter:LeaderBoardAdapter
+    private lateinit var adapter: LeaderBoardAdapter
     private val viewModel: LeaderboardViewModel by lazy {
         val activity = requireNotNull(this.activity) {
         }
@@ -32,29 +32,30 @@ class LeaderboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root=inflater.inflate(R.layout.fragment_leaderboard, container, false)
-        root.leaderboard_progress_bar.visibility=View.VISIBLE
+        val root = inflater.inflate(R.layout.fragment_leaderboard, container, false)
+        root.leaderboard_progress_bar.visibility = View.VISIBLE
         sharedPreference = PrefManager(this.requireActivity())
-        authCode=sharedPreference.getAuthCode()!!
+        authCode = sharedPreference.getAuthCode()!!
         viewModel.refreshLeaderBoardFromRepository("Token $authCode")
 
 
         viewModel.mLeaderBoardData.observe(viewLifecycleOwner, {
-            if (it!=null){
-                adapter= LeaderBoardAdapter(requireContext(), it)
-                root.leaderboard.layoutManager=LinearLayoutManager(context)
-                root.leaderboard.adapter=adapter
+            if (it != null) {
+                adapter = LeaderBoardAdapter(requireContext(), it)
+                root.leaderboard.layoutManager = LinearLayoutManager(context)
+                root.leaderboard.adapter = adapter
                 adapter.notifyDataSetChanged()
-                adapter.dataLoadStatus.observe(viewLifecycleOwner,{ti->
-                    if (ti==1){
-                        root.leaderboard_progress_bar.visibility=View.GONE
+                adapter.dataLoadStatus.observe(viewLifecycleOwner, { ti ->
+                    if (ti == 1) {
+                        root.leaderboard_progress_bar.visibility = View.GONE
                     }
                 })
             }
 
         })
         root.instructions.setOnClickListener {
-            parentFragmentManager.beginTransaction().setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+            parentFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
                 .replace(R.id.container, InstructionsFragment())
                 .commit()
         }
