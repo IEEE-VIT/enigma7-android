@@ -1,7 +1,6 @@
 package com.ieeevit.enigma7.view.timer
 
 import android.os.Bundle
-import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.ieeevit.enigma7.R
 import com.ieeevit.enigma7.view.BaseActivity
@@ -16,11 +15,16 @@ class CountdownActivity : BaseActivity() {
             val fragment = CountdownFragment()
             supportFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
         }
-        game.setOnClickListener { Snackbar.make(constraint,"Enigma is not Live",Snackbar.LENGTH_SHORT).show()}
-        leaderboard.setOnClickListener { Snackbar.make(constraint,"Enigma is not Live",Snackbar.LENGTH_SHORT).show() }
-        story.setOnClickListener { Snackbar.make(constraint,"Enigma is not Live",Snackbar.LENGTH_SHORT).show() }
-        profile.setOnClickListener { Snackbar.make(constraint,"Enigma is not Live",Snackbar.LENGTH_SHORT).show() }
+        game.setOnClickListener { makeSnackBar() }
+        leaderboard.setOnClickListener { makeSnackBar() }
+        story.setOnClickListener { makeSnackBar() }
+        profile.setOnClickListener { makeSnackBar() }
     }
+
+    private fun makeSnackBar() {
+        Snackbar.make(constraint, "Enigma is not Live", Snackbar.LENGTH_SHORT).show()
+    }
+
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         actionBar?.hide()

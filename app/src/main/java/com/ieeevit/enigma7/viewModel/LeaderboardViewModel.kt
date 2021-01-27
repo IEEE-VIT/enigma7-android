@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class LeaderboardViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = Repository(getDatabase(application))
     val context = this
-    val mLeaderBoardData=repository.leaderBoard
+    val mLeaderBoardData = repository.leaderBoard
     fun refreshLeaderBoardFromRepository(authToken: String) {
         viewModelScope.launch {
             try {
@@ -22,7 +22,6 @@ class LeaderboardViewModel(application: Application) : AndroidViewModel(applicat
             }
         }
     }
-
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {

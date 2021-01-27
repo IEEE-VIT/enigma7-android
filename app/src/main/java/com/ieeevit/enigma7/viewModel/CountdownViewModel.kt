@@ -14,7 +14,6 @@ class CountdownViewModel : ViewModel() {
     private val _enigmaStatus = MutableLiveData<StatusResponse>()
     val enigmaStatus: LiveData<StatusResponse>
         get() = _enigmaStatus
-
     private val error = MutableLiveData<Int>()
     private val callStatus = MutableLiveData<Int>()
 
@@ -30,8 +29,7 @@ class CountdownViewModel : ViewModel() {
             ) {
                 if (response.body() != null) {
                     _enigmaStatus.value = response.body()
-                    callStatus.value=response.code()
-
+                    callStatus.value = response.code()
                 } else {
                     error.value = 1
                 }
@@ -39,15 +37,9 @@ class CountdownViewModel : ViewModel() {
 
             override fun onFailure(call: Call<StatusResponse>, t: Throwable) {
                 error.value = 1
-
-
             }
-
         })
-
-
     }
-
 
     class Factory : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {

@@ -37,11 +37,15 @@ class AuthActivity : BaseActivity() {
             supportFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
         }
 
-        binding.include2.game.setOnClickListener { Snackbar.make(constraint,"Please Login",Snackbar.LENGTH_SHORT).show() }
-        binding.include2.leaderboard.setOnClickListener { Snackbar.make(constraint,"Please Login",Snackbar.LENGTH_SHORT).show() }
-        binding.include2.story.setOnClickListener { Snackbar.make(constraint,"Please Login",Snackbar.LENGTH_SHORT).show() }
-        binding.include2.profile.setOnClickListener { Snackbar.make(constraint,"Please Login",Snackbar.LENGTH_SHORT).show() }
+        binding.include2.game.setOnClickListener { makeSnackBar() }
+        binding.include2.leaderboard.setOnClickListener { makeSnackBar() }
+        binding.include2.story.setOnClickListener { makeSnackBar() }
+        binding.include2.profile.setOnClickListener { makeSnackBar() }
 
+    }
+
+    private fun makeSnackBar() {
+        Snackbar.make(constraint, "Please Login", Snackbar.LENGTH_SHORT).show()
     }
 
     private fun navigateToProfileSetup() {

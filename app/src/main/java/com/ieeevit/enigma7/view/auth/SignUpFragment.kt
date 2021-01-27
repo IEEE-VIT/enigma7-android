@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -28,16 +27,15 @@ import kotlinx.android.synthetic.main.sponsor_dialog.view.*
 
 
 class SignUpFragment : Fragment() {
-    private val redirectUri: String =
-        "http://127.0.0.1:8000/"
-    private val viewModel: SignUpViewModel by lazy {
-        ViewModelProvider(this, SignUpViewModel.Factory())
-            .get(SignUpViewModel::class.java)
-    }
+    private val redirectUri: String = "http://127.0.0.1:8000/"
     private lateinit var sharedPreference: PrefManager
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 0
     private lateinit var overlayFrame: ConstraintLayout
+    private val viewModel: SignUpViewModel by lazy {
+        ViewModelProvider(this, SignUpViewModel.Factory())
+            .get(SignUpViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,7 +113,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun signIn() {
-        val signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
+        val signInIntent: Intent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
 
     }
